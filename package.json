@@ -1,6 +1,13 @@
 {
 	"name": "@accuser/svelte-markdown-provider",
 	"version": "0.1.0",
+	"private": false,
+	"license": "MIT",
+	"author": {
+		"email": "mhgibbons@me.com",
+		"name": "Matthew Gibbons",
+		"url": "https://github.com/accuser"
+	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && pnpm run package",
