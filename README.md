@@ -10,7 +10,7 @@ Transforms a [Markdown AST](https://github.com/syntax-tree/mdast) into Svelte co
 Add the `@accuser/svelte-markdown-provider` package dependency to your [Svelte](https://svelte.dev) / [SvelteKit](https://kit.svelte.dev) project:
 
 ```sh
-npm install --save-dev svelte-markdown-provider
+npm install --save-dev @accuser/svelte-markdown-provider
 ```
 
 ## Usage
