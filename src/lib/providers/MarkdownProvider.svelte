@@ -61,9 +61,7 @@
 		textDirective: TextDirective,
 		thematicBreak: ThematicBreak,
 		yaml: Yaml,
-		root: Root,
-		inlineMath: undefined,
-		math: undefined
+		root: Root
 	};
 
 	const directives: Record<
