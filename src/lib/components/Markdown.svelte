@@ -24,17 +24,17 @@
 
 	const { type } = node;
 
-	let component =
-		(type === 'containerDirective' || type === 'leafDirective' || type === 'textDirective') &&
-		_directives
+	const directive =
+		_directives &&
+		(type === 'containerDirective' || type === 'leafDirective' || type === 'textDirective')
 			? _directives[type][node.name]
-			: _components
-				? _components[type]
-				: undefined;
+			: undefined;
 
-	if (!component) {
-		console.warn('Unrecognized node:', type);
+	const component = _components ? _components[type] : undefined;
+
+	if (!directive && !component) {
+		console.warn(`Unrecognized node type "${type}"`);
 	}
 </script>
 
-<svelte:component this={component} {node} />
+<svelte:component this={directive || component} {node} />
