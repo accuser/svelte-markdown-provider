@@ -53,6 +53,7 @@
 		list: List,
 		listItem: ListItem,
 		paragraph: Paragraph,
+		root: Root,
 		strong: Strong,
 		table: Table,
 		tableCell: TableCell,
@@ -60,8 +61,7 @@
 		text: Text,
 		textDirective: TextDirective,
 		thematicBreak: ThematicBreak,
-		yaml: Yaml,
-		root: Root
+		yaml: Yaml
 	};
 
 	const directives: Record<
