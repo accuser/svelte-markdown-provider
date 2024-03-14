@@ -14,7 +14,7 @@ describe('BlockQuote.svelte', async () => {
 		});
 
 		expect(container.innerHTML).toContain(
-			'<div><blockquote><!--<Children>--></blockquote><!--<Blockquote>--></div>'
+			'<div><blockquote></blockquote><!--<Blockquote>--></div>'
 		);
 	});
 });

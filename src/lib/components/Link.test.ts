@@ -15,7 +15,7 @@ describe('Link.svelte', async () => {
 		});
 
 		expect(container.innerHTML).toContain(
-			'<div><a href="https://example.com"><!--<Children>--></a><!--<Link>--></div>'
+			'<div><a href="https://example.com"></a><!--<Link>--></div>'
 		);
 	});
 });

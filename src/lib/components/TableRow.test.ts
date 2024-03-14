@@ -18,8 +18,6 @@ describe('TableRow.svelte', async () => {
 			}
 		});
 
-		expect(container.innerHTML).toContain(
-			'<div><tr><!--<Markdown>--><!--<Children>--></tr><!--<TableRow>--></div>'
-		);
+		expect(container.innerHTML).toContain('<div><tr><!--<Markdown>--></tr><!--<TableRow>--></div>');
 	});
 });

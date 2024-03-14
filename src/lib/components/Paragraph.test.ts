@@ -10,6 +10,6 @@ describe('Paragraph.svelte', async () => {
 			}
 		});
 
-		expect(container.innerHTML).toContain('<div><p><!--<Children>--></p><!--<Paragraph>--></div>');
+		expect(container.innerHTML).toContain('<div><p></p><!--<Paragraph>--></div>');
 	});
 });

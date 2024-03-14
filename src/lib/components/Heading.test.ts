@@ -15,7 +15,7 @@ describe('Heading.svelte', async () => {
 		});
 
 		expect(container.innerHTML).toContain(
-			'<div><h1 id="hello-world"><!--<Markdown>--><!--<Children>--></h1><!--<Heading>--></div>'
+			'<div><h1 id="hello-world"><!--<Markdown>--></h1><!--<Heading>--></div>'
 		);
 	});
 
@@ -31,7 +31,7 @@ describe('Heading.svelte', async () => {
 		});
 
 		expect(container.innerHTML).toContain(
-			'<div><h2 id="hello-world"><!--<Markdown>--><!--<Children>--></h2><!--<Heading>--></div>'
+			'<div><h2 id="hello-world"><!--<Markdown>--></h2><!--<Heading>--></div>'
 		);
 	});
 
@@ -47,7 +47,7 @@ describe('Heading.svelte', async () => {
 		});
 
 		expect(container.innerHTML).toContain(
-			'<div><h3 id="hello-world"><!--<Markdown>--><!--<Children>--></h3><!--<Heading>--></div>'
+			'<div><h3 id="hello-world"><!--<Markdown>--></h3><!--<Heading>--></div>'
 		);
 	});
 
@@ -63,7 +63,7 @@ describe('Heading.svelte', async () => {
 		});
 
 		expect(container.innerHTML).toContain(
-			'<div><h4 id="hello-world"><!--<Markdown>--><!--<Children>--></h4><!--<Heading>--></div>'
+			'<div><h4 id="hello-world"><!--<Markdown>--></h4><!--<Heading>--></div>'
 		);
 	});
 
@@ -79,7 +79,7 @@ describe('Heading.svelte', async () => {
 		});
 
 		expect(container.innerHTML).toContain(
-			'<div><h5 id="hello-world"><!--<Markdown>--><!--<Children>--></h5><!--<Heading>--></div>'
+			'<div><h5 id="hello-world"><!--<Markdown>--></h5><!--<Heading>--></div>'
 		);
 	});
 
@@ -95,7 +95,7 @@ describe('Heading.svelte', async () => {
 		});
 
 		expect(container.innerHTML).toContain(
-			'<div><h6 id="hello-world"><!--<Markdown>--><!--<Children>--></h6><!--<Heading>--></div>'
+			'<div><h6 id="hello-world"><!--<Markdown>--></h6><!--<Heading>--></div>'
 		);
 	});
 });

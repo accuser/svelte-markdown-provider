@@ -13,7 +13,7 @@ describe('List.svelte', async () => {
 			}
 		});
 
-		expect(container.innerHTML).toContain('<div><ul><!--<Children>--></ul><!--<List>--></div>');
+		expect(container.innerHTML).toContain('<div><ul></ul><!--<List>--></div>');
 	});
 
 	it('renders <ol>', async () => {
@@ -32,9 +32,7 @@ describe('List.svelte', async () => {
 			}
 		});
 
-		expect(container.innerHTML).toContain(
-			'<div><ol><!--<Markdown>--><!--<Children>--></ol><!--<List>--></div>'
-		);
+		expect(container.innerHTML).toContain('<div><ol><!--<Markdown>--></ol><!--<List>--></div>');
 	});
 
 	it('renders <ol> with a start attribute', async () => {
@@ -55,7 +53,7 @@ describe('List.svelte', async () => {
 		});
 
 		expect(container.innerHTML).toContain(
-			'<div><ol start="2"><!--<Markdown>--><!--<Children>--></ol><!--<List>--></div>'
+			'<div><ol start="2"><!--<Markdown>--></ol><!--<List>--></div>'
 		);
 	});
 });

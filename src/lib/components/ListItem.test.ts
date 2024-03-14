@@ -13,6 +13,6 @@ describe('ListItem.svelte', async () => {
 			}
 		});
 
-		expect(container.innerHTML).toContain('<div><li><!--<Children>--></li><!--<ListItem>--></div>');
+		expect(container.innerHTML).toContain('<div><li></li><!--<ListItem>--></div>');
 	});
 });

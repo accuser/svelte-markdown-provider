@@ -13,6 +13,6 @@ describe('Emphasis.svelte', async () => {
 			}
 		});
 
-		expect(container.innerHTML).toContain('<div><em><!--<Children>--></em><!--<Emphasis>--></div>');
+		expect(container.innerHTML).toContain('<div><em></em><!--<Emphasis>--></div>');
 	});
 });

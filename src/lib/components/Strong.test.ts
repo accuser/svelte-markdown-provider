@@ -14,7 +14,7 @@ describe('Strong.svelte', async () => {
 		});
 
 		expect(container.innerHTML).toContain(
-			'<div><strong><!--<Markdown>--><!--<Children>--></strong><!--<Strong>--></div>'
+			'<div><strong><!--<Markdown>--></strong><!--<Strong>--></div>'
 		);
 	});
 });

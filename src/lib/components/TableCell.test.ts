@@ -13,8 +13,6 @@ describe('TableCell.svelte', async () => {
 			}
 		});
 
-		expect(container.innerHTML).toContain(
-			'<div><td><!--<Children>--></td><!--<TableCell>--></div>'
-		);
+		expect(container.innerHTML).toContain('<div><td></td><!--<TableCell>--></div>');
 	});
 });

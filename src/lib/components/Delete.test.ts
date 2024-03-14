@@ -13,6 +13,6 @@ describe('Delete.svelte', async () => {
 			}
 		});
 
-		expect(container.innerHTML).toContain('<div><del><!--<Children>--></del><!--<Delete>--></div>');
+		expect(container.innerHTML).toContain('<div><del></del><!--<Delete>--></div>');
 	});
 });
