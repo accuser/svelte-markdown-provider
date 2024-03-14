@@ -1,10 +1,8 @@
-import fromMarkdown from '$lib/from-markdown.js';
 import fs from 'node:fs';
 import type { PageServerLoad } from './$types.js';
 
 export const load = (async () => {
-	const root = fromMarkdown(fs.readFileSync('content/example.md'));
+	const root = JSON.parse(fs.readFileSync('content/example.json').toString('utf-8'));
 
-	console.log('root', JSON.stringify(root, null, 2));
 	return { root };
 }) satisfies PageServerLoad;
