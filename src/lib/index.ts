@@ -1,2 +1,2 @@
-export { default as Markdown } from './lib/components/Markdown.svelte';
-export { default as MarkdownProvider } from './lib/providers/MarkdownProvider.svelte';
+export { default as Markdown } from './components/Markdown.svelte';
+export { default as MarkdownProvider } from './providers/MarkdownProvider.svelte';
