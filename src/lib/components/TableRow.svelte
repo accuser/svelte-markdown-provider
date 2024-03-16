@@ -5,9 +5,7 @@
 
 	export let node: import('mdast').TableRow;
 
-	const { children } = node;
-
-	setContext(TABLE_ROW_CONTEXT_TOKEN, node);
+	const { children } = setContext(TABLE_ROW_CONTEXT_TOKEN, node);
 </script>
 
 <tr
