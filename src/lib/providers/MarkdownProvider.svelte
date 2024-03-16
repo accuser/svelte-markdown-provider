@@ -37,6 +37,7 @@
 		import('mdast-util-directive').Directives['type'],
 		Record<string, import('svelte').ComponentType | undefined>
 	>;
+
 	const components: Components = {
 		blockquote: Blockquote,
 		break: Break,
