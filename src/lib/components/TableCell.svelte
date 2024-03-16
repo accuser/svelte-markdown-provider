@@ -11,7 +11,7 @@
 	const table = getContext<import('mdast').Table>(TABLE_CONTEXT_TOKEN);
 	const row = getContext<import('mdast').TableRow>(TABLE_ROW_CONTEXT_TOKEN);
 
-	let align = table && table.align && row ? table.align[row.children.indexOf(node)] : undefined;
+	const align = table && table.align && row ? table.align[row.children.indexOf(node)] : undefined;
 </script>
 
 <td {align}
