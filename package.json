@@ -8,6 +8,20 @@
 		"name": "Matthew Gibbons",
 		"url": "https://github.com/accuser"
 	},
+	"keywords": [
+		"markdown",
+		"mdast",
+		"svelte",
+		"sveltekit"
+	],
+	"homepage": "https://github.com/accuser/svelte-markdown-provider/README.md",
+	"bugs": {
+		"url": "https://github.com/accuser/svelte-markdown-provider/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/accuser/svelte-markdown-provider.git"
+	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && pnpm run package",
