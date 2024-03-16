@@ -29,10 +29,15 @@
 	import ThematicBreak from '$lib/components/ThematicBreak.svelte';
 	import Yaml from '$lib/components/Yaml.svelte';
 
-	const components: Record<
+	type Components = Record<
 		import('mdast').Nodes['type'],
 		import('svelte').ComponentType | undefined
-	> = {
+	>;
+	type Directives = Record<
+		import('mdast-util-directive').Directives['type'],
+		Record<string, import('svelte').ComponentType | undefined>
+	>;
+	const components: Components = {
 		blockquote: Blockquote,
 		break: Break,
 		code: Code,
@@ -64,10 +69,7 @@
 		yaml: Yaml
 	};
 
-	const directives: Record<
-		import('mdast-util-directive').Directives['type'],
-		Record<string, import('svelte').ComponentType>
-	> = {
+	const directives: Directives = {
 		containerDirective: {},
 		leafDirective: {},
 		textDirective: {}
