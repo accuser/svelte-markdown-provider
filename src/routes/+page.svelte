@@ -1,17 +1,12 @@
 <script lang="ts">
 	import Markdown from '$lib/components/Markdown.svelte';
-	import MarkdownProvider from '$lib/providers/MarkdownProvider.svelte';
 	import type { PageData } from './$types.js';
 
-	export let data: PageData;
+	const { data }: { data: PageData } = $props();
 
-	const { root } = data;
+	const { root } = $derived(data);
 </script>
 
-<MarkdownProvider let:components let:directives>
-	<article class="prose max-w-prose mx-auto prose-slate dark:prose-invert">
-		{#if root}
-			<Markdown node={root} {components} {directives} />
-		{/if}
-	</article>
-</MarkdownProvider>
+<article class="prose prose-lg max-w-prose mx-auto prose-slate dark:prose-invert">
+	<Markdown node={root} />
+</article>
