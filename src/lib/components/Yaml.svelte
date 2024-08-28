@@ -1,7 +1,3 @@
 <script lang="ts">
-	export let node: import('mdast').Yaml;
-
-	node;
+	const { node }: { node: import('mdast').Yaml } = $props();
 </script>
-
-<slot />

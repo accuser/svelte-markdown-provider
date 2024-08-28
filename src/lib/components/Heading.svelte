@@ -2,17 +2,19 @@
 	import { toString } from 'mdast-util-to-string';
 	import Markdown from './Markdown.svelte';
 
-	export let node: import('mdast').Heading;
+	const { node }: { node: import('mdast').Heading } = $props();
 
-	const { children, depth } = node;
+	const { children, data, depth } = $derived(node);
 
-	let tag = `h${depth}`;
+	let tag = $derived.by(() => `h${depth}`);
 
-	const id = toString(node)
-		.toLowerCase()
-		.replace(/[^\w]+/g, '-')
-		.replace(/-+/, '-')
-		.replace(/^-|-$/g, '');
+	const id = $derived.by(() =>
+		toString(children)
+			.toLowerCase()
+			.replace(/[^\w]+/g, '-')
+			.replace(/-+/, '-')
+			.replace(/^-|-$/g, '')
+	);
 </script>
 
 <svelte:element this={tag} {id}

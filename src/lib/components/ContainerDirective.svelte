@@ -1,9 +1,9 @@
 <script lang="ts">
 	import Markdown from './Markdown.svelte';
 
-	export let node: import('mdast-util-directive').ContainerDirective;
+	const { node }: { node: import('mdast-util-directive').ContainerDirective } = $props();
 
-	const { children, name } = node;
+	const { children, data, name } = $derived(node);
 
 	console.warn('Unrecognized container directive:', name);
 </script>

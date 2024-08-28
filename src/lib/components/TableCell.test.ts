@@ -7,12 +7,12 @@ describe('TableCell.svelte', async () => {
 		const { container } = render(TableCell, {
 			props: {
 				node: {
-					children: [],
+					children: [{ type: 'text', value: 'Hello, World!' }],
 					type: 'tableCell'
 				}
 			}
 		});
 
-		expect(container.innerHTML).toContain('<div><td></td><!--<TableCell>--></div>');
+		expect(container.innerHTML).toContain('<td>Hello, World!</td>');
 	});
 });

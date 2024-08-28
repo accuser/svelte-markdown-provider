@@ -7,14 +7,12 @@ describe('BlockQuote.svelte', async () => {
 		const { container } = render(Blockquote, {
 			props: {
 				node: {
-					type: 'blockquote',
-					children: []
+					children: [{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }],
+					type: 'blockquote'
 				}
 			}
 		});
 
-		expect(container.innerHTML).toContain(
-			'<div><blockquote></blockquote><!--<Blockquote>--></div>'
-		);
+		expect(container.innerHTML).toContain('<blockquote><p>Hello, World!</p></blockquote>');
 	});
 });

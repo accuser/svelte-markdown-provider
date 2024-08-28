@@ -3,12 +3,15 @@
 	import { definitions } from 'mdast-util-definitions';
 	import { getContext } from 'svelte';
 
-	export let node: import('mdast').ImageReference;
+	const { node }: { node: import('mdast').ImageReference } = $props();
+
+	const { alt, data, identifier, referenceType } = $derived(node);
 
 	const definition = definitions(getContext(ROOT_CONTEXT_TOKEN));
 
-	const { alt, identifier } = node;
-	const { url, title } = definition(identifier) ?? {};
+	const { url, title } = $derived.by(
+		() => definition(identifier) ?? ({} as import('mdast').Definition)
+	);
 </script>
 
 <img src={url} {alt} {title} />

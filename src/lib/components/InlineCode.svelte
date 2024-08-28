@@ -1,7 +1,7 @@
 <script lang="ts">
-	export let node: import('mdast').InlineCode;
+	const { node }: { node: import('mdast').InlineCode } = $props();
 
-	const { value } = node;
+	const { data, value } = $derived(node);
 </script>
 
 <code>{value}</code>

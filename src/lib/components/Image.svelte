@@ -1,7 +1,7 @@
 <script lang="ts">
-	export let node: import('mdast').Image;
+	const { node }: { node: import('mdast').Image } = $props();
 
-	const { alt, url, title } = node;
+	const { alt, data, url, title } = $derived(node);
 </script>
 
 <img src={url} {alt} {title} />

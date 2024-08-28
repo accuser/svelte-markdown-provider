@@ -1,9 +1,9 @@
 <script lang="ts">
 	import Markdown from './Markdown.svelte';
 
-	export let node: import('mdast').Link;
+	const { node }: { node: import('mdast').Link } = $props();
 
-	const { children, title, url } = node;
+	const { children, title, url } = $derived(node);
 </script>
 
 <a href={url} {title}

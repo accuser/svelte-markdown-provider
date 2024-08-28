@@ -7,14 +7,12 @@ describe('Strong.svelte', async () => {
 		const { container } = render(Strong, {
 			props: {
 				node: {
-					type: 'strong',
-					children: [{ type: 'text', value: 'Hello, World!' }]
+					children: [{ type: 'text', value: 'Hello, World!' }],
+					type: 'strong'
 				}
 			}
 		});
 
-		expect(container.innerHTML).toContain(
-			'<div><strong><!--<Markdown>--></strong><!--<Strong>--></div>'
-		);
+		expect(container.innerHTML).toContain('<strong>Hello, World!</strong>');
 	});
 });

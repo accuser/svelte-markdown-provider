@@ -1,10 +1,9 @@
 <script lang="ts">
 	import Markdown from './Markdown.svelte';
 
-	export let node: import('mdast').ListItem;
+	const { node }: { node: import('mdast').ListItem } = $props();
 
-	// TODO: CSS for checked and spread
-	const { checked, children, spread } = node;
+	const { checked, children, data, spread } = $derived(node);
 </script>
 
 <li>

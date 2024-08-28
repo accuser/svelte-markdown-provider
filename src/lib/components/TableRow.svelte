@@ -3,7 +3,7 @@
 	import { setContext } from 'svelte';
 	import Markdown from './Markdown.svelte';
 
-	export let node: import('mdast').TableRow;
+	const { node }: { node: import('mdast').TableRow } = $props();
 
 	const { children } = setContext(TABLE_ROW_CONTEXT_TOKEN, node);
 </script>

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import Markdown from './Markdown.svelte';
 
-	export let node: import('mdast').Emphasis;
+	const { node }: { node: import('mdast').Emphasis } = $props();
 
-	const { children } = node;
+	const { children, data } = $derived(node);
 </script>
 
 <em

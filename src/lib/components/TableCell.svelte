@@ -4,9 +4,9 @@
 	import { getContext } from 'svelte';
 	import Markdown from './Markdown.svelte';
 
-	export let node: import('mdast').TableCell;
+	const { node }: { node: import('mdast').TableCell } = $props();
 
-	const { children } = node;
+	const { children } = $derived(node);
 
 	const table = getContext<import('mdast').Table>(TABLE_CONTEXT_TOKEN);
 	const row = getContext<import('mdast').TableRow>(TABLE_ROW_CONTEXT_TOKEN);

@@ -1,13 +1,12 @@
 <script lang="ts">
 	import Markdown from './Markdown.svelte';
 
-	export let node: import('mdast-util-directive').LeafDirective;
+	const { node }: { node: import('mdast-util-directive').LeafDirective } = $props();
 
-	const { children, name } = node;
-
-	console.warn('Unrecognized leaf directive:', name);
+	const { children, name } = $derived(node);
 </script>
 
+<!-- Unrecognized leaf directive: {name} -->
 <div class={name}>
 	{#each children as node}<Markdown {node} />{/each}
 </div>

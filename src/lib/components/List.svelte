@@ -1,12 +1,11 @@
 <script lang="ts">
 	import Markdown from './Markdown.svelte';
 
-	export let node: import('mdast').List;
+	const { node }: { node: import('mdast').List } = $props();
 
-	// TODO: CSS for spread and start
-	const { children, ordered, spread, start } = node;
+	const { children, data, ordered, spread, start } = $derived(node);
 
-	const tag = ordered ? 'ol' : 'ul';
+	const tag = $derived.by(() => (ordered ? 'ol' : 'ul'));
 </script>
 
 <svelte:element this={tag} class:spread {start}

@@ -3,7 +3,7 @@
 	import { setContext } from 'svelte';
 	import Markdown from './Markdown.svelte';
 
-	export let node: import('mdast').Root;
+	const { node }: { node: import('mdast').Root } = $props();
 
 	const { children } = setContext(ROOT_CONTEXT_TOKEN, node);
 </script>

@@ -13,6 +13,6 @@ describe('Html.svelte', async () => {
 			}
 		});
 
-		expect(container.innerHTML).toContain('<div><pre>Hello, World!</pre><!--<Html>--></div>');
+		expect(container.innerHTML).toContain('<pre>Hello, World!</pre>');
 	});
 });

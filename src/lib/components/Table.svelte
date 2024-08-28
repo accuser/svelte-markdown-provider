@@ -3,10 +3,12 @@
 	import { setContext } from 'svelte';
 	import Markdown from './Markdown.svelte';
 
-	export let node: import('mdast').Table;
+	const { node }: { node: import('mdast').Table } = $props();
 
 	const {
-		children: [head, ...rows]
+		align,
+		children: [head, ...rows],
+		data
 	} = setContext(TABLE_CONTEXT_TOKEN, node);
 </script>
 

@@ -7,12 +7,12 @@ describe('Delete.svelte', async () => {
 		const { container } = render(Delete, {
 			props: {
 				node: {
-					type: 'delete',
-					children: []
+					children: [{ type: 'text', value: 'Hello, World!' }],
+					type: 'delete'
 				}
 			}
 		});
 
-		expect(container.innerHTML).toContain('<div><del></del><!--<Delete>--></div>');
+		expect(container.innerHTML).toContain('<del>Hello, World!</del>');
 	});
 });

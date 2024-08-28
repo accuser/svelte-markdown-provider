@@ -7,12 +7,12 @@ describe('Emphasis.svelte', async () => {
 		const { container } = render(Emphasis, {
 			props: {
 				node: {
-					type: 'emphasis',
-					children: []
+					children: [{ type: 'text', value: 'Hello, World!' }],
+					type: 'emphasis'
 				}
 			}
 		});
 
-		expect(container.innerHTML).toContain('<div><em></em><!--<Emphasis>--></div>');
+		expect(container.innerHTML).toContain('<em>Hello, World!</em>');
 	});
 });

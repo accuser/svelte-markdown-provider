@@ -15,7 +15,7 @@ describe('Code.svelte', async () => {
 		});
 
 		expect(container.innerHTML).toContain(
-			'<div><pre><code lang="javascript">console.log("Hello, World!");</code></pre><!--<Code>--></div>'
+			'<pre><code lang="javascript">console.log("Hello, World!");</code></pre>'
 		);
 	});
 });

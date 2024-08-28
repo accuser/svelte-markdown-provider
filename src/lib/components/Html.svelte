@@ -1,7 +1,7 @@
 <script lang="ts">
-	export let node: import('mdast').Html;
+	const { node }: { node: import('mdast').Html } = $props();
 
-	const { value } = node;
+	const { data, value } = $derived(node);
 </script>
 
 {@html value}

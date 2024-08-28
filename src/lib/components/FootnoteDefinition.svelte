@@ -1,9 +1,9 @@
 <script lang="ts">
 	import Markdown from './Markdown.svelte';
 
-	export let node: import('mdast').FootnoteDefinition;
+	const { node }: { node: import('mdast').FootnoteDefinition } = $props();
 
-	const { children, identifier, label } = node;
+	const { children, data, identifier, label } = $derived(node);
 </script>
 
 <div id="footnote-{identifier}">

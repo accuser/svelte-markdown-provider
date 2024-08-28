@@ -12,6 +12,6 @@ describe('ThematicBreak.svelte', async () => {
 			}
 		});
 
-		expect(container.innerHTML).toContain('<div><hr><!--<ThematicBreak>--></div>');
+		expect(container.innerHTML).toContain('<hr>');
 	});
 });

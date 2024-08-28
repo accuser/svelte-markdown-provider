@@ -8,11 +8,21 @@ describe('Table.svelte', async () => {
 			props: {
 				node: {
 					type: 'table',
-					children: []
+					children: [
+						{
+							type: 'tableRow',
+							children: [
+								{ type: 'tableCell', children: [{ type: 'text', value: 'Heading' }] },
+								{ type: 'tableCell', children: [{ type: 'text', value: 'Value' }] }
+							]
+						}
+					]
 				}
 			}
 		});
 
-		expect(container.innerHTML).toContain('<div><table> </table><!--<Table>--></div>');
+		expect(container.innerHTML).toContain(
+			'<table><thead><tr><td>Heading</td><td>Value</td></tr><!----></thead><!----><!----></table>'
+		);
 	});
 });

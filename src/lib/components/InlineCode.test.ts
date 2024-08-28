@@ -13,8 +13,6 @@ describe('InlineCode.svelte', async () => {
 			}
 		});
 
-		expect(container.innerHTML).toContain(
-			'<div><code>console.log("Hello, World!");</code><!--<InlineCode>--></div>'
-		);
+		expect(container.innerHTML).toContain('<code>console.log("Hello, World!");</code>');
 	});
 });

@@ -7,15 +7,13 @@ describe('Link.svelte', async () => {
 		const { container } = render(Link, {
 			props: {
 				node: {
-					children: [],
+					children: [{ type: 'text', value: 'Hello, World!' }],
 					type: 'link',
 					url: 'https://example.com'
 				}
 			}
 		});
 
-		expect(container.innerHTML).toContain(
-			'<div><a href="https://example.com"></a><!--<Link>--></div>'
-		);
+		expect(container.innerHTML).toContain('<a href="https://example.com">Hello, World!</a>');
 	});
 });

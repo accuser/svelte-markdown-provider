@@ -1,7 +1,7 @@
 <script lang="ts">
-	export let node: import('mdast').Break;
+	const { node }: { node: import('mdast').Break } = $props();
 
-	node;
+	const { data } = $derived(node);
 </script>
 
 <br />

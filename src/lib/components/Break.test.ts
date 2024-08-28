@@ -12,6 +12,6 @@ describe('Break.svelte', async () => {
 			}
 		});
 
-		expect(container.innerHTML).toContain('<div><br><!--<Break>--></div>');
+		expect(container.innerHTML).toBe(`<br>`);
 	});
 });

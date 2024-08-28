@@ -11,13 +11,13 @@ describe('TableRow.svelte', async () => {
 					children: [
 						{
 							type: 'tableCell',
-							children: []
+							children: [{ type: 'text', value: 'Hello, World!' }]
 						}
 					]
 				}
 			}
 		});
 
-		expect(container.innerHTML).toContain('<div><tr><!--<Markdown>--></tr><!--<TableRow>--></div>');
+		expect(container.innerHTML).toContain('<tr><td>Hello, World!</td></tr>');
 	});
 });

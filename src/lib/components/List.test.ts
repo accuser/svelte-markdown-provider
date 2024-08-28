@@ -7,13 +7,20 @@ describe('List.svelte', async () => {
 		const { container } = render(List, {
 			props: {
 				node: {
-					children: [],
+					children: [
+						{
+							type: 'listItem',
+							children: [
+								{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }
+							]
+						}
+					],
 					type: 'list'
 				}
 			}
 		});
 
-		expect(container.innerHTML).toContain('<div><ul></ul><!--<List>--></div>');
+		expect(container.innerHTML).toContain('<!----><ul><!----><li><p>Hello, World!</p></li></ul>');
 	});
 
 	it('renders <ol>', async () => {
@@ -23,7 +30,9 @@ describe('List.svelte', async () => {
 					children: [
 						{
 							type: 'listItem',
-							children: []
+							children: [
+								{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }
+							]
 						}
 					],
 					type: 'list',
@@ -32,7 +41,7 @@ describe('List.svelte', async () => {
 			}
 		});
 
-		expect(container.innerHTML).toContain('<div><ol><!--<Markdown>--></ol><!--<List>--></div>');
+		expect(container.innerHTML).toContain('<!----><ol><!----><li><p>Hello, World!</p></li></ol>');
 	});
 
 	it('renders <ol> with a start attribute', async () => {
@@ -42,7 +51,9 @@ describe('List.svelte', async () => {
 					children: [
 						{
 							type: 'listItem',
-							children: []
+							children: [
+								{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }
+							]
 						}
 					],
 					type: 'list',
@@ -53,7 +64,7 @@ describe('List.svelte', async () => {
 		});
 
 		expect(container.innerHTML).toContain(
-			'<div><ol start="2"><!--<Markdown>--></ol><!--<List>--></div>'
+			'<!----><ol start="2"><!----><li><p>Hello, World!</p></li></ol>'
 		);
 	});
 });

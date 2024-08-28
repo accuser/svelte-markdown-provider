@@ -1,13 +1,12 @@
 <script lang="ts">
 	import Markdown from './Markdown.svelte';
 
-	export let node: import('mdast-util-directive').TextDirective;
+	const { node }: { node: import('mdast-util-directive').TextDirective } = $props();
 
-	const { attributes, children, name } = node;
-
-	console.warn('Unrecognized text directive:', name);
+	const { attributes, children, data, name } = $derived(node);
 </script>
 
+<!-- Unrecognized text directive: {name} -->
 <div class={name}>
 	{#each children as node}<Markdown {node} />{/each}
 </div>

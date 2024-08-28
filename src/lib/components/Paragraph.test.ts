@@ -6,10 +6,10 @@ describe('Paragraph.svelte', async () => {
 	it('renders <p>', async () => {
 		const { container } = render(Paragraph, {
 			props: {
-				node: { type: 'paragraph', children: [] }
+				node: { type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }
 			}
 		});
 
-		expect(container.innerHTML).toContain('<div><p></p><!--<Paragraph>--></div>');
+		expect(container.innerHTML).toContain('<p>Hello, World!</p>');
 	});
 });

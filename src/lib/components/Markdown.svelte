@@ -1,44 +1,45 @@
 <script lang="ts">
 	import { MARKDOWN_COMPONENTS_TOKEN } from '$lib/tokens/markdown-components.token.js';
 	import { MARKDOWN_DIRECTIVES_TOKEN } from '$lib/tokens/markdown-directives.token.js';
-	import { getContext, setContext } from 'svelte';
+	import { type Components, defaultComponents } from '$lib/types/components.js';
+	import { type Directives, defaultDirectives } from '$lib/types/directives.js';
+	import { getContext, hasContext, setContext } from 'svelte';
 
-	type Components = Record<
-		import('mdast').Nodes['type'],
-		import('svelte').ComponentType | undefined
-	>;
-	type Directives = Record<
-		import('mdast-util-directive').Directives['type'],
-		Record<string, import('svelte').ComponentType | undefined>
-	>;
+	const {
+		components: _components,
+		directives: _directives,
+		node
+	}: { components?: Components; directives?: Directives; node: import('mdast').Nodes } = $props();
 
-	export let node: import('mdast').Nodes;
-	let _components: Components | undefined = undefined;
-	let _directives: Directives | undefined = undefined;
+	const components = {
+		...defaultComponents,
+		...(_components
+			? setContext(MARKDOWN_COMPONENTS_TOKEN, _components)
+			: hasContext(MARKDOWN_COMPONENTS_TOKEN)
+				? getContext<Components>(MARKDOWN_COMPONENTS_TOKEN)
+				: {})
+	};
 
-	export { _components as components, _directives as directives };
-
-	const components = _components
-		? setContext(MARKDOWN_COMPONENTS_TOKEN, _components)
-		: getContext<Components>(MARKDOWN_COMPONENTS_TOKEN);
-
-	const directives = _directives
-		? setContext(MARKDOWN_DIRECTIVES_TOKEN, _directives)
-		: getContext<Directives>(MARKDOWN_DIRECTIVES_TOKEN);
+	const directives = {
+		...defaultDirectives,
+		...(_directives
+			? setContext(MARKDOWN_DIRECTIVES_TOKEN, _directives)
+			: hasContext(MARKDOWN_DIRECTIVES_TOKEN)
+				? getContext<Directives>(MARKDOWN_DIRECTIVES_TOKEN)
+				: {})
+	};
 
 	const { type } = node;
 
-	const component =
+	const Component =
 		directives &&
 		(type === 'containerDirective' || type === 'leafDirective' || type === 'textDirective')
 			? directives[type][node.name]
-			: components
-				? components[type]
-				: undefined;
+			: components[type];
 
-	if (!component) {
+	if (!Component) {
 		console.warn(`Unrecognized node type "${type}"`);
 	}
 </script>
 
-<svelte:component this={component} {node} />
+<Component {node} />

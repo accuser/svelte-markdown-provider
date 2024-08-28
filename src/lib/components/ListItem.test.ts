@@ -7,12 +7,12 @@ describe('ListItem.svelte', async () => {
 		const { container } = render(ListItem, {
 			props: {
 				node: {
-					children: [],
+					children: [{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }],
 					type: 'listItem'
 				}
 			}
 		});
 
-		expect(container.innerHTML).toContain('<div><li></li><!--<ListItem>--></div>');
+		expect(container.innerHTML).toContain('<li><p>Hello, World!</p></li>');
 	});
 });
