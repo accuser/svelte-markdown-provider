@@ -6,7 +6,7 @@
 	const { children, data, name } = $derived(node);
 </script>
 
-<!-- Unrecognized leaf directive: {name} -->
+{@html `<!-- Unrecognized container directive :::${name} -->`}
 <div class={name}>
 	{#each children as node}<Markdown {node} />{/each}
 </div>

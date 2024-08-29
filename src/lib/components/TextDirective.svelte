@@ -6,7 +6,7 @@
 	const { attributes, children, data, name } = $derived(node);
 </script>
 
-<!-- Unrecognized text directive: {name} -->
-<div class={name}>
+{@html `<!-- Unrecognized text directive :${name} -->`}
+<span class={name}>
 	{#each children as node}<Markdown {node} />{/each}
-</div>
+</span>
