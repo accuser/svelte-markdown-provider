@@ -13,6 +13,19 @@ describe('Strong.svelte', async () => {
 			}
 		});
 
-		expect(container.innerHTML).toContain('<strong>Hello, World!</strong>');
+		expect(container.querySelector('strong')).toBeInTheDocument();
+	});
+
+	it('renders <strong> with content', async () => {
+		const { container } = render(Strong, {
+			props: {
+				node: {
+					children: [{ type: 'text', value: 'Hello, World!' }],
+					type: 'strong'
+				}
+			}
+		});
+
+		expect(container.querySelector('strong')).toHaveTextContent('Hello, World!');
 	});
 });

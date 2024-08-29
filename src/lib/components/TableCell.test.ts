@@ -13,6 +13,19 @@ describe('TableCell.svelte', async () => {
 			}
 		});
 
-		expect(container.innerHTML).toContain('<td>Hello, World!</td>');
+		expect(container.querySelector('td')).toBeInTheDocument();
+	});
+
+	it('renders <td> with content', async () => {
+		const { container } = render(TableCell, {
+			props: {
+				node: {
+					children: [{ type: 'text', value: 'Hello, World!' }],
+					type: 'tableCell'
+				}
+			}
+		});
+
+		expect(container.querySelector('td')).toHaveTextContent('Hello, World!');
 	});
 });

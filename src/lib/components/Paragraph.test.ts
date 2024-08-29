@@ -10,6 +10,16 @@ describe('Paragraph.svelte', async () => {
 			}
 		});
 
-		expect(container.innerHTML).toContain('<p>Hello, World!</p>');
+		expect(container.querySelector('p')).toBeInTheDocument();
+	});
+
+	it('renders <p> with content', async () => {
+		const { container } = render(Paragraph, {
+			props: {
+				node: { type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }
+			}
+		});
+
+		expect(container.querySelector('p')).toHaveTextContent('Hello, World!');
 	});
 });

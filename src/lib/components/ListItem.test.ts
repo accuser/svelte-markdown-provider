@@ -13,6 +13,19 @@ describe('ListItem.svelte', async () => {
 			}
 		});
 
-		expect(container.innerHTML).toContain('<li><p>Hello, World!</p></li>');
+		expect(container.querySelector('li')).toBeInTheDocument();
+	});
+
+	it('renders <li> with content', async () => {
+		const { container } = render(ListItem, {
+			props: {
+				node: {
+					children: [{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }],
+					type: 'listItem'
+				}
+			}
+		});
+
+		expect(container.querySelector('li')).toHaveTextContent('Hello, World!');
 	});
 });

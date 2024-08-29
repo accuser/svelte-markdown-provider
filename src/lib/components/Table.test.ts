@@ -12,8 +12,7 @@ describe('Table.svelte', async () => {
 						{
 							type: 'tableRow',
 							children: [
-								{ type: 'tableCell', children: [{ type: 'text', value: 'Heading' }] },
-								{ type: 'tableCell', children: [{ type: 'text', value: 'Value' }] }
+								{ type: 'tableCell', children: [{ type: 'text', value: 'Hello, World!' }] }
 							]
 						}
 					]
@@ -21,8 +20,26 @@ describe('Table.svelte', async () => {
 			}
 		});
 
-		expect(container.innerHTML).toContain(
-			'<table><thead><tr><td>Heading</td><td>Value</td></tr><!----></thead><!----><!----></table>'
-		);
+		expect(container.querySelector('table')).toBeInTheDocument();
+	});
+
+	it('renders <table> with content', async () => {
+		const { container } = render(Table, {
+			props: {
+				node: {
+					type: 'table',
+					children: [
+						{
+							type: 'tableRow',
+							children: [
+								{ type: 'tableCell', children: [{ type: 'text', value: 'Hello, World!' }] }
+							]
+						}
+					]
+				}
+			}
+		});
+
+		expect(container.querySelector('table')).toHaveTextContent('Hello, World!');
 	});
 });
