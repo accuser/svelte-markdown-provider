@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Markdown from './Markdown.svelte';
+	import Node from './Node.svelte';
 
 	const { node }: { node: import('mdast').Link } = $props();
 
@@ -7,5 +7,5 @@
 </script>
 
 <a href={url} {title}
-	>{#each children as node}<Markdown {node} />{/each}</a
+	>{#each children as node}<Node {node} />{/each}</a
 >

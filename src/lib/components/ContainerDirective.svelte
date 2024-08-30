@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Markdown from './Markdown.svelte';
+	import Node from './Node.svelte';
 
 	const { node }: { node: import('mdast-util-directive').ContainerDirective } = $props();
 
@@ -8,5 +8,5 @@
 
 {@html `<!-- Unrecognized container directive :::${name} -->`}
 <div class={name}>
-	{#each children as node}<Markdown {node} />{/each}
+	{#each children as node}<Node {node} />{/each}
 </div>

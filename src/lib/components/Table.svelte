@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { TABLE_CONTEXT_TOKEN } from '$lib/tokens/table-context.token.js';
 	import { setContext } from 'svelte';
-	import Markdown from './Markdown.svelte';
+	import Node from './Node.svelte';
 
 	const { node }: { node: import('mdast').Table } = $props();
 
@@ -15,12 +15,12 @@
 <table>
 	{#if head}
 		<thead>
-			<Markdown node={head} />
+			<Node node={head} />
 		</thead>
 	{/if}
 	{#if rows.length}
 		<tbody>
-			{#each rows as node}<Markdown {node} />{/each}
+			{#each rows as node}<Node {node} />{/each}
 		</tbody>
 	{/if}
 </table>

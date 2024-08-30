@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Markdown from './Markdown.svelte';
+	import Node from './Node.svelte';
 
 	const { node }: { node: import('mdast').List } = $props();
 
@@ -9,5 +9,5 @@
 </script>
 
 <svelte:element this={tag} class:spread {start}
-	>{#each children as node}<Markdown {node} />{/each}</svelte:element
+	>{#each children as node}<Node {node} />{/each}</svelte:element
 >

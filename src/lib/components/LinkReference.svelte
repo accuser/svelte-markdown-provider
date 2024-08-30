@@ -2,7 +2,7 @@
 	import { ROOT_CONTEXT_TOKEN } from '$lib/tokens/root-context.token.js';
 	import { definitions } from 'mdast-util-definitions';
 	import { getContext } from 'svelte';
-	import Markdown from './Markdown.svelte';
+	import Node from './Node.svelte';
 
 	const { node }: { node: import('mdast').LinkReference } = $props();
 
@@ -16,5 +16,5 @@
 </script>
 
 <a href={url} {title}
-	>{#each children as node}<Markdown {node} />{/each}</a
+	>{#each children as node}<Node {node} />{/each}</a
 >

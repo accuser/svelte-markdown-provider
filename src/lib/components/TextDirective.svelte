@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Markdown from './Markdown.svelte';
+	import Node from './Node.svelte';
 
 	const { node }: { node: import('mdast-util-directive').TextDirective } = $props();
 
@@ -8,5 +8,5 @@
 
 {@html `<!-- Unrecognized text directive :${name} -->`}
 <span class={name}>
-	{#each children as node}<Markdown {node} />{/each}
+	{#each children as node}<Node {node} />{/each}
 </span>
