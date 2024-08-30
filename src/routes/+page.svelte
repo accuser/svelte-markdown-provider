@@ -3,18 +3,20 @@
 	import astFromString from '$lib/markdown/ast-from-string.js';
 	import { parse } from 'yaml';
 	import type { PageData } from './$types.js';
-
 	const { data }: { data: PageData } = $props();
 
 	const { ast, frontmatter } = $derived.by(() => {
 		const ast = astFromString(data.src);
 
-		const frontmatter =
+		const yaml =
 			ast.type === 'root' && ast.children && ast.children[0].type === 'yaml'
-				? parse((ast.children.shift() as import('mdast').Yaml).value)
+				? (ast.children.shift() as import('mdast').Yaml)
 				: undefined;
 
-		return { ast, frontmatter };
+		return {
+			ast,
+			frontmatter: yaml ? parse(yaml.value) : undefined
+		};
 	});
 
 	const { title } = $derived(frontmatter);
