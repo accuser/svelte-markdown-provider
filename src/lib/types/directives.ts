@@ -2,6 +2,6 @@ export type Directives<T extends import('mdast').Node = import('mdast-util-direc
 	{
 		[K in T['type']]: Record<
 			string,
-			import('svelte').Component<Extract<T, { type: K }>> | undefined
+			import('svelte').Component<{ node: Extract<T, { type: K }> }> | undefined
 		>;
 	};
