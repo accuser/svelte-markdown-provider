@@ -12,11 +12,13 @@ import Html from '$lib/components/Html.svelte';
 import Image from '$lib/components/Image.svelte';
 import ImageReference from '$lib/components/ImageReference.svelte';
 import InlineCode from '$lib/components/InlineCode.svelte';
+import InlineMath from '$lib/components/InlineMath.svelte';
 import LeafDirective from '$lib/components/LeafDirective.svelte';
 import Link from '$lib/components/Link.svelte';
 import LinkReference from '$lib/components/LinkReference.svelte';
 import List from '$lib/components/List.svelte';
 import ListItem from '$lib/components/ListItem.svelte';
+import Math from '$lib/components/Math.svelte';
 import Paragraph from '$lib/components/Paragraph.svelte';
 import Root from '$lib/components/Root.svelte';
 import Strong from '$lib/components/Strong.svelte';
@@ -58,5 +60,7 @@ export const defaultComponents: Components = {
 	text: Text,
 	textDirective: TextDirective,
 	thematicBreak: ThematicBreak,
-	yaml: Yaml
+	yaml: Yaml,
+	inlineMath: InlineMath,
+	math: Math
 };
