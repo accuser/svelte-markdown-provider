@@ -1,37 +1,15 @@
 <script lang="ts">
 	import Markdown from '$lib/components/Markdown.svelte';
 	import astFromString from '$lib/markdown/ast-from-string.js';
-	import { parse } from 'yaml';
 	import type { PageData } from './$types.js';
 	import InlineMath from './InlineMath.svelte';
 	import Math from './Math.svelte';
 
 	const { data }: { data: PageData } = $props();
 
-	const { ast, frontmatter } = $derived.by(() => {
-		const ast = astFromString(data.src);
-
-		const yaml =
-			ast.type === 'root' && ast.children && ast.children[0].type === 'yaml'
-				? (ast.children.shift() as import('mdast').Yaml)
-				: undefined;
-
-		return {
-			ast,
-			frontmatter: yaml ? parse(yaml.value) : undefined
-		};
-	});
-
-	const { title } = $derived(frontmatter);
+	const ast = $derived.by(() => astFromString(data.src));
 </script>
 
 <article class="prose prose-lg max-w-prose mx-auto prose-slate dark:prose-invert">
-	{#if frontmatter}
-		<header>
-			<h1>{title}</h1>
-		</header>
-	{/if}
-	<main>
-		<Markdown {ast} components={{ inlineMath: InlineMath, math: Math }} />
-	</main>
+	<Markdown {ast} components={{ inlineMath: InlineMath, math: Math }} />
 </article>
