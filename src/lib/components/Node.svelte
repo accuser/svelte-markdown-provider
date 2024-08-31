@@ -21,7 +21,9 @@
 		node.type === 'containerDirective' ||
 		node.type === 'leafDirective' ||
 		node.type === 'textDirective'
-			? (directives[node.type][node.name] ?? defaultDirectives[node.type][node.name])
+			? (directives[node.type][node.name] ??
+				defaultDirectives[node.type][node.name] ??
+				defaultComponents[node.type])
 			: (components[node.type] ?? defaultComponents[node.type])
 	);
 </script>
