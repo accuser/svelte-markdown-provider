@@ -5,9 +5,3 @@ export type Directives<T extends import('mdast').Node = import('mdast-util-direc
 			import('svelte').Component<Extract<T, { type: K }>> | undefined
 		>;
 	};
-
-export const defaultDirectives: Directives = {
-	containerDirective: {},
-	leafDirective: {},
-	textDirective: {}
-};

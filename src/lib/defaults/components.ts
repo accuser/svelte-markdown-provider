@@ -1,7 +1,3 @@
-export type Components<T extends import('mdast').Node = import('mdast').Nodes> = {
-	[K in T['type']]: import('svelte').Component<{ node: Extract<T, { type: K }> }>;
-};
-
 import Blockquote from '$lib/components/Blockquote.svelte';
 import Break from '$lib/components/Break.svelte';
 import Code from '$lib/components/Code.svelte';
@@ -31,6 +27,7 @@ import Text from '$lib/components/Text.svelte';
 import TextDirective from '$lib/components/TextDirective.svelte';
 import ThematicBreak from '$lib/components/ThematicBreak.svelte';
 import Yaml from '$lib/components/Yaml.svelte';
+import type { Components } from '$lib/types/component.js';
 
 export const defaultComponents: Components = {
 	blockquote: Blockquote,
