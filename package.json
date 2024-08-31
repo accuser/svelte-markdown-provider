@@ -48,6 +48,17 @@
 	"peerDependencies": {
 		"svelte": "^4.0.0"
 	},
+	"dependencies": {
+		"mdast-util-definitions": "^6.0.0",
+		"mdast-util-directive": "^3.0.0",
+		"mdast-util-from-markdown": "^2.0.1",
+		"mdast-util-frontmatter": "^2.0.1",
+		"mdast-util-gfm": "^3.0.0",
+		"mdast-util-to-string": "^4.0.0",
+		"micromark-extension-directive": "^3.0.1",
+		"micromark-extension-frontmatter": "^2.0.0",
+		"micromark-extension-gfm": "^3.0.0"
+	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.2.4",
 		"@sveltejs/kit": "^2.5.25",
@@ -67,15 +78,6 @@
 		"eslint-plugin-svelte": "^2.43.0",
 		"globals": "^15.9.0",
 		"jsdom": "^25.0.0",
-		"mdast-util-definitions": "^6.0.0",
-		"mdast-util-directive": "^3.0.0",
-		"mdast-util-from-markdown": "^2.0.1",
-		"mdast-util-frontmatter": "^2.0.1",
-		"mdast-util-gfm": "^3.0.0",
-		"mdast-util-to-string": "^4.0.0",
-		"mdast-util-toc": "^7.1.0",
-		"micromark-extension-frontmatter": "^2.0.0",
-		"micromark-extension-gfm": "^3.0.0",
 		"postcss": "^8.4.41",
 		"postcss-load-config": "^5.1.0",
 		"prettier": "^3.3.3",
