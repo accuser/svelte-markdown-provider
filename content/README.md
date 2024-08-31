@@ -1,7 +1,4 @@
----
-title: Markdown Example
----
-
+# Markdown
 A markdown example shows how to write a markdown file. This document integrates core syntax and extensions (GMF).
 
 * [Block Elements](#block-elements)
@@ -603,14 +600,14 @@ Title is optional.
 
 Code:
 
-    ![Alt text](https://placehold.co/200x200)
+    ![Alt text](/path/to/img.jpg)
 
-    ![Alt text](https://placehold.co/200x200 "Optional title")
+    ![Alt text](/path/to/img.jpg "Optional title")
 Preview:
 ***
-![Alt text](https://placehold.co/200x200)
+![Alt text](/path/to/img.jpg)
 
-![Alt text](https://placehold.co/200x200 "Optional title")
+![Alt text](/path/to/img.jpg "Optional title")
 ***
 That is:
 
@@ -623,11 +620,11 @@ Reference-style image syntax looks like this: `![Alt text][id]`
 
 Code:
 
-    [img id]: https://placehold.co/200x200  "Optional title attribute"
+    [img id]: url/to/image  "Optional title attribute"
     ![Alt text][img id]
 Preview:
 ***
-[img id]: https://placehold.co/200x200  "Optional title attribute"
+[img id]: url/to/image  "Optional title attribute"
 ![Alt text][img id]
 ***
 ### Strikethrough
@@ -737,11 +734,9 @@ Code:
     </div>
 Preview:
 ***
-
 <span>**Work**</span>
 
 <div>
   **No Work**
 </div>
-
 ***
