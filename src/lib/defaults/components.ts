@@ -27,7 +27,7 @@ import Text from '$lib/components/Text.svelte';
 import TextDirective from '$lib/components/TextDirective.svelte';
 import ThematicBreak from '$lib/components/ThematicBreak.svelte';
 import Yaml from '$lib/components/Yaml.svelte';
-import type { Components } from '$lib/types/component.js';
+import type { Components } from '$lib/types/components.js';
 
 export const defaultComponents: Components = {
 	blockquote: Blockquote,

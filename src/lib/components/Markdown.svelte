@@ -2,8 +2,8 @@
 	import astFromString from '$lib/markdown/ast-from-string.js';
 	import { MARKDOWN_COMPONENTS_TOKEN } from '$lib/tokens/markdown-components.token.js';
 	import { MARKDOWN_DIRECTIVES_TOKEN } from '$lib/tokens/markdown-directives.token.js';
-	import { type Components } from '$lib/types/components.js';
-	import { type Directives } from '$lib/types/directives.js';
+	import type { Components } from '$lib/types/components.js';
+	import type { Directives } from '$lib/types/directives.js';
 	import { setContext } from 'svelte';
 	import Node from './Node.svelte';
 

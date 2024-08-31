@@ -1,4 +1,4 @@
-import type { Directives } from '$lib/types/directive.js';
+import type { Directives } from '$lib/types/directives.js';
 
 export const defaultDirectives: Directives = {
 	containerDirective: {},

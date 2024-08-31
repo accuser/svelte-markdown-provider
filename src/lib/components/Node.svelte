@@ -1,8 +1,10 @@
 <script lang="ts">
+	import { defaultComponents } from '$lib/defaults/components.js';
+	import { defaultDirectives } from '$lib/defaults/directives.js';
 	import { MARKDOWN_COMPONENTS_TOKEN } from '$lib/tokens/markdown-components.token.js';
 	import { MARKDOWN_DIRECTIVES_TOKEN } from '$lib/tokens/markdown-directives.token.js';
-	import { defaultComponents, type Components } from '$lib/types/components.js';
-	import { defaultDirectives, type Directives } from '$lib/types/directives.js';
+	import type { Components } from '$lib/types/components.js';
+	import type { Directives } from '$lib/types/directives.js';
 	import { getContext, hasContext } from 'svelte';
 
 	const { node }: { node: import('mdast').Nodes } = $props();
