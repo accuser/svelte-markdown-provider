@@ -13,8 +13,8 @@
 		directives,
 		src
 	}: ({ ast: import('mdast').Root; src?: never } | { ast?: never; src: string }) & {
-		components?: Components;
-		directives?: Directives;
+		components?: Partial<Components>;
+		directives?: Partial<Directives>;
 	} = $props();
 
 	if (components) {
