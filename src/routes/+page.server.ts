@@ -3,7 +3,7 @@ import type { PageServerLoad } from './$types.js';
 
 export const load = (async () => {
 	const res = await fetch(
-		'https://raw.githubusercontent.com/accuser/svelte-markdown-provider/main/content/README.md'
+		'https://raw.githubusercontent.com/accuser/svelte-markdown-provider/svelte-5-migration/content/README.md'
 	);
 
 	if (res.ok) {
