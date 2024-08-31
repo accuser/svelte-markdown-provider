@@ -2,15 +2,18 @@ import { directiveFromMarkdown } from 'mdast-util-directive';
 import { fromMarkdown } from 'mdast-util-from-markdown';
 import { frontmatterFromMarkdown } from 'mdast-util-frontmatter';
 import { gfmFromMarkdown } from 'mdast-util-gfm';
+import { mathFromMarkdown } from 'mdast-util-math';
 import { directive } from 'micromark-extension-directive';
 import { frontmatter } from 'micromark-extension-frontmatter';
 import { gfm } from 'micromark-extension-gfm';
+import { math } from 'micromark-extension-math';
 
-export const DEFAULT_EXTENSIONS = [directive(), frontmatter(['yaml']), gfm()];
+export const DEFAULT_EXTENSIONS = [directive(), frontmatter(['yaml']), gfm(), math()];
 export const DEFAULT_MDAST_EXTENSIONS = [
 	directiveFromMarkdown(),
 	frontmatterFromMarkdown(['yaml']),
-	gfmFromMarkdown()
+	gfmFromMarkdown(),
+	mathFromMarkdown()
 ];
 
 export default ((
