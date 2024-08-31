@@ -5,13 +5,13 @@
 
 	const { data, meta, value } = $derived(node);
 
-	const html = $derived.by(() =>
+	const mathml = $derived.by(() =>
 		katex.renderToString(value, {
 			throwOnError: false,
 			displayMode: true,
-			output: 'html'
+			output: 'mathml'
 		})
 	);
 </script>
 
-<pre><code class="language-math math-display" data-meta={meta}>{@html html}</code></pre>
+<pre><code class="language-math math-display" data-meta={meta}>{@html mathml}</code></pre>
