@@ -31,7 +31,7 @@ import ThematicBreak from '$lib/components/ThematicBreak.svelte';
 import Yaml from '$lib/components/Yaml.svelte';
 import type { Components } from '$lib/types/components.js';
 
-export const defaultComponents: Components = {
+export default {
 	blockquote: Blockquote,
 	break: Break,
 	code: Code,
@@ -63,4 +63,4 @@ export const defaultComponents: Components = {
 	yaml: Yaml,
 	inlineMath: InlineMath,
 	math: Math
-};
+} as Components;
