@@ -25,7 +25,7 @@
 		setContext(MARKDOWN_DIRECTIVES_TOKEN, directives);
 	}
 
-	const node = $derived.by(() => ast ?? astFromString(src));
+	const node = $derived.by(() => (ast ? ast : astFromString(src)));
 </script>
 
 <Node {node} />
