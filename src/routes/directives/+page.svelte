@@ -2,9 +2,9 @@
 	import Markdown from '$lib/components/Markdown.svelte';
 	import astFromString from '$lib/markdown/ast-from-string.js';
 	import type { PageData } from './$types.js';
-	import ExampleContainer from './ExampleContainer.svelte';
-	import ExampleLeaf from './ExampleLeaf.svelte';
 	import Highlight from './Highlight.svelte';
+	import Success from './Success.svelte';
+	import YouTube from './YouTube.svelte';
 
 	const { data }: { data: PageData } = $props();
 
@@ -15,8 +15,8 @@
 	<Markdown
 		{ast}
 		directives={{
-			containerDirective: { exampleContainer: ExampleContainer },
-			leafDirective: { exampleLeaf: ExampleLeaf },
+			containerDirective: { success: Success },
+			leafDirective: { youtube: YouTube },
 			textDirective: { hl: Highlight }
 		}}
 	/>
