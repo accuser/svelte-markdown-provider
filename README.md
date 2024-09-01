@@ -15,6 +15,20 @@ npm install --save-dev @accuser/svelte-markdown-provider
 
 ## Usage
 
+### Markdown `string`
+
+```svelte
+<script>
+    import { Markdown } from '@accuser/svelte-markdown-provider';
+
+    const source = 'Hello, World!';
+</script>
+
+<Markdown {src} />
+```
+
+### Markdown AST
+
 ```svelte
 <script>
     import { Markdown } from '@accuser/svelte-markdown-provider';
