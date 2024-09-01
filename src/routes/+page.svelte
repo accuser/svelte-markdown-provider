@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Markdown from '$lib/components/Markdown.svelte';
-	import astFromString from '$lib/markdown/ast-from-string.js';
+	import astFromString from '$lib/defaults/ast-from-string.js';
 	import type { PageData } from './$types.js';
 	const { data }: { data: PageData } = $props();
 
