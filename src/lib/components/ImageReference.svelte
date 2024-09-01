@@ -5,7 +5,8 @@
 
 	const { node }: { node: import('mdast').ImageReference } = $props();
 
-	const { alt, data, identifier, referenceType } = $derived(node);
+	// TODO: implement `referenceType`?
+	const { alt, identifier } = $derived(node);
 
 	const definition = definitions(getContext(ROOT_CONTEXT_TOKEN));
 

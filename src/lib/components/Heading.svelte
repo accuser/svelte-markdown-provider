@@ -7,7 +7,7 @@
 
 	const { node }: { node: import('mdast').Heading } = $props();
 
-	const { children, data, depth } = $derived(node);
+	const { children, depth } = $derived(node);
 
 	let tag = $derived.by(() => `h${depth}`);
 

@@ -6,9 +6,7 @@
 
 	const {
 		attributes,
-		children: [label, ...children],
-		data,
-		name
+		children: [label, ...children]
 	} = $derived(node);
 
 	const title = $derived.by(() => toString(label));

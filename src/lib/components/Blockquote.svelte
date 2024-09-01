@@ -3,7 +3,7 @@
 
 	const { node }: { node: import('mdast').Blockquote } = $props();
 
-	const { children, data } = $derived(node);
+	const { children } = $derived(node);
 </script>
 
 <blockquote>

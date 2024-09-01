@@ -3,7 +3,7 @@
 
 	const { node }: { node: import('mdast-util-math').InlineMath } = $props();
 
-	const { data, value } = $derived(node);
+	const { value } = $derived(node);
 
 	const mathml = $derived.by(() =>
 		katex.renderToString(value, {

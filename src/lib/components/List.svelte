@@ -3,7 +3,7 @@
 
 	const { node }: { node: import('mdast').List } = $props();
 
-	const { children, data, ordered, spread, start } = $derived(node);
+	const { children, ordered, spread, start } = $derived(node);
 
 	const tag = $derived.by(() => (ordered ? 'ol' : 'ul'));
 </script>

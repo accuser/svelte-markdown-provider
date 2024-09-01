@@ -3,7 +3,7 @@
 
 	const { node }: { node: import('mdast-util-directive').LeafDirective } = $props();
 
-	const { attributes, children, data, name } = $derived(node);
+	const { attributes, children } = $derived(node);
 
 	const title = $derived.by(() => toString(children));
 	const { v } = $derived(attributes as { v: string });

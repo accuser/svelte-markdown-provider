@@ -3,7 +3,7 @@
 
 	const { node }: { node: import('mdast-util-directive').TextDirective } = $props();
 
-	const { attributes, children, data, name } = $derived(node);
+	const { children, name } = $derived(node);
 </script>
 
 {@html `<!-- Unrecognized text directive :${name} -->`}

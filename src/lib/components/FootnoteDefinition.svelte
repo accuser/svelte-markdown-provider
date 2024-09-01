@@ -3,7 +3,7 @@
 
 	const { node }: { node: import('mdast').FootnoteDefinition } = $props();
 
-	const { children, data, identifier, label } = $derived(node);
+	const { children, identifier, label } = $derived(node);
 </script>
 
 <div id="footnote-{identifier}">

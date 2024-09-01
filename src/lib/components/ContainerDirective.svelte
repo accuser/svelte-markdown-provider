@@ -3,7 +3,7 @@
 
 	const { node }: { node: import('mdast-util-directive').ContainerDirective } = $props();
 
-	const { children, data, name } = $derived(node);
+	const { children, name } = $derived(node);
 </script>
 
 {@html `<!-- Unrecognized container directive :::${name} -->`}

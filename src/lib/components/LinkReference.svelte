@@ -6,7 +6,8 @@
 
 	const { node }: { node: import('mdast').LinkReference } = $props();
 
-	const { children, data, identifier, referenceType } = $derived(node);
+	// TODO: implement `referenceType`?
+	const { children, identifier } = $derived(node);
 
 	const definition = definitions(getContext(ROOT_CONTEXT_TOKEN));
 
