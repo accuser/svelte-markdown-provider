@@ -1,8 +1,7 @@
 # Math
 
-Lift($L$) can be determined by Lift Coefficient ($C_L$) like the following
-equation.
+The equation for the area of a circle is $A = \pi r^2$.
 
 $$
-L = \frac{1}{2} \rho v^2 S C_L
+\int_0^\infty e^{-x^2} dx = \frac{\sqrt{\pi}}{2}
 $$

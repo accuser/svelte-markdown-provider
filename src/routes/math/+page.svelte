@@ -8,8 +8,10 @@
 	const { data }: { data: PageData } = $props();
 
 	const ast = $derived.by(() => astFromString(data.src));
+
+	const components = { inlineMath: InlineMath, math: Math };
 </script>
 
 <article class="prose prose-lg max-w-prose mx-auto prose-slate dark:prose-invert">
-	<Markdown {ast} components={{ inlineMath: InlineMath, math: Math }} />
+	<Markdown {ast} {components} />
 </article>
