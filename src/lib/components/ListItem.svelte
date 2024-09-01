@@ -3,8 +3,7 @@
 
 	const { node }: { node: import('mdast').ListItem } = $props();
 
-	// TODO: implement `checked`?
-	const { children, spread } = $derived.by(() => ({
+	const { children } = $derived.by(() => ({
 		...node,
 		children:
 			// If the list item contains a single paragraph, unwrap it
@@ -14,6 +13,6 @@
 	}));
 </script>
 
-<li class:spread>
+<li>
 	{#each children as node}<Node {node} />{/each}
 </li>
