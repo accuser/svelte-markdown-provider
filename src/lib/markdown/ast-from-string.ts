@@ -7,15 +7,13 @@ import { directive } from 'micromark-extension-directive';
 import { frontmatter } from 'micromark-extension-frontmatter';
 import { gfm } from 'micromark-extension-gfm';
 import { math } from 'micromark-extension-math';
-import transforms from './transforms/index.js';
 
 export const DEFAULT_EXTENSIONS = [directive(), frontmatter(['yaml']), gfm(), math()];
 export const DEFAULT_MDAST_EXTENSIONS = [
 	directiveFromMarkdown(),
 	frontmatterFromMarkdown(['yaml']),
 	gfmFromMarkdown(),
-	mathFromMarkdown(),
-	transforms()
+	mathFromMarkdown()
 ];
 
 export default ((
