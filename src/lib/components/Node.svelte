@@ -15,17 +15,19 @@
 
 	const directives = hasContext(MARKDOWN_DIRECTIVES_TOKEN)
 		? getContext<Directives>(MARKDOWN_DIRECTIVES_TOKEN)
-		: ({} as Directives);
+		: ({ containerDirective: {}, leafDirective: {}, textDirective: {} } as Directives);
 
-	const Component = $derived.by(() =>
-		node.type === 'containerDirective' ||
-		node.type === 'leafDirective' ||
-		node.type === 'textDirective'
-			? (directives[node.type][node.name] ??
-				defaultDirectives[node.type][node.name] ??
-				defaultComponents[node.type])
-			: (components[node.type] ?? defaultComponents[node.type])
-	);
+	const Component = $derived.by(() => {
+		const { type } = node;
+
+		if (type === 'containerDirective' || type === 'leafDirective' || type === 'textDirective') {
+			const { name } = node;
+
+			return directives[type][name] ?? defaultDirectives[type][name] ?? defaultComponents[type];
+		} else {
+			return components[type] ?? defaultComponents[type];
+		}
+	});
 </script>
 
 <Component {node} />
