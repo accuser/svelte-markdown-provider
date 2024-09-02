@@ -9,8 +9,8 @@
 	import { setContext } from 'svelte';
 	import Node from './Node.svelte';
 
-	const {
-		ast,
+	let {
+		ast = $bindable(),
 		astFromString = defaultAstFromString,
 		components,
 		directives,
@@ -18,7 +18,7 @@
 		slugify
 	}: (
 		| { ast: import('mdast').Root; astFromString?: never; src?: never }
-		| { ast?: never; astFromString?: typeof defaultAstFromString; src: string }
+		| { ast?: import('mdast').Root; astFromString?: typeof defaultAstFromString; src: string }
 	) & {
 		components?: Partial<Components>;
 		directives?: Partial<Directives>;
@@ -37,7 +37,13 @@
 		setContext(MARKDOWN_SLUGIFY_TOKEN, slugify);
 	}
 
-	const node = $derived.by(() => (ast ? ast : astFromString(src)));
+	$effect(() => {
+		if (src) {
+			ast = astFromString(src);
+		}
+	});
 </script>
 
-<Node {node} />
+{#if ast}
+	<Node node={ast} />
+{/if}
