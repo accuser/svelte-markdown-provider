@@ -10,5 +10,5 @@
 </script>
 
 <article class="prose prose-lg max-w-prose mx-auto prose-slate dark:prose-invert">
-	<Markdown {ast} directives={{ textDirective: { banner: Banner, toc: Toc } }} />
+	<Markdown {ast} directives={{ leafDirective: { banner: Banner, toc: Toc } }} />
 </article>

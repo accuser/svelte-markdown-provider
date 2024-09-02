@@ -5,7 +5,7 @@
 	import { toc } from 'mdast-util-toc';
 	import { getContext } from 'svelte';
 
-	const { node }: { node: import('mdast-util-directive').TextDirective } = $props();
+	const { node }: { node: import('mdast-util-directive').LeafDirective } = $props();
 
 	const { children } = $derived(node);
 
