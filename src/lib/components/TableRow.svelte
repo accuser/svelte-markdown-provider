@@ -5,7 +5,9 @@
 
 	const { node }: { node: import('mdast').TableRow } = $props();
 
-	const { children } = setContext(TABLE_ROW_CONTEXT_TOKEN, node);
+	setContext(TABLE_ROW_CONTEXT_TOKEN, node);
+
+	const { children } = $derived(node);
 </script>
 
 <tr

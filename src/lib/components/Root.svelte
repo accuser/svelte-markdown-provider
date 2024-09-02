@@ -5,7 +5,9 @@
 
 	const { node }: { node: import('mdast').Root } = $props();
 
-	const { children } = setContext(ROOT_CONTEXT_TOKEN, node);
+	setContext(ROOT_CONTEXT_TOKEN, node);
+
+	const { children } = $derived(node);
 </script>
 
 {#each children as node}<Node {node} />{/each}

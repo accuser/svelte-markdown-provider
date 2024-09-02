@@ -5,11 +5,11 @@
 
 	const { node }: { node: import('mdast').Table } = $props();
 
+	setContext(TABLE_CONTEXT_TOKEN, node);
+
 	const {
-		align,
-		children: [head, ...rows],
-		data
-	} = setContext(TABLE_CONTEXT_TOKEN, node);
+		children: [head, ...rows]
+	} = $derived(node);
 </script>
 
 <table>
