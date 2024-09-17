@@ -3,10 +3,8 @@
 	import { definitions } from 'mdast-util-definitions';
 	import { getContext } from 'svelte';
 
-	const { node }: { node: import('mdast').ImageReference } = $props();
-
 	// TODO: implement `referenceType`?
-	const { alt, identifier } = $derived(node);
+	const { alt, identifier }: import('mdast').ImageReference = $props();
 
 	const definition = definitions(getContext(ROOT_CONTEXT_TOKEN));
 

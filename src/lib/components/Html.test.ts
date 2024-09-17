@@ -3,16 +3,14 @@ import { describe, expect, it } from 'vitest';
 import Html from './Html.svelte';
 
 describe('Html.svelte', async () => {
-    it('renders html', async () => {
-        const { container } = render(Html, {
-            props: {
-                node: {
-                    type: 'html',
-                    value: '<pre>Hello, World!</pre>'
-                }
-            }
-        });
+	it('renders html', async () => {
+		const { container } = render(Html, {
+			props: {
+				type: 'html',
+				value: '<pre>Hello, World!</pre>'
+			}
+		});
 
-        expect(container.querySelector('pre')).toBeInTheDocument();
-    });
+		expect(container.querySelector('pre')).toBeInTheDocument();
+	});
 });

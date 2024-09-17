@@ -6,9 +6,7 @@ describe('ThematicBreak.svelte', async () => {
 	it('renders <hr>', async () => {
 		const { container } = render(ThematicBreak, {
 			props: {
-				node: {
-					type: 'thematicBreak'
-				}
+				type: 'thematicBreak'
 			}
 		});
 

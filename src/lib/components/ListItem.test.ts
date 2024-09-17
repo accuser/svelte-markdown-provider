@@ -6,10 +6,8 @@ describe('ListItem.svelte', async () => {
 	it('renders <li>', async () => {
 		const { container } = render(ListItem, {
 			props: {
-				node: {
-					children: [{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }],
-					type: 'listItem'
-				}
+				children: [{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }],
+				type: 'listItem'
 			}
 		});
 
@@ -19,10 +17,8 @@ describe('ListItem.svelte', async () => {
 	it('renders <li> with content', async () => {
 		const { container } = render(ListItem, {
 			props: {
-				node: {
-					children: [{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }],
-					type: 'listItem'
-				}
+				children: [{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }],
+				type: 'listItem'
 			}
 		});
 

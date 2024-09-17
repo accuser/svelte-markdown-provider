@@ -45,5 +45,5 @@
 </script>
 
 {#if ast}
-	<Node node={ast} />
+	<Node {...ast} />
 {/if}

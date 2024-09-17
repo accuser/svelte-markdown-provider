@@ -1,12 +1,10 @@
 <script lang="ts">
 	import Node from './Node.svelte';
 
-	const { node }: { node: import('mdast-util-directive').ContainerDirective } = $props();
-
-	const { children, name } = $derived(node);
+	const { children, name }: import('mdast-util-directive').ContainerDirective = $props();
 </script>
 
 {@html `<!-- Unrecognized container directive :::${name} -->`}
 <div class={name}>
-	{#each children as node}<Node {node} />{/each}
+	{#each children as node}<Node {...node} />{/each}
 </div>

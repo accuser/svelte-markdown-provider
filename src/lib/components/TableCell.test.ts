@@ -6,10 +6,8 @@ describe('TableCell.svelte', async () => {
 	it('renders <td>', async () => {
 		const { container } = render(TableCell, {
 			props: {
-				node: {
-					children: [{ type: 'text', value: 'Hello, World!' }],
-					type: 'tableCell'
-				}
+				children: [{ type: 'text', value: 'Hello, World!' }],
+				type: 'tableCell'
 			}
 		});
 
@@ -19,10 +17,8 @@ describe('TableCell.svelte', async () => {
 	it('renders <td> with content', async () => {
 		const { container } = render(TableCell, {
 			props: {
-				node: {
-					children: [{ type: 'text', value: 'Hello, World!' }],
-					type: 'tableCell'
-				}
+				children: [{ type: 'text', value: 'Hello, World!' }],
+				type: 'tableCell'
 			}
 		});
 

@@ -4,7 +4,7 @@
 	import { getContext } from 'svelte';
 	import Node from './Node.svelte';
 
-	const { node }: { node: import('mdast').TableCell } = $props();
+	const node: import('mdast').TableCell = $props();
 
 	const { children } = $derived(node);
 
@@ -15,5 +15,5 @@
 </script>
 
 <td {align}
-	>{#each children as node}<Node {node} />{/each}</td
+	>{#each children as node}<Node {...node} />{/each}</td
 >

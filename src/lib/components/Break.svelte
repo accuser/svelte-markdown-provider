@@ -1,5 +1,5 @@
 <script lang="ts">
-	const { node }: { node: import('mdast').Break } = $props();
+	const _: import('mdast').Break = $props();
 </script>
 
 <br />

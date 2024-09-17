@@ -4,10 +4,8 @@
 	import { getContext } from 'svelte';
 	import Node from './Node.svelte';
 
-	const { node }: { node: import('mdast').LinkReference } = $props();
-
 	// TODO: implement `referenceType`?
-	const { children, identifier } = $derived(node);
+	const { children, identifier }: import('mdast').LinkReference = $props();
 
 	const definition = definitions(getContext(ROOT_CONTEXT_TOKEN));
 
@@ -17,5 +15,5 @@
 </script>
 
 <a href={url} {title}
-	>{#each children as node}<Node {node} />{/each}</a
+	>{#each children as node}<Node {...node} />{/each}</a
 >

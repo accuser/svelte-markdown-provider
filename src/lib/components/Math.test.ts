@@ -6,10 +6,8 @@ describe('Math.svelte', async () => {
 	it('renders <code>', async () => {
 		const { container } = render(Math, {
 			props: {
-				node: {
-					type: 'math',
-					value: 'C'
-				}
+				type: 'math',
+				value: 'C'
 			}
 		});
 
@@ -19,10 +17,8 @@ describe('Math.svelte', async () => {
 	it('renders <code> with `language-math` class', async () => {
 		const { container } = render(Math, {
 			props: {
-				node: {
-					type: 'math',
-					value: 'C'
-				}
+				type: 'math',
+				value: 'C'
 			}
 		});
 
@@ -32,10 +28,8 @@ describe('Math.svelte', async () => {
 	it('renders <code> with `math-display` class', async () => {
 		const { container } = render(Math, {
 			props: {
-				node: {
-					type: 'math',
-					value: 'C'
-				}
+				type: 'math',
+				value: 'C'
 			}
 		});
 
@@ -45,10 +39,8 @@ describe('Math.svelte', async () => {
 	it('renders <code> with content', async () => {
 		const { container } = render(Math, {
 			props: {
-				node: {
-					type: 'math',
-					value: 'C'
-				}
+				type: 'math',
+				value: 'C'
 			}
 		});
 

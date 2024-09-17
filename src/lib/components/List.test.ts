@@ -7,17 +7,15 @@ describe('List.svelte', async () => {
 		it('renders <ul>', async () => {
 			const { container } = render(List, {
 				props: {
-					node: {
-						children: [
-							{
-								type: 'listItem',
-								children: [
-									{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }
-								]
-							}
-						],
-						type: 'list'
-					}
+					children: [
+						{
+							type: 'listItem',
+							children: [
+								{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }
+							]
+						}
+					],
+					type: 'list'
 				}
 			});
 
@@ -27,17 +25,15 @@ describe('List.svelte', async () => {
 		it('renders <ul> with content', async () => {
 			const { container } = render(List, {
 				props: {
-					node: {
-						children: [
-							{
-								type: 'listItem',
-								children: [
-									{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }
-								]
-							}
-						],
-						type: 'list'
-					}
+					children: [
+						{
+							type: 'listItem',
+							children: [
+								{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }
+							]
+						}
+					],
+					type: 'list'
 				}
 			});
 
@@ -49,18 +45,16 @@ describe('List.svelte', async () => {
 		it('renders <ol>', async () => {
 			const { container } = render(List, {
 				props: {
-					node: {
-						children: [
-							{
-								type: 'listItem',
-								children: [
-									{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }
-								]
-							}
-						],
-						type: 'list',
-						ordered: true
-					}
+					children: [
+						{
+							type: 'listItem',
+							children: [
+								{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }
+							]
+						}
+					],
+					type: 'list',
+					ordered: true
 				}
 			});
 
@@ -70,19 +64,17 @@ describe('List.svelte', async () => {
 		it('renders <ol> with a `start` attribute', async () => {
 			const { container } = render(List, {
 				props: {
-					node: {
-						children: [
-							{
-								type: 'listItem',
-								children: [
-									{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }
-								]
-							}
-						],
-						type: 'list',
-						ordered: true,
-						start: 2
-					}
+					children: [
+						{
+							type: 'listItem',
+							children: [
+								{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }
+							]
+						}
+					],
+					type: 'list',
+					ordered: true,
+					start: 2
 				}
 			});
 
@@ -92,18 +84,16 @@ describe('List.svelte', async () => {
 		it('renders <ol> with content', async () => {
 			const { container } = render(List, {
 				props: {
-					node: {
-						children: [
-							{
-								type: 'listItem',
-								children: [
-									{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }
-								]
-							}
-						],
-						type: 'list',
-						ordered: true
-					}
+					children: [
+						{
+							type: 'listItem',
+							children: [
+								{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }
+							]
+						}
+					],
+					type: 'list',
+					ordered: true
 				}
 			});
 

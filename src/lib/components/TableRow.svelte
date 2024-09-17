@@ -3,7 +3,7 @@
 	import { setContext } from 'svelte';
 	import Node from './Node.svelte';
 
-	const { node }: { node: import('mdast').TableRow } = $props();
+	const node: import('mdast').TableRow = $props();
 
 	setContext(TABLE_ROW_CONTEXT_TOKEN, node);
 
@@ -11,5 +11,5 @@
 </script>
 
 <tr
-	>{#each children as node}<Node {node} />{/each}</tr
+	>{#each children as node}<Node {...node} />{/each}</tr
 >

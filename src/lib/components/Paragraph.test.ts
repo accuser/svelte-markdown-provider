@@ -6,7 +6,8 @@ describe('Paragraph.svelte', async () => {
 	it('renders <p>', async () => {
 		const { container } = render(Paragraph, {
 			props: {
-				node: { type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }
+				type: 'paragraph',
+				children: [{ type: 'text', value: 'Hello, World!' }]
 			}
 		});
 
@@ -16,7 +17,7 @@ describe('Paragraph.svelte', async () => {
 	it('renders <p> with content', async () => {
 		const { container } = render(Paragraph, {
 			props: {
-				node: { type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }
+				 type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }]
 			}
 		});
 

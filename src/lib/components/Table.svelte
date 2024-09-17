@@ -3,7 +3,7 @@
 	import { setContext } from 'svelte';
 	import Node from './Node.svelte';
 
-	const { node }: { node: import('mdast').Table } = $props();
+	const node: import('mdast').Table = $props();
 
 	setContext(TABLE_CONTEXT_TOKEN, node);
 
@@ -15,12 +15,12 @@
 <table>
 	{#if head}
 		<thead>
-			<Node node={head} />
+			<Node {...head} />
 		</thead>
 	{/if}
 	{#if rows.length}
 		<tbody>
-			{#each rows as node}<Node {node} />{/each}
+			{#each rows as node}<Node {...node} />{/each}
 		</tbody>
 	{/if}
 </table>

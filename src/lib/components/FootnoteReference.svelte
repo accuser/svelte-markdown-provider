@@ -1,7 +1,5 @@
 <script lang="ts">
-	const { node }: { node: import('mdast').FootnoteReference } = $props();
-
-	const { identifier, label } = $derived(node);
+	const { identifier, label }: import('mdast').FootnoteReference = $props();
 </script>
 
 <sup

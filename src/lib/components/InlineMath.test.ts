@@ -6,10 +6,8 @@ describe('InlineMath.svelte', async () => {
 	it('renders <code>', async () => {
 		const { container } = render(InlineMath, {
 			props: {
-				node: {
-					type: 'inlineMath',
-					value: 'C'
-				}
+				type: 'inlineMath',
+				value: 'C'
 			}
 		});
 
@@ -19,10 +17,8 @@ describe('InlineMath.svelte', async () => {
 	it('renders <code> with `language-math` class', async () => {
 		const { container } = render(InlineMath, {
 			props: {
-				node: {
-					type: 'inlineMath',
-					value: 'C'
-				}
+				type: 'inlineMath',
+				value: 'C'
 			}
 		});
 
@@ -32,10 +28,8 @@ describe('InlineMath.svelte', async () => {
 	it('renders <code> with `math-inline` class', async () => {
 		const { container } = render(InlineMath, {
 			props: {
-				node: {
-					type: 'inlineMath',
-					value: 'C'
-				}
+				type: 'inlineMath',
+				value: 'C'
 			}
 		});
 
@@ -45,10 +39,8 @@ describe('InlineMath.svelte', async () => {
 	it('renders <code> with content', async () => {
 		const { container } = render(InlineMath, {
 			props: {
-				node: {
-					type: 'inlineMath',
-					value: 'C'
-				}
+				type: 'inlineMath',
+				value: 'C'
 			}
 		});
 

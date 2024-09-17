@@ -6,10 +6,8 @@ describe('Strong.svelte', async () => {
 	it('renders <strong>', async () => {
 		const { container } = render(Strong, {
 			props: {
-				node: {
-					children: [{ type: 'text', value: 'Hello, World!' }],
-					type: 'strong'
-				}
+				children: [{ type: 'text', value: 'Hello, World!' }],
+				type: 'strong'
 			}
 		});
 
@@ -19,10 +17,8 @@ describe('Strong.svelte', async () => {
 	it('renders <strong> with content', async () => {
 		const { container } = render(Strong, {
 			props: {
-				node: {
-					children: [{ type: 'text', value: 'Hello, World!' }],
-					type: 'strong'
-				}
+				children: [{ type: 'text', value: 'Hello, World!' }],
+				type: 'strong'
 			}
 		});
 

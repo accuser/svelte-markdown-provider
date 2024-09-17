@@ -6,15 +6,13 @@ describe('TableRow.svelte', async () => {
 	it('renders <tr>', async () => {
 		const { container } = render(TableRow, {
 			props: {
-				node: {
-					type: 'tableRow',
-					children: [
-						{
-							type: 'tableCell',
-							children: [{ type: 'text', value: 'Hello, World!' }]
-						}
-					]
-				}
+				type: 'tableRow',
+				children: [
+					{
+						type: 'tableCell',
+						children: [{ type: 'text', value: 'Hello, World!' }]
+					}
+				]
 			}
 		});
 
@@ -24,15 +22,13 @@ describe('TableRow.svelte', async () => {
 	it('renders <tr> with content', async () => {
 		const { container } = render(TableRow, {
 			props: {
-				node: {
-					type: 'tableRow',
-					children: [
-						{
-							type: 'tableCell',
-							children: [{ type: 'text', value: 'Hello, World!' }]
-						}
-					]
-				}
+				type: 'tableRow',
+				children: [
+					{
+						type: 'tableCell',
+						children: [{ type: 'text', value: 'Hello, World!' }]
+					}
+				]
 			}
 		});
 

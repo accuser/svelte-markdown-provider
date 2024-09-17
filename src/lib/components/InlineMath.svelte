@@ -1,7 +1,5 @@
 <script lang="ts">
-	const { node }: { node: import('mdast-util-math').InlineMath } = $props();
-
-	const { value } = $derived(node);
+	const { value }: import('mdast-util-math').InlineMath = $props();
 </script>
 
 <code class="language-math math-inline">{value}</code>

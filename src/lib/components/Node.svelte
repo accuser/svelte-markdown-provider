@@ -1,33 +1,26 @@
 <script lang="ts">
 	import defaultComponents from '$lib/defaults/components.js';
-	import defaultDirectives from '$lib/defaults/directives.js';
 	import MARKDOWN_COMPONENTS_TOKEN from '$lib/tokens/markdown-components.token.js';
 	import MARKDOWN_DIRECTIVES_TOKEN from '$lib/tokens/markdown-directives.token.js';
+	import isDirective from '$lib/type-guards/is-directive.js';
 	import type { Components } from '$lib/types/components.js';
 	import type { Directives } from '$lib/types/directives.js';
-	import { getContext, hasContext } from 'svelte';
+	import { getContext } from 'svelte';
 
-	const { node }: { node: import('mdast').Nodes } = $props();
+	const node: import('mdast').Node = $props();
 
-	const components = hasContext(MARKDOWN_COMPONENTS_TOKEN)
-		? getContext<Components>(MARKDOWN_COMPONENTS_TOKEN)
-		: ({} as Components);
+	const components = getContext<Components>(MARKDOWN_COMPONENTS_TOKEN);
+	const directives = getContext<Directives>(MARKDOWN_DIRECTIVES_TOKEN);
 
-	const directives = hasContext(MARKDOWN_DIRECTIVES_TOKEN)
-		? getContext<Directives>(MARKDOWN_DIRECTIVES_TOKEN)
-		: ({ containerDirective: {}, leafDirective: {}, textDirective: {} } as Directives);
-
-	const Component = $derived.by(() => {
-		const { type } = node;
-
-		if (type === 'containerDirective' || type === 'leafDirective' || type === 'textDirective') {
-			const { name } = node;
-
-			return directives[type][name] ?? defaultDirectives[type][name] ?? defaultComponents[type];
+	const Component = $derived.by((() => {
+		if (isDirective(node) && directives && node.type in directives) {
+			return directives[node.type][node.name];
+		} else if (components && node.type in components) {
+			return components[node.type as keyof Components];
 		} else {
-			return components[type] ?? defaultComponents[type];
+			return defaultComponents[node.type as keyof Components];
 		}
-	});
+	}) as () => import('svelte').Component<import('mdast').Node>);
 </script>
 
-<Component {node} />
+<Component {...node} />

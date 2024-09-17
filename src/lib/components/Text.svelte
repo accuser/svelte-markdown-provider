@@ -1,7 +1,5 @@
 <script lang="ts">
-	const { node }: { node: import('mdast').Text } = $props();
-
-	const { value } = $derived(node);
+	const { value }: import('mdast').Text = $props();
 </script>
 
 {value}

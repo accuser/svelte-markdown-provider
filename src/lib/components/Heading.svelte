@@ -5,9 +5,7 @@
 	import { getContext, hasContext } from 'svelte';
 	import Node from './Node.svelte';
 
-	const { node }: { node: import('mdast').Heading } = $props();
-
-	const { children, depth } = $derived(node);
+	const { children, depth }: import('mdast').Heading = $props();
 
 	let tag = $derived.by(() => `h${depth}`);
 
@@ -19,5 +17,5 @@
 </script>
 
 <svelte:element this={tag} {id}
-	>{#each children as node}<Node {node} />{/each}</svelte:element
+	>{#each children as node}<Node {...node} />{/each}</svelte:element
 >

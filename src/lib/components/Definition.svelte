@@ -1,3 +1,3 @@
 <script lang="ts">
-	const { node }: { node: import('mdast').Definition } = $props();
+	const _: import('mdast').Definition = $props();
 </script>

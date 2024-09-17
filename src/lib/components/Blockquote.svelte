@@ -1,11 +1,9 @@
 <script lang="ts">
 	import Node from './Node.svelte';
 
-	const { node }: { node: import('mdast').Blockquote } = $props();
-
-	const { children } = $derived(node);
+	const { children }: import('mdast').Blockquote = $props();
 </script>
 
 <blockquote>
-	{#each children as node}<Node {node} />{/each}
+	{#each children as node}<Node {...node} />{/each}
 </blockquote>

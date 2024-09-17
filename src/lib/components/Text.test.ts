@@ -6,10 +6,8 @@ describe('Text.svelte', async () => {
 	it('renders text', async () => {
 		const { container } = render(Text, {
 			props: {
-				node: {
-					type: 'text',
-					value: 'Hello, World!'
-				}
+				type: 'text',
+				value: 'Hello, World!'
 			}
 		});
 

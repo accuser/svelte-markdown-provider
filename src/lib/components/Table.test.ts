@@ -6,17 +6,13 @@ describe('Table.svelte', async () => {
 	it('renders <table>', async () => {
 		const { container } = render(Table, {
 			props: {
-				node: {
-					type: 'table',
-					children: [
-						{
-							type: 'tableRow',
-							children: [
-								{ type: 'tableCell', children: [{ type: 'text', value: 'Hello, World!' }] }
-							]
-						}
-					]
-				}
+				type: 'table',
+				children: [
+					{
+						type: 'tableRow',
+						children: [{ type: 'tableCell', children: [{ type: 'text', value: 'Hello, World!' }] }]
+					}
+				]
 			}
 		});
 
@@ -26,17 +22,13 @@ describe('Table.svelte', async () => {
 	it('renders <table> with content', async () => {
 		const { container } = render(Table, {
 			props: {
-				node: {
-					type: 'table',
-					children: [
-						{
-							type: 'tableRow',
-							children: [
-								{ type: 'tableCell', children: [{ type: 'text', value: 'Hello, World!' }] }
-							]
-						}
-					]
-				}
+				type: 'table',
+				children: [
+					{
+						type: 'tableRow',
+						children: [{ type: 'tableCell', children: [{ type: 'text', value: 'Hello, World!' }] }]
+					}
+				]
 			}
 		});
 

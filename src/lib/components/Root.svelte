@@ -3,11 +3,11 @@
 	import { setContext } from 'svelte';
 	import Node from './Node.svelte';
 
-	const { node }: { node: import('mdast').Root } = $props();
+	const node: import('mdast').Root = $props();
 
 	setContext(ROOT_CONTEXT_TOKEN, node);
 
 	const { children } = $derived(node);
 </script>
 
-{#each children as node}<Node {node} />{/each}
+{#each children as node}<Node {...node} />{/each}

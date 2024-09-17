@@ -1,13 +1,11 @@
 <script lang="ts">
 	import Node from './Node.svelte';
 
-	const { node }: { node: import('mdast').List } = $props();
-
-	const { children, ordered, spread, start } = $derived(node);
+	const { children, ordered, spread, start }: import('mdast').List = $props();
 
 	const tag = $derived.by(() => (ordered ? 'ol' : 'ul'));
 </script>
 
 <svelte:element this={tag} class:spread {start}
-	>{#each children as node}<Node {node} />{/each}</svelte:element
+	>{#each children as node}<Node {...node} />{/each}</svelte:element
 >

@@ -6,11 +6,9 @@ describe('ContainerDirective.svelte', async () => {
 	it('renders an HTML comment', async () => {
 		const { container } = render(ContainerDirective, {
 			props: {
-				node: {
-					name: 'container',
-					type: 'containerDirective',
-					children: [{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }]
-				}
+				name: 'container',
+				type: 'containerDirective',
+				children: [{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }]
 			}
 		});
 
@@ -20,11 +18,9 @@ describe('ContainerDirective.svelte', async () => {
 	it('renders <div> with `class` attribute', async () => {
 		const { container } = render(ContainerDirective, {
 			props: {
-				node: {
-					name: 'container',
-					type: 'containerDirective',
-					children: [{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }]
-				}
+				name: 'container',
+				type: 'containerDirective',
+				children: [{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }]
 			}
 		});
 
@@ -34,11 +30,9 @@ describe('ContainerDirective.svelte', async () => {
 	it('renders <div> with content', async () => {
 		const { container } = render(ContainerDirective, {
 			props: {
-				node: {
-					name: 'container',
-					type: 'containerDirective',
-					children: [{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }]
-				}
+				name: 'container',
+				type: 'containerDirective',
+				children: [{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }]
 			}
 		});
 
