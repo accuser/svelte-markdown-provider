@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Node from '$lib/components/Node.svelte';
 
-	const { node }: { node: import('mdast').ListItem } = $props();
+	const node: import('mdast').ListItem = $props();
 
 	const { checked, children, spread } = $derived.by(() => ({
 		...node,
@@ -15,7 +15,7 @@
 
 <li>
 	{#if typeof checked === 'boolean'}<input type="checkbox" {checked} disabled />{/if}
-	{#each children as node}<Node {node} />{/each}
+	{#each children as node}<Node {...node} />{/each}
 </li>
 
 <style lang="postcss">

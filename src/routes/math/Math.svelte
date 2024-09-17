@@ -1,9 +1,7 @@
 <script lang="ts">
 	import katex from 'katex';
 
-	const { node }: { node: import('mdast-util-math').Math } = $props();
-
-	const { meta, value } = $derived(node);
+	const { meta, value }: import('mdast-util-math').Math = $props();
 
 	const mathml = $derived.by(() =>
 		katex.renderToString(value, {

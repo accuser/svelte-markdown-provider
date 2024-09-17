@@ -2,19 +2,16 @@
 	import Node from '$lib/components/Node.svelte';
 	import { toString } from 'mdast-util-to-string';
 
-	const { node }: { node: import('mdast-util-directive').ContainerDirective } = $props();
+	const { children }: import('mdast-util-directive').ContainerDirective = $props();
 
-	const {
-		attributes,
-		children: [label, ...children]
-	} = $derived(node);
-
-	const title = $derived.by(() => toString(label));
+	const { title, siblings } = $derived.by(() => {
+		return { title: toString(children[0]), siblings: children.slice(1) };
+	});
 </script>
 
 <div>
 	<strong>{title}</strong>
-	{#each children as node}<Node {node} />{/each}
+	{#each siblings as node}<Node {...node} />{/each}
 </div>
 
 <style lang="postcss">

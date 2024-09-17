@@ -1,15 +1,13 @@
 <script lang="ts">
 	import Node from '$lib/components/Node.svelte';
 
-	const { node }: { node: import('mdast-util-directive').TextDirective } = $props();
-
-	const { attributes, children } = $derived(node);
+	const { attributes, children }: import('mdast-util-directive').TextDirective = $props();
 
 	const { bg = 'yellow' } = $derived(attributes as { bg: 'pink' | 'yellow' });
 </script>
 
 <span class={bg}
-	>{#each children as node}<Node {node} />{/each}</span
+	>{#each children as node}<Node {...node} />{/each}</span
 >
 
 <style lang="postcss">

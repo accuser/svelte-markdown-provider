@@ -5,9 +5,7 @@
 	import { toc } from 'mdast-util-toc';
 	import { getContext } from 'svelte';
 
-	const { node }: { node: import('mdast-util-directive').LeafDirective } = $props();
-
-	const { children } = $derived(node);
+	const { children }: import('mdast-util-directive').LeafDirective = $props();
 
 	const { contents, label = 'Contents' } = $derived.by(() => ({
 		label: children && children.length ? toString(children) : 'Contents',
@@ -20,5 +18,5 @@
 
 <hr />
 <strong>{label}</strong>
-<Node node={contents} />
+<Node {...contents} />
 <hr />
