@@ -1,4 +1,6 @@
+import isContainerDirective from './is-container-directive.js';
+import isLeafDirective from './is-leaf-directive.js';
+import isTextDirective from './is-text-directive.js';
+
 export default (node: import('mdast').Node): node is import('mdast-util-directive').Directives =>
-	(node && node.type === 'containerDirective') ||
-	node.type === 'leafDirective' ||
-	node.type === 'textDirective';
+	isContainerDirective(node) || isLeafDirective(node) || isTextDirective(node);
