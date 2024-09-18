@@ -1,3 +1,3 @@
 <script lang="ts">
-	const _: import('mdast').Yaml = $props();
+	const {}: import('mdast').Yaml = $props();
 </script>
