@@ -9,21 +9,23 @@
 	import { setContext } from 'svelte';
 	import Node from './Node.svelte';
 
-	let {
-		ast = $bindable(),
-		astFromString = defaultAstFromString,
-		components,
-		directives,
-		src,
-		slugify
-	}: (
+	type Props = (
 		| { ast: import('mdast').Root; astFromString?: never; src?: never }
 		| { ast?: import('mdast').Root; astFromString?: typeof defaultAstFromString; src: string }
 	) & {
 		components?: Partial<Components>;
 		directives?: Partial<Directives>;
 		slugify?: typeof defaultSlugify;
-	} = $props();
+	};
+
+	const {
+		astFromString = defaultAstFromString,
+		src,
+		ast = $bindable(src ? astFromString(src) : undefined),
+		components,
+		directives,
+		slugify
+	}: Props = $props();
 
 	if (components) {
 		setContext(MARKDOWN_COMPONENTS_TOKEN, components);
@@ -36,12 +38,6 @@
 	if (slugify) {
 		setContext(MARKDOWN_SLUGIFY_TOKEN, slugify);
 	}
-
-	$effect(() => {
-		if (src) {
-			ast = astFromString(src);
-		}
-	});
 </script>
 
 {#if ast}
