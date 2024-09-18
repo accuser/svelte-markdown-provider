@@ -1,20 +1,25 @@
 <script lang="ts">
-	import TableRow from './TableRow.svelte';
+	import Node from './Node.svelte';
 
 	const { align, children }: import('mdast').Table = $props();
 
-	const [head, ...rows] = $derived(children);
+	const [head, ...rows] = $derived.by(() =>
+		children.map((child) => ({
+			...child,
+			data: { ...child.data, align }
+		}))
+	);
 </script>
 
 <table>
 	{#if head}
 		<thead>
-			<TableRow {...head} />
+			<Node {...head} />
 		</thead>
 	{/if}
 	{#if rows.length}
 		<tbody>
-			{#each rows as node}<TableRow {...node} data-align={align} />{/each}
+			{#each rows as node}<Node {...node} />{/each}
 		</tbody>
 	{/if}
 </table>

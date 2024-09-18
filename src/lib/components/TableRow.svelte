@@ -1,14 +1,22 @@
 <script lang="ts">
-	import TableCell from './TableCell.svelte';
+	import Node from './Node.svelte';
 
-	type Props = import('mdast').TableRow & { 'data-align'?: import('mdast').AlignType[] | null };
+	type Props = import('mdast').TableRow & {
+		data?: import('mdast').TableRowData & { align?: import('mdast').AlignType[] };
+	};
 
-	const { children, 'data-align': align }: Props = $props();
+	const { children, data }: Props = $props();
+
+	const align = $derived(data?.align);
+
+	const columns = $derived.by(() =>
+		children.map((child, index) => ({
+			...child,
+			data: { ...child.data, align: align ? align[index] : undefined }
+		}))
+	);
 </script>
 
 <tr
-	>{#each children as node, index}<TableCell
-			{...node}
-			data-align={align ? align[index] : undefined}
-		/>{/each}</tr
+	>{#each columns as column}<Node {...column} />{/each}</tr
 >
