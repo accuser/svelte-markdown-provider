@@ -1,19 +1,19 @@
 <script lang="ts">
-	import defaultSlugify from '$lib/defaults/slugify.js';
-	import MARKDOWN_SLUGIFY_TOKEN from '$lib/tokens/markdown-slugify.token.js';
+	import MARKDOWN_CONTEXT_TOKEN from '$lib/tokens/markdown-context-token.js';
+	import type { MarkdownContext } from '$lib/types/markdown-context.js';
 	import { toString } from 'mdast-util-to-string';
-	import { getContext, hasContext } from 'svelte';
+	import { getContext } from 'svelte';
 	import Node from './Node.svelte';
 
 	const { children, depth }: import('mdast').Heading = $props();
 
 	let tag = $derived.by(() => `h${depth}`);
 
-	const slugify = hasContext(MARKDOWN_SLUGIFY_TOKEN)
-		? getContext<(str: string) => string>(MARKDOWN_SLUGIFY_TOKEN)
-		: defaultSlugify;
+	const id = $derived.by(() => {
+		const { slugify } = getContext<MarkdownContext>(MARKDOWN_CONTEXT_TOKEN);
 
-	const id = $derived.by(() => slugify(toString(children)));
+		return slugify(toString(children));
+	});
 </script>
 
 <svelte:element this={tag} {id}

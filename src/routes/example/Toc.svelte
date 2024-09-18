@@ -1,19 +1,23 @@
 <script lang="ts">
 	import Node from '$lib/components/Node.svelte';
-	import { ROOT_CONTEXT_TOKEN } from '$lib/tokens/root-context.token.js';
+	import MARKDOWN_CONTEXT_TOKEN from '$lib/tokens/markdown-context-token.js';
+	import type { MarkdownContext } from '$lib/types/markdown-context.js';
 	import { toString } from 'mdast-util-to-string';
-	import { toc } from 'mdast-util-toc';
 	import { getContext } from 'svelte';
 
 	const { children }: import('mdast-util-directive').LeafDirective = $props();
 
-	const { contents, label = 'Contents' } = $derived.by(() => ({
-		label: children && children.length ? toString(children) : 'Contents',
-		contents: {
-			type: 'root',
-			children: [toc(getContext(ROOT_CONTEXT_TOKEN), { minDepth: 2, maxDepth: 3 }).map]
-		} as import('mdast').Root
-	}));
+	const { contents, label = 'Contents' } = $derived.by(() => {
+		const { getToc } = getContext<MarkdownContext>(MARKDOWN_CONTEXT_TOKEN);
+
+		return {
+			label: children && children.length ? toString(children) : 'Contents',
+			contents: {
+				type: 'root',
+				children: [getToc({ minDepth: 2, maxDepth: 3 }).map]
+			} as import('mdast').Root
+		};
+	});
 </script>
 
 <hr />
