@@ -1,26 +1,20 @@
 <script lang="ts">
-	import { TABLE_CONTEXT_TOKEN } from '$lib/tokens/table-context.token.js';
-	import { setContext } from 'svelte';
-	import Node from './Node.svelte';
+	import TableRow from './TableRow.svelte';
 
-	const node: import('mdast').Table = $props();
+	const { align, children }: import('mdast').Table = $props();
 
-	setContext(TABLE_CONTEXT_TOKEN, node);
-
-	const {
-		children: [head, ...rows]
-	} = $derived(node);
+	const [head, ...rows] = $derived(children);
 </script>
 
 <table>
 	{#if head}
 		<thead>
-			<Node {...head} />
+			<TableRow {...head} />
 		</thead>
 	{/if}
 	{#if rows.length}
 		<tbody>
-			{#each rows as node}<Node {...node} />{/each}
+			{#each rows as node}<TableRow {...node} data-align={align} />{/each}
 		</tbody>
 	{/if}
 </table>

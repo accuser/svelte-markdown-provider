@@ -1,15 +1,14 @@
 <script lang="ts">
-	import { TABLE_ROW_CONTEXT_TOKEN } from '$lib/tokens/table-row-context.token.js';
-	import { setContext } from 'svelte';
-	import Node from './Node.svelte';
+	import TableCell from './TableCell.svelte';
 
-	const node: import('mdast').TableRow = $props();
+	type Props = import('mdast').TableRow & { 'data-align'?: import('mdast').AlignType[] | null };
 
-	setContext(TABLE_ROW_CONTEXT_TOKEN, node);
-
-	const { children } = $derived(node);
+	const { children, 'data-align': align }: Props = $props();
 </script>
 
 <tr
-	>{#each children as node}<Node {...node} />{/each}</tr
+	>{#each children as node, index}<TableCell
+			{...node}
+			data-align={align ? align[index] : undefined}
+		/>{/each}</tr
 >
