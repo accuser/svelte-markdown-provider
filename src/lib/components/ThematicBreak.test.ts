@@ -1,14 +1,16 @@
 import { render } from '@testing-library/svelte';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import ThematicBreak from './ThematicBreak.svelte';
 
 describe('ThematicBreak.svelte', async () => {
-	it('renders <hr>', async () => {
-		const { container } = render(ThematicBreak, {
-			props: {
-				type: 'thematicBreak'
-			}
-		});
+	const it = test.extend<{ props: import('mdast').ThematicBreak }>({
+		props: {
+			type: 'thematicBreak'
+		}
+	});
+
+	it('renders <hr>', async ({ props }) => {
+		const { container } = render(ThematicBreak, { props });
 
 		expect(container.querySelector('hr')).toBeInTheDocument();
 	});

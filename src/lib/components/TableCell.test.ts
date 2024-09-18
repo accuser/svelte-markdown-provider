@@ -1,26 +1,25 @@
 import { render } from '@testing-library/svelte';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import TableCell from './TableCell.svelte';
 
 describe('TableCell.svelte', async () => {
-	it('renders <td>', async () => {
-		const { container } = render(TableCell, {
-			props: {
-				children: [{ type: 'text', value: 'Hello, World!' }],
-				type: 'tableCell'
-			}
-		});
+	const it = test.extend<{
+		props: import('mdast').TableCell;
+	}>({
+		props: {
+			children: [{ type: 'text', value: 'Hello, World!' }],
+			type: 'tableCell'
+		}
+	});
+
+	it('renders <td>', async ({ props }) => {
+		const { container } = render(TableCell, { props });
 
 		expect(container.querySelector('td')).toBeInTheDocument();
 	});
 
-	it('renders <td> with content', async () => {
-		const { container } = render(TableCell, {
-			props: {
-				children: [{ type: 'text', value: 'Hello, World!' }],
-				type: 'tableCell'
-			}
-		});
+	it('renders <td> with content', async ({ props }) => {
+		const { container } = render(TableCell, { props });
 
 		expect(container.querySelector('td')).toHaveTextContent('Hello, World!');
 	});

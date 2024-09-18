@@ -1,15 +1,17 @@
 import { render } from '@testing-library/svelte';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import Html from './Html.svelte';
 
 describe('Html.svelte', async () => {
-	it('renders html', async () => {
-		const { container } = render(Html, {
-			props: {
-				type: 'html',
-				value: '<pre>Hello, World!</pre>'
-			}
-		});
+	const it = test.extend<{ props: import('mdast').Html }>({
+		props: {
+			type: 'html',
+			value: '<pre>Hello, World!</pre>'
+		}
+	});
+
+	it('renders html', async ({ props }) => {
+		const { container } = render(Html, { props });
 
 		expect(container.querySelector('pre')).toBeInTheDocument();
 	});
