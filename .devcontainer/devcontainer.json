@@ -21,7 +21,8 @@
 				"svelte.svelte-vscode",
 				"ms-vscode.vscode-typescript-next",
 				"vitest.explorer",
-				"github.vscode-github-actions"
+				"github.vscode-github-actions",
+				"ms-azuretools.vscode-docker"
 			]
 		}
 	}
