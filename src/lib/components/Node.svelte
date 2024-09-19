@@ -1,14 +1,12 @@
 <script lang="ts">
+	import markdownContext from '$lib/contexts/markdown-context.js';
 	import defaultComponents from '$lib/defaults/components.js';
-	import MARKDOWN_CONTEXT_TOKEN from '$lib/tokens/markdown-context-token.js';
 	import isDirective from '$lib/type-guards/is-directive.js';
-	import type { MarkdownContext } from '$lib/types/markdown-context.js';
-	import { getContext } from 'svelte';
 
 	const node: import('mdast').Nodes = $props();
 
 	const Component = $derived.by((() => {
-		const { components, directives } = getContext<MarkdownContext>(MARKDOWN_CONTEXT_TOKEN) ?? {};
+		const { components, directives } = markdownContext();
 
 		if (directives && isDirective(node) && node.type in directives) {
 			const directiveType = directives[node.type];
