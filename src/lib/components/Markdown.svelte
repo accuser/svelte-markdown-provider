@@ -17,6 +17,8 @@
 
 <script lang="ts">
 	import setMarkdownContext from '$lib/contexts/set-markdown-context.js';
+	import isRoot from '$lib/type-guards/is-root.js';
+	import isYaml from '$lib/type-guards/is-yaml.js';
 	import { definitions } from 'mdast-util-definitions';
 	import { toc } from 'mdast-util-toc';
 	import { parse } from 'yaml';
@@ -37,8 +39,8 @@
 	}
 
 	if (frontmatter) {
-		// do nothing
-	} else if (ast && ast.children && ast.children[0] && ast.children[0].type === 'yaml') {
+		// do nothing - frontmatter is already set
+	} else if (isRoot(ast) && isYaml(ast.children[0])) {
 		frontmatter = parse(ast.children[0].value);
 	} else {
 		frontmatter = {};
