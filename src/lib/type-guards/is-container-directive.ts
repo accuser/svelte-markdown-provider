@@ -1,7 +1,7 @@
 import isParent from './is-parent.js';
 
 export default (
-	node: import('mdast').Node
+	node: import('mdast').Node | null | undefined
 ): node is import('mdast-util-directive').ContainerDirective =>
 	isParent(node) &&
 	node.type === 'containerDirective' &&

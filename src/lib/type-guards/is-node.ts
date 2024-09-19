@@ -1,2 +1,2 @@
-export default (node: import('mdast').Node): node is import('mdast').Nodes =>
-	node && 'type' in node && typeof node.type === 'string';
+export default (node: import('mdast').Node | null | undefined): node is import('mdast').Nodes =>
+	node !== null && node !== undefined && 'type' in node && typeof node.type === 'string';
