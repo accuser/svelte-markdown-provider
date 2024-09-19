@@ -1,14 +1,14 @@
-import MARKDOWN_CONTEXT_TOKEN from '$lib/tokens/markdown-context-token.js';
+import MARKDOWN_CONTEXT_TOKEN from '$lib/tokens/markdown-context.token.js';
 import type { MarkdownContext } from '$lib/types/markdown-context.js';
 import { render } from '@testing-library/svelte';
 import { describe, expect, test, vi } from 'vitest';
-import Heading from './Heading.svelte';
+import Heading, { type Props } from './Heading.svelte';
 
 describe('Heading.svelte', async () => {
-	for (const depth of [1, 2, 3, 4, 5, 6] as import('mdast').Heading['depth'][]) {
+	for (const depth of [1, 2, 3, 4, 5, 6] as Props['depth'][]) {
 		const it = test.extend<{
 			context: Map<symbol, Partial<MarkdownContext>>;
-			props: import('mdast').Heading;
+			props: Props;
 		}>({
 			context: new Map([
 				[

@@ -1,7 +1,11 @@
+<script lang="ts" module>
+	export type Props = import('mdast-util-directive').TextDirective;
+</script>
+
 <script lang="ts">
 	import Node from './Node.svelte';
 
-	const { children, name }: import('mdast-util-directive').TextDirective = $props();
+	const { children, name }: Props = $props();
 </script>
 
 {@html `<!-- Unrecognized text directive :${name} -->`}

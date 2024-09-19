@@ -1,9 +1,9 @@
 import { render } from '@testing-library/svelte';
 import { describe, expect, test } from 'vitest';
-import Table from './Table.svelte';
+import Table, { type Props } from './Table.svelte';
 
 describe('Table.svelte', async () => {
-	const it = test.extend<{ props: import('mdast').Table }>({
+	const it = test.extend<{ props: Props }>({
 		props: {
 			type: 'table',
 			children: [

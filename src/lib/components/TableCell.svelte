@@ -1,9 +1,11 @@
-<script lang="ts">
-	import Node from './Node.svelte';
-
-	type Props = import('mdast').TableCell & {
+<script lang="ts" module>
+	export type Props = import('mdast').TableCell & {
 		data?: import('mdast').TableCellData & { align?: import('mdast').AlignType };
 	};
+</script>
+
+<script lang="ts">
+	import Node from './Node.svelte';
 
 	const { children, data }: Props = $props();
 

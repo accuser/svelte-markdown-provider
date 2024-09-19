@@ -1,7 +1,11 @@
+<script lang="ts" module>
+	export type Props = import('mdast').Table;
+</script>
+
 <script lang="ts">
 	import Node from './Node.svelte';
 
-	const { align, children }: import('mdast').Table = $props();
+	const { align, children }: Props = $props();
 
 	const [head, ...rows] = $derived.by(() =>
 		children.map((child) => ({

@@ -1,5 +1,13 @@
-<script lang="ts">
-	const { value }: import('mdast-util-math').InlineMath = $props();
+<script lang="ts" module>
+	export type Props = import('mdast-util-math').InlineMath;
 </script>
 
-<code class="language-math math-inline">{value}</code>
+<script lang="ts">
+	import katex from 'katex';
+
+	const { value }: Props = $props();
+
+	const mathml = $derived.by(() => katex.renderToString(value, { throwOnError: false }));
+</script>
+
+{@html mathml}

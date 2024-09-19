@@ -1,9 +1,9 @@
 import { render } from '@testing-library/svelte';
 import { describe, expect, test } from 'vitest';
-import Definition from './Definition.svelte';
+import Definition, { type Props } from './Definition.svelte';
 
 describe('Definition.svelte', async () => {
-	const it = test.extend<{ props: import('mdast').Definition }>({
+	const it = test.extend<{ props: Props }>({
 		props: {
 			type: 'definition',
 			identifier: 'example',

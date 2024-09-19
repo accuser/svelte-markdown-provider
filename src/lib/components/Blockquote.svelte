@@ -1,7 +1,11 @@
+<script lang="ts" module>
+	export type Props = import('mdast').Blockquote;
+</script>
+
 <script lang="ts">
 	import Node from './Node.svelte';
 
-	const { children }: import('mdast').Blockquote = $props();
+	const { children }: Props = $props();
 </script>
 
 <blockquote>

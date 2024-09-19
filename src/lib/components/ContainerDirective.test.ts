@@ -1,9 +1,9 @@
 import { render } from '@testing-library/svelte';
 import { describe, expect, test } from 'vitest';
-import ContainerDirective from './ContainerDirective.svelte';
+import ContainerDirective, { type Props } from './ContainerDirective.svelte';
 
 describe('ContainerDirective.svelte', async () => {
-	const it = test.extend<{ props: import('mdast-util-directive').ContainerDirective }>({
+	const it = test.extend<{ props: Props }>({
 		props: {
 			name: 'container',
 			type: 'containerDirective',
@@ -15,6 +15,12 @@ describe('ContainerDirective.svelte', async () => {
 		const { container } = render(ContainerDirective, { props });
 
 		expect(container.outerHTML).toContain('<!-- Unrecognized container directive :::container -->');
+	});
+
+	it('renders <div>', async ({ props }) => {
+		const { container } = render(ContainerDirective, { props });
+
+		expect(container.querySelector('div')).toBeInTheDocument();
 	});
 
 	it('renders <div> with `class` attribute', async ({ props }) => {

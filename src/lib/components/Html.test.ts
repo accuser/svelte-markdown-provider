@@ -1,9 +1,9 @@
 import { render } from '@testing-library/svelte';
 import { describe, expect, test } from 'vitest';
-import Html from './Html.svelte';
+import Html, { type Props } from './Html.svelte';
 
 describe('Html.svelte', async () => {
-	const it = test.extend<{ props: import('mdast').Html }>({
+	const it = test.extend<{ props: Props }>({
 		props: {
 			type: 'html',
 			value: '<pre>Hello, World!</pre>'

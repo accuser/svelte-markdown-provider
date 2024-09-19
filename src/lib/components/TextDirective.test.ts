@@ -1,11 +1,11 @@
 import { render } from '@testing-library/svelte';
 import { describe, expect, test } from 'vitest';
-import TextDirective from './TextDirective.svelte';
+import TextDirective, { type Props } from './TextDirective.svelte';
 
 describe('TextDirective.svelte', async () => {
-	const it = test.extend<{ props: import('mdast-util-directive').TextDirective }>({
+	const it = test.extend<{ props: Props }>({
 		props: {
-			name: 'container',
+			name: 'text',
 			type: 'textDirective',
 			children: [{ type: 'text', value: 'Hello, World!' }]
 		}
@@ -14,18 +14,18 @@ describe('TextDirective.svelte', async () => {
 	it('renders an HTML comment', async ({ props }) => {
 		const { container } = render(TextDirective, { props });
 
-		expect(container.outerHTML).toContain('<!-- Unrecognized text directive :container -->');
+		expect(container.outerHTML).toContain('<!-- Unrecognized text directive :text -->');
 	});
 
 	it('renders <span> with `class` attribute', async ({ props }) => {
 		const { container } = render(TextDirective, { props });
 
-		expect(container.querySelector('span.container')).toBeInTheDocument();
+		expect(container.querySelector('span.text')).toBeInTheDocument();
 	});
 
 	it('renders <span> with content', async ({ props }) => {
 		const { container } = render(TextDirective, { props });
 
-		expect(container.querySelector('span.container')).toHaveTextContent('Hello, World!');
+		expect(container.querySelector('span.text')).toHaveTextContent('Hello, World!');
 	});
 });

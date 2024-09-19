@@ -1,9 +1,9 @@
 import { render } from '@testing-library/svelte';
 import { describe, expect, test } from 'vitest';
-import Image from './Image.svelte';
+import Image, { type Props } from './Image.svelte';
 
 describe('Image.svelte', async () => {
-	const it = test.extend<{ props: import('mdast').Image }>({
+	const it = test.extend<{ props: Props }>({
 		props: {
 			type: 'image',
 			url: 'https://example.com/image.jpg',
@@ -17,13 +17,13 @@ describe('Image.svelte', async () => {
 		expect(container.querySelector('img')).toBeInTheDocument();
 	});
 
-	it('renders <img> with `src`', async ({ props }) => {
+	it('renders <img> with `src` attribute', async ({ props }) => {
 		const { container } = render(Image, { props });
 
 		expect(container.querySelector('img')).toHaveAttribute('src', 'https://example.com/image.jpg');
 	});
 
-	it('renders <img> with `alt`', async ({ props }) => {
+	it('renders <img> with `alt` attribute', async ({ props }) => {
 		const { container } = render(Image, { props });
 
 		expect(container.querySelector('img')).toHaveAttribute('alt', 'Example');

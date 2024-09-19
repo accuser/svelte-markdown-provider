@@ -1,7 +1,11 @@
+<script lang="ts" module>
+	export type Props = import('mdast').Emphasis;
+</script>
+
 <script lang="ts">
 	import Node from './Node.svelte';
 
-	const { children }: import('mdast').Emphasis = $props();
+	const { children }: Props = $props();
 </script>
 
 <em

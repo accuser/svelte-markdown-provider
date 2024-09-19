@@ -1,13 +1,13 @@
-import MARKDOWN_CONTEXT_TOKEN from '$lib/tokens/markdown-context-token.js';
+import MARKDOWN_CONTEXT_TOKEN from '$lib/tokens/markdown-context.token.js';
 import type { MarkdownContext } from '$lib/types/markdown-context.js';
 import { render } from '@testing-library/svelte';
 import { describe, expect, test, vi } from 'vitest';
-import LinkReference from './LinkReference.svelte';
+import LinkReference, { type Props } from './LinkReference.svelte';
 
 describe('LinkReference.svelte', async () => {
 	const it = test.extend<{
 		context: Map<symbol, Partial<MarkdownContext>>;
-		props: import('mdast').LinkReference;
+		props: Props;
 	}>({
 		context: new Map([
 			[

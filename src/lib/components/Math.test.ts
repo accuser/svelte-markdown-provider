@@ -1,36 +1,30 @@
 import { render } from '@testing-library/svelte';
 import { describe, expect, test } from 'vitest';
-import Math from './Math.svelte';
+import Math, { type Props } from './Math.svelte';
 
 describe('Math.svelte', async () => {
-	const it = test.extend<{ props: import('mdast-util-math').Math }>({
+	const it = test.extend<{ props: Props }>({
 		props: {
 			type: 'math',
 			value: 'C'
 		}
 	});
 
-	it('renders <code>', async ({ props }) => {
+	it('renders <span>', async ({ props }) => {
 		const { container } = render(Math, { props });
 
-		expect(container.querySelector('code')).toBeInTheDocument();
+		expect(container.querySelector('span')).toBeInTheDocument();
 	});
 
-	it('renders <code> with `language-math` class', async ({ props }) => {
+	it('renders <span> with `katex` class', async ({ props }) => {
 		const { container } = render(Math, { props });
 
-		expect(container.querySelector('code.language-math')).toBeInTheDocument();
+		expect(container.querySelector('span.katex')).toBeInTheDocument();
 	});
 
-	it('renders <code> with `math-display` class', async ({ props }) => {
+	it('renders <span> with content', async ({ props }) => {
 		const { container } = render(Math, { props });
 
-		expect(container.querySelector('code.math-display')).toBeInTheDocument();
-	});
-
-	it('renders <code> with content', async ({ props }) => {
-		const { container } = render(Math, { props });
-
-		expect(container.querySelector('code')).toHaveTextContent('C');
+		expect(container.querySelector('span.katex')).toHaveTextContent('C');
 	});
 });

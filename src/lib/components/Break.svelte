@@ -1,5 +1,9 @@
+<script lang="ts" module>
+	export type Props = import('mdast').Break;
+</script>
+
 <script lang="ts">
-	const {}: import('mdast').Break = $props();
+	const {}: Props = $props();
 </script>
 
 <br />

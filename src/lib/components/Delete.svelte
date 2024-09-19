@@ -1,7 +1,11 @@
+<script lang="ts" module>
+	export type Props = import('mdast').Delete;
+</script>
+
 <script lang="ts">
 	import Node from './Node.svelte';
 
-	const { children }: import('mdast').Delete = $props();
+	const { children }: Props = $props();
 </script>
 
 <del

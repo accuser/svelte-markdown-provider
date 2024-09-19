@@ -1,10 +1,10 @@
 import { render } from '@testing-library/svelte';
 import { describe, expect, test } from 'vitest';
-import FootnoteReference from './FootnoteReference.svelte';
+import FootnoteReference, { type Props } from './FootnoteReference.svelte';
 
 describe('FootnoteReference.svelte', async () => {
 	const it = test.extend<{
-		props: import('mdast').FootnoteReference;
+		props: Props;
 	}>({
 		props: {
 			type: 'footnoteReference',
@@ -19,27 +19,36 @@ describe('FootnoteReference.svelte', async () => {
 		expect(container.querySelector('sup')).toBeInTheDocument();
 	});
 
-	it('renders <sup><a> with `id` attribute', ({ props }) => {
+	it('renders <a> in <sup>', ({ props }) => {
 		const { container } = render(FootnoteReference, { props });
 
-		expect(container.querySelector('sup a')).toHaveAttribute('id', 'footnote-ref-example');
+		expect(container.querySelector('sup > a')).toBeInTheDocument();
 	});
 
-	it('renders <sup><a> with `href` attribute', ({ props }) => {
+	it('renders <a> in <sup> with `id` attribute', ({ props }) => {
 		const { container } = render(FootnoteReference, { props });
 
-		expect(container.querySelector('sup a')).toHaveAttribute('href', '#footnote-example');
+		expect(container.querySelector('sup > a')).toHaveAttribute('id', 'footnote-ref-example');
 	});
 
-	it('renders <sup><a> with `aria-describedby', ({ props }) => {
+	it('renders <a> in <sup> with `href` attribute', ({ props }) => {
 		const { container } = render(FootnoteReference, { props });
 
-		expect(container.querySelector('sup a')).toHaveAttribute('aria-describedby', 'footnote-label');
+		expect(container.querySelector('sup > a')).toHaveAttribute('href', '#footnote-example');
 	});
 
-	it('renders <sup><a> with content', ({ props }) => {
+	it('renders <a> in <sup> with `aria-describedby', ({ props }) => {
 		const { container } = render(FootnoteReference, { props });
 
-		expect(container.querySelector('sup a')).toHaveTextContent('Example');
+		expect(container.querySelector('sup > a')).toHaveAttribute(
+			'aria-describedby',
+			'footnote-label'
+		);
+	});
+
+	it('renders <a> in <sup> with content', ({ props }) => {
+		const { container } = render(FootnoteReference, { props });
+
+		expect(container.querySelector('sup > a')).toHaveTextContent('Example');
 	});
 });

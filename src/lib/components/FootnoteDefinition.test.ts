@@ -1,9 +1,9 @@
 import { render } from '@testing-library/svelte';
 import { describe, expect, test } from 'vitest';
-import FootnoteDefinition from './FootnoteDefinition.svelte';
+import FootnoteDefinition, { type Props } from './FootnoteDefinition.svelte';
 
 describe('FootnoteDefinition.svelte', () => {
-	const it = test.extend<{ props: import('mdast').FootnoteDefinition }>({
+	const it = test.extend<{ props: Props }>({
 		props: {
 			type: 'footnoteDefinition',
 			identifier: '1',
@@ -12,34 +12,55 @@ describe('FootnoteDefinition.svelte', () => {
 		}
 	});
 
+	it('renders <div>', ({ props }) => {
+		const { container } = render(FootnoteDefinition, { props });
+
+		expect(container.querySelector('div')).toBeInTheDocument();
+	});
+
 	it('renders <div> with `id` attribute', ({ props }) => {
 		const { container } = render(FootnoteDefinition, { props });
 
 		expect(container.querySelector('div#footnote-1')).toBeInTheDocument();
 	});
 
-	it('renders <p> with `label` content', ({ props }) => {
+	it('renders <p> in <div>', ({ props }) => {
 		const { container } = render(FootnoteDefinition, { props });
 
-		expect(container.querySelector('div#footnote-1 p')).toHaveTextContent('1');
+		expect(container.querySelector('div#footnote-1 > p')).toBeInTheDocument();
 	});
 
-	it('renders <a> with `href`', ({ props }) => {
+	it('renders <p> in <div> with `label` content', ({ props }) => {
 		const { container } = render(FootnoteDefinition, { props });
 
-		expect(container.querySelector('div#footnote-1 a')).toHaveAttribute('href', '#footnote-ref-1');
+		expect(container.querySelector('div#footnote-1 > p')).toHaveTextContent('1');
 	});
 
-	it('renders <a> with `aria-label', ({ props }) => {
+	it('renders <a> in <div>', ({ props }) => {
 		const { container } = render(FootnoteDefinition, { props });
 
-		expect(container.querySelector('div#footnote-1 a')).toHaveAttribute(
+		expect(container.querySelector('div#footnote-1 > a')).toBeInTheDocument();
+	});
+
+	it('renders <a> in <div> with `href` attribute', ({ props }) => {
+		const { container } = render(FootnoteDefinition, { props });
+
+		expect(container.querySelector('div#footnote-1 > a')).toHaveAttribute(
+			'href',
+			'#footnote-ref-1'
+		);
+	});
+
+	it('renders <a> in <div> with `aria-label', ({ props }) => {
+		const { container } = render(FootnoteDefinition, { props });
+
+		expect(container.querySelector('div#footnote-1 > a')).toHaveAttribute(
 			'aria-label',
 			'Back to content'
 		);
 	});
 
-	it('renders <a> with content', ({ props }) => {
+	it('renders <a> in <div> with content', ({ props }) => {
 		const { container } = render(FootnoteDefinition, { props });
 
 		expect(container.querySelector('div#footnote-1 a')).toHaveTextContent('↩');

@@ -1,9 +1,9 @@
 import { render } from '@testing-library/svelte';
 import { describe, expect, test } from 'vitest';
-import ThematicBreak from './ThematicBreak.svelte';
+import ThematicBreak, { type Props } from './ThematicBreak.svelte';
 
 describe('ThematicBreak.svelte', async () => {
-	const it = test.extend<{ props: import('mdast').ThematicBreak }>({
+	const it = test.extend<{ props: Props }>({
 		props: {
 			type: 'thematicBreak'
 		}

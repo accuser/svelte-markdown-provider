@@ -1,9 +1,9 @@
 import { render } from '@testing-library/svelte';
 import { describe, expect, test } from 'vitest';
-import Emphasis from './Emphasis.svelte';
+import Emphasis, { type Props } from './Emphasis.svelte';
 
 describe('Emphasis.svelte', async () => {
-	const it = test.extend<{ props: import('mdast').Emphasis }>({
+	const it = test.extend<{ props: Props }>({
 		props: {
 			children: [{ type: 'text', value: 'Hello, World!' }],
 			type: 'emphasis'

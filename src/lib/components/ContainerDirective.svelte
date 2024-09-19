@@ -1,7 +1,11 @@
+<script lang="ts" module>
+	export type Props = import('mdast-util-directive').ContainerDirective;
+</script>
+
 <script lang="ts">
 	import Node from './Node.svelte';
 
-	const { children, name }: import('mdast-util-directive').ContainerDirective = $props();
+	const { children, name }: Props = $props();
 </script>
 
 {@html `<!-- Unrecognized container directive :::${name} -->`}

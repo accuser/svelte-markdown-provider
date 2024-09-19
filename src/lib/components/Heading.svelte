@@ -1,16 +1,18 @@
+<script lang="ts" module>
+	export type Props = import('mdast').Heading;
+</script>
+
 <script lang="ts">
-	import MARKDOWN_CONTEXT_TOKEN from '$lib/tokens/markdown-context-token.js';
-	import type { MarkdownContext } from '$lib/types/markdown-context.js';
+	import markdownContext from '$lib/contexts/markdown-context.js';
 	import { toString } from 'mdast-util-to-string';
-	import { getContext } from 'svelte';
 	import Node from './Node.svelte';
 
-	const { children, depth }: import('mdast').Heading = $props();
+	const { children, depth }: Props = $props();
 
-	let tag = $derived.by(() => `h${depth}`);
+	const tag = $derived.by(() => `h${depth}`);
 
 	const id = $derived.by(() => {
-		const { slugify } = getContext<MarkdownContext>(MARKDOWN_CONTEXT_TOKEN);
+		const { slugify } = markdownContext();
 
 		return slugify(toString(children));
 	});

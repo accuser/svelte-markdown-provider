@@ -1,7 +1,11 @@
+<script lang="ts" module>
+	export type Props = import('mdast-util-directive').LeafDirective;
+</script>
+
 <script lang="ts">
 	import Node from './Node.svelte';
 
-	const { children, name }: import('mdast-util-directive').LeafDirective = $props();
+	const { children, name }: Props = $props();
 </script>
 
 {@html `<!-- Unrecognized leaf directive ::${name} -->`}
