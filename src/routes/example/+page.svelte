@@ -7,10 +7,9 @@
 	const { data }: { data: PageData } = $props();
 
 	const { src } = $derived(data);
-
-	let ast: import('mdast').Root;
+	const directives = { leafDirective: { banner: Banner, toc: Toc } };
 </script>
 
 <article class="prose prose-lg max-w-prose mx-auto prose-slate dark:prose-invert">
-	<Markdown {ast} directives={{ leafDirective: { banner: Banner, toc: Toc } }} {src} />
+	<Markdown {src} {directives} />
 </article>
