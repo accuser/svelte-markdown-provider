@@ -1,24 +1,29 @@
+<script lang="ts" module>
+	export type Props = import('mdast').Table;
+</script>
+
 <script lang="ts">
-	import { TABLE_CONTEXT_TOKEN } from '$lib/tokens/table-context.token.js';
-	import { setContext } from 'svelte';
-	import Markdown from './Markdown.svelte';
+	import Node from './Node.svelte';
 
-	export let node: import('mdast').Table;
+	const { align, children }: Props = $props();
 
-	const {
-		children: [head, ...rows]
-	} = setContext(TABLE_CONTEXT_TOKEN, node);
+	const [head, ...rows] = $derived.by(() =>
+		children.map((child) => ({
+			...child,
+			data: { ...child.data, align }
+		}))
+	);
 </script>
 
 <table>
 	{#if head}
 		<thead>
-			<Markdown node={head} />
+			<Node {...head} />
 		</thead>
 	{/if}
 	{#if rows.length}
 		<tbody>
-			{#each rows as node}<Markdown {node} />{/each}
+			{#each rows as node}<Node {...node} />{/each}
 		</tbody>
 	{/if}
 </table>

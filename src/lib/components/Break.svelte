@@ -1,7 +1,9 @@
-<script lang="ts">
-	export let node: import('mdast').Break;
+<script lang="ts" module>
+	export type Props = import('mdast').Break;
+</script>
 
-	node;
+<script lang="ts">
+	const {}: Props = $props();
 </script>
 
 <br />

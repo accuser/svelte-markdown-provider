@@ -1,11 +1,13 @@
+<script lang="ts" module>
+	export type Props = import('mdast').Blockquote;
+</script>
+
 <script lang="ts">
-	import Markdown from './Markdown.svelte';
+	import Node from './Node.svelte';
 
-	export let node: import('mdast').Blockquote;
-
-	const { children } = node;
+	const { children }: Props = $props();
 </script>
 
 <blockquote>
-	{#each children as node}<Markdown {node} />{/each}
+	{#each children as node}<Node {...node} />{/each}
 </blockquote>

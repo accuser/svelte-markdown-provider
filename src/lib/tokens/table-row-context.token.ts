@@ -1,1 +1,0 @@
-export const TABLE_ROW_CONTEXT_TOKEN = Symbol('TABLE_ROW_CONTEXT_TOKEN');

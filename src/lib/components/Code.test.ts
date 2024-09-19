@@ -1,21 +1,39 @@
 import { render } from '@testing-library/svelte';
-import { describe, expect, it } from 'vitest';
-import Code from './Code.svelte';
+import { describe, expect, test } from 'vitest';
+import Code, { type Props } from './Code.svelte';
 
 describe('Code.svelte', async () => {
-	it('renders <code>', async () => {
-		const { container } = render(Code, {
-			props: {
-				node: {
-					lang: 'javascript',
-					type: 'code',
-					value: 'console.log("Hello, World!");'
-				}
-			}
-		});
+	const it = test.extend<{ props: Props }>({
+		props: {
+			lang: 'javascript',
+			type: 'code',
+			value: 'console.log("Hello, World!");'
+		}
+	});
 
-		expect(container.innerHTML).toContain(
-			'<div><pre><code lang="javascript">console.log("Hello, World!");</code></pre><!--<Code>--></div>'
+	it('renders <pre>', async ({ props }) => {
+		const { container } = render(Code, { props });
+
+		expect(container.querySelector('pre')).toBeInTheDocument();
+	});
+
+	it('renders <code> in <pre>', async ({ props }) => {
+		const { container } = render(Code, { props });
+
+		expect(container.querySelector('pre > code')).toBeInTheDocument();
+	});
+
+	it('renders <code> in <pre> with `lang` attribute', async ({ props }) => {
+		const { container } = render(Code, { props });
+
+		expect(container.querySelector('pre > code')).toHaveAttribute('lang', 'javascript');
+	});
+
+	it('renders <code> in <pre> with content', async ({ props }) => {
+		const { container } = render(Code, { props });
+
+		expect(container.querySelector('pre > code[lang="javascript"]')).toHaveTextContent(
+			'console.log("Hello, World!");'
 		);
 	});
 });

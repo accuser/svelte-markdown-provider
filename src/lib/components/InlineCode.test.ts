@@ -1,20 +1,24 @@
 import { render } from '@testing-library/svelte';
-import { describe, expect, it } from 'vitest';
-import InlineCode from './InlineCode.svelte';
+import { describe, expect, test } from 'vitest';
+import InlineCode, { type Props } from './InlineCode.svelte';
 
 describe('InlineCode.svelte', async () => {
-	it('renders <code>', async () => {
-		const { container } = render(InlineCode, {
-			props: {
-				node: {
-					type: 'inlineCode',
-					value: 'console.log("Hello, World!");'
-				}
-			}
-		});
+	const it = test.extend<{ props: Props }>({
+		props: {
+			type: 'inlineCode',
+			value: 'console.log("Hello, World!");'
+		}
+	});
 
-		expect(container.innerHTML).toContain(
-			'<div><code>console.log("Hello, World!");</code><!--<InlineCode>--></div>'
-		);
+	it('renders <code>', async ({ props }) => {
+		const { container } = render(InlineCode, { props });
+
+		expect(container.querySelector('code')).toBeInTheDocument();
+	});
+
+	it('renders <code> with content', async ({ props }) => {
+		const { container } = render(InlineCode, { props });
+
+		expect(container.querySelector('code')).toHaveTextContent('console.log("Hello, World!");');
 	});
 });

@@ -1,18 +1,18 @@
 import { render } from '@testing-library/svelte';
-import { describe, expect, it } from 'vitest';
-import Html from './Html.svelte';
+import { describe, expect, test } from 'vitest';
+import Html, { type Props } from './Html.svelte';
 
 describe('Html.svelte', async () => {
-	it('renders html', async () => {
-		const { container } = render(Html, {
-			props: {
-				node: {
-					type: 'html',
-					value: '<pre>Hello, World!</pre>'
-				}
-			}
-		});
+	const it = test.extend<{ props: Props }>({
+		props: {
+			type: 'html',
+			value: '<pre>Hello, World!</pre>'
+		}
+	});
 
-		expect(container.innerHTML).toContain('<div><pre>Hello, World!</pre><!--<Html>--></div>');
+	it('renders html', async ({ props }) => {
+		const { container } = render(Html, { props });
+
+		expect(container.querySelector('pre')).toBeInTheDocument();
 	});
 });

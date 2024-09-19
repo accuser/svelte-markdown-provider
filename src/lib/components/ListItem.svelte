@@ -1,12 +1,13 @@
+<script lang="ts" module>
+	export type Props = import('mdast').ListItem;
+</script>
+
 <script lang="ts">
-	import Markdown from './Markdown.svelte';
+	import Node from './Node.svelte';
 
-	export let node: import('mdast').ListItem;
-
-	// TODO: CSS for checked and spread
-	const { checked, children, spread } = node;
+	const { children }: Props = $props();
 </script>
 
 <li>
-	{#each children as node}<Markdown {node} />{/each}
+	{#each children as node}<Node {...node} />{/each}
 </li>

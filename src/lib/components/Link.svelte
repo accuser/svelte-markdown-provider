@@ -1,11 +1,13 @@
+<script lang="ts" module>
+	export type Props = import('mdast').Link;
+</script>
+
 <script lang="ts">
-	import Markdown from './Markdown.svelte';
+	import Node from './Node.svelte';
 
-	export let node: import('mdast').Link;
-
-	const { children, title, url } = node;
+	const { children, title, url }: Props = $props();
 </script>
 
 <a href={url} {title}
-	>{#each children as node}<Markdown {node} />{/each}</a
+	>{#each children as node}<Node {...node} />{/each}</a
 >

@@ -1,101 +1,44 @@
+import MARKDOWN_CONTEXT_TOKEN from '$lib/tokens/markdown-context.token.js';
+import type { MarkdownContext } from '$lib/types/markdown-context.js';
 import { render } from '@testing-library/svelte';
-import { describe, expect, it } from 'vitest';
-import Heading from './Heading.svelte';
+import { describe, expect, test, vi } from 'vitest';
+import Heading, { type Props } from './Heading.svelte';
 
 describe('Heading.svelte', async () => {
-	it('renders <h1>', async () => {
-		const { container } = render(Heading, {
+	for (const depth of [1, 2, 3, 4, 5, 6] as Props['depth'][]) {
+		const it = test.extend<{
+			context: Map<symbol, Partial<MarkdownContext>>;
+			props: Props;
+		}>({
+			context: new Map([
+				[
+					MARKDOWN_CONTEXT_TOKEN,
+					{ slugify: vi.fn((value: string) => value.toLowerCase().replace(/[^\w]+/g, '')) }
+				]
+			]),
 			props: {
-				node: {
-					type: 'heading',
-					depth: 1,
-					children: [{ type: 'text', value: 'Hello, World!' }]
-				}
+				children: [{ type: 'text', value: 'Hello, World!' }],
+				depth,
+				type: 'heading'
 			}
 		});
 
-		expect(container.innerHTML).toContain(
-			'<div><h1 id="hello-world"><!--<Markdown>--></h1><!--<Heading>--></div>'
-		);
-	});
+		it(`renders <h${depth}>`, async ({ context, props }) => {
+			const { container } = render(Heading, { context, props });
 
-	it('renders <h2>', async () => {
-		const { container } = render(Heading, {
-			props: {
-				node: {
-					type: 'heading',
-					depth: 2,
-					children: [{ type: 'text', value: 'Hello, World!' }]
-				}
-			}
+			expect(container.querySelector(`h${depth}`)).toBeInTheDocument();
 		});
 
-		expect(container.innerHTML).toContain(
-			'<div><h2 id="hello-world"><!--<Markdown>--></h2><!--<Heading>--></div>'
-		);
-	});
+		it(`renders <h${depth}> with \`id\` attibute`, async ({ context, props }) => {
+			const { container } = render(Heading, { context, props });
 
-	it('renders <h3>', async () => {
-		const { container } = render(Heading, {
-			props: {
-				node: {
-					type: 'heading',
-					depth: 3,
-					children: [{ type: 'text', value: 'Hello, World!' }]
-				}
-			}
+			expect(container.querySelector(`h${depth}`)).toHaveAttribute('id', 'helloworld');
 		});
 
-		expect(container.innerHTML).toContain(
-			'<div><h3 id="hello-world"><!--<Markdown>--></h3><!--<Heading>--></div>'
-		);
-	});
+		it(`renders <h${depth}> with content`, async ({ context, props }) => {
+			const { container } = render(Heading, { context, props });
 
-	it('renders <h4>', async () => {
-		const { container } = render(Heading, {
-			props: {
-				node: {
-					type: 'heading',
-					depth: 4,
-					children: [{ type: 'text', value: 'Hello, World!' }]
-				}
-			}
+			expect(container.querySelector(`h${depth}`)).toHaveTextContent('Hello, World!');
 		});
-
-		expect(container.innerHTML).toContain(
-			'<div><h4 id="hello-world"><!--<Markdown>--></h4><!--<Heading>--></div>'
-		);
-	});
-
-	it('renders <h5>', async () => {
-		const { container } = render(Heading, {
-			props: {
-				node: {
-					type: 'heading',
-					depth: 5,
-					children: [{ type: 'text', value: 'Hello, World!' }]
-				}
-			}
-		});
-
-		expect(container.innerHTML).toContain(
-			'<div><h5 id="hello-world"><!--<Markdown>--></h5><!--<Heading>--></div>'
-		);
-	});
-
-	it('renders <h6>', async () => {
-		const { container } = render(Heading, {
-			props: {
-				node: {
-					type: 'heading',
-					depth: 6,
-					children: [{ type: 'text', value: 'Hello, World!' }]
-				}
-			}
-		});
-
-		expect(container.innerHTML).toContain(
-			'<div><h6 id="hello-world"><!--<Markdown>--></h6><!--<Heading>--></div>'
-		);
-	});
+	}
 });

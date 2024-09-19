@@ -1,21 +1,31 @@
 import { render } from '@testing-library/svelte';
-import { describe, expect, it } from 'vitest';
-import Link from './Link.svelte';
+import { describe, expect, test } from 'vitest';
+import Link, { type Props } from './Link.svelte';
 
 describe('Link.svelte', async () => {
-	it('renders <a>', async () => {
-		const { container } = render(Link, {
-			props: {
-				node: {
-					children: [],
-					type: 'link',
-					url: 'https://example.com'
-				}
-			}
-		});
+	const it = test.extend<{ props: Props }>({
+		props: {
+			children: [{ type: 'text', value: 'Hello, World!' }],
+			type: 'link',
+			url: 'https://example.com'
+		}
+	});
 
-		expect(container.innerHTML).toContain(
-			'<div><a href="https://example.com"></a><!--<Link>--></div>'
-		);
+	it('renders <a>', async ({ props }) => {
+		const { container } = render(Link, { props });
+
+		expect(container.querySelector('a')).toBeInTheDocument();
+	});
+
+	it('renders <a> with `href` attibute', async ({ props }) => {
+		const { container } = render(Link, { props });
+
+		expect(container.querySelector('a')).toHaveAttribute('href', 'https://example.com');
+	});
+
+	it('renders <a> with content', async ({ props }) => {
+		const { container } = render(Link, { props });
+
+		expect(container.querySelector('a')).toHaveTextContent('Hello, World!');
 	});
 });

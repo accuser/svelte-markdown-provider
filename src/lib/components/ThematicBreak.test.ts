@@ -1,17 +1,17 @@
 import { render } from '@testing-library/svelte';
-import { describe, expect, it } from 'vitest';
-import ThematicBreak from './ThematicBreak.svelte';
+import { describe, expect, test } from 'vitest';
+import ThematicBreak, { type Props } from './ThematicBreak.svelte';
 
 describe('ThematicBreak.svelte', async () => {
-	it('renders <hr>', async () => {
-		const { container } = render(ThematicBreak, {
-			props: {
-				node: {
-					type: 'thematicBreak'
-				}
-			}
-		});
+	const it = test.extend<{ props: Props }>({
+		props: {
+			type: 'thematicBreak'
+		}
+	});
 
-		expect(container.innerHTML).toContain('<div><hr><!--<ThematicBreak>--></div>');
+	it('renders <hr>', async ({ props }) => {
+		const { container } = render(ThematicBreak, { props });
+
+		expect(container.querySelector('hr')).toBeInTheDocument();
 	});
 });

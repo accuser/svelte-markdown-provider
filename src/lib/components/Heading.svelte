@@ -1,20 +1,23 @@
+<script lang="ts" module>
+	export type Props = import('mdast').Heading;
+</script>
+
 <script lang="ts">
+	import markdownContext from '$lib/contexts/markdown-context.js';
 	import { toString } from 'mdast-util-to-string';
-	import Markdown from './Markdown.svelte';
+	import Node from './Node.svelte';
 
-	export let node: import('mdast').Heading;
+	const { children, depth }: Props = $props();
 
-	const { children, depth } = node;
+	const tag = $derived.by(() => `h${depth}`);
 
-	let tag = `h${depth}`;
+	const id = $derived.by(() => {
+		const { slugify } = markdownContext();
 
-	const id = toString(node)
-		.toLowerCase()
-		.replace(/[^\w]+/g, '-')
-		.replace(/-+/, '-')
-		.replace(/^-|-$/g, '');
+		return slugify(toString(children));
+	});
 </script>
 
 <svelte:element this={tag} {id}
-	>{#each children as node}<Markdown {node} />{/each}</svelte:element
+	>{#each children as node}<Node {...node} />{/each}</svelte:element
 >

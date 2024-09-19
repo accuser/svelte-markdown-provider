@@ -1,9 +1,9 @@
 # Svelte Markdown Provider
 
-Transforms a [Markdown AST](https://github.com/syntax-tree/mdast) into Svelte components.
+Transforms Markdown source (as a `string`) or a [Markdown AST](https://github.com/syntax-tree/mdast) into Svelte components.
 
 > [!NOTE]
-> You probably don't want this - look at [mdsvex](https://mdsvex.pngwn.io) instead.
+> You probably don't want this - look at [mdsvex](https://mdsvex.pngwn.io) or [svelte-markdown](https://github.com/pablo-abc/svelte-markdown) instead.
 
 ## Installing
 
@@ -15,11 +15,25 @@ npm install --save-dev @accuser/svelte-markdown-provider
 
 ## Usage
 
-```html
-<script>
-    import { Markdown, MarkdownProvider } from '@accuser/svelte-markdown-provider';
+### Markdown `string`
 
-    const node = {
+```svelte
+<script>
+    import { Markdown } from '@accuser/svelte-markdown-provider';
+
+    const source = 'Hello, World!';
+</script>
+
+<Markdown {src} />
+```
+
+### Markdown AST
+
+```svelte
+<script>
+    import { Markdown } from '@accuser/svelte-markdown-provider';
+
+    const ast = {
         type: 'root',
         children: [{
            type: 'paragraph',
@@ -31,7 +45,5 @@ npm install --save-dev @accuser/svelte-markdown-provider
     };
 </script>
 
-<MarkdownProvider let:components>
-    <Markdown {node} {components} />
-</MarkdownProvider>
+<Markdown {ast} />
 ```

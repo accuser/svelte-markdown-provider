@@ -4,7 +4,22 @@ import typography from '@tailwindcss/typography';
 export default {
     content: ['src/**/*.svelte'],
     theme: {
-        extend: {},
+        extend: {
+            typography(theme) {
+                return {
+                    DEFAULT: {
+                        css: {
+                            'code::before': {
+                                content: 'none',
+                            },
+                            'code::after': {
+                                content: 'none',
+                            },
+                        },
+                    }
+                }
+            }
+        },
     },
     plugins: [typography()],
 }

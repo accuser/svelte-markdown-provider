@@ -1,44 +1,61 @@
-<script lang="ts">
-	import { MARKDOWN_COMPONENTS_TOKEN } from '$lib/tokens/markdown-components.token.js';
-	import { MARKDOWN_DIRECTIVES_TOKEN } from '$lib/tokens/markdown-directives.token.js';
-	import { getContext, setContext } from 'svelte';
+<script lang="ts" module>
+	import defaultAstFromString from '$lib/defaults/ast-from-string.js';
+	import defaultSlugify from '$lib/defaults/slugify.js';
+	import type { Components } from '$lib/types/components.js';
+	import type { Directives } from '$lib/types/directives.js';
 
-	type Components = Record<
-		import('mdast').Nodes['type'],
-		import('svelte').ComponentType | undefined
-	>;
-	type Directives = Record<
-		import('mdast-util-directive').Directives['type'],
-		Record<string, import('svelte').ComponentType | undefined>
-	>;
-
-	export let node: import('mdast').Nodes;
-	let _components: Components | undefined = undefined;
-	let _directives: Directives | undefined = undefined;
-
-	export { _components as components, _directives as directives };
-
-	const components = _components
-		? setContext(MARKDOWN_COMPONENTS_TOKEN, _components)
-		: getContext<Components>(MARKDOWN_COMPONENTS_TOKEN);
-
-	const directives = _directives
-		? setContext(MARKDOWN_DIRECTIVES_TOKEN, _directives)
-		: getContext<Directives>(MARKDOWN_DIRECTIVES_TOKEN);
-
-	const { type } = node;
-
-	const component =
-		directives &&
-		(type === 'containerDirective' || type === 'leafDirective' || type === 'textDirective')
-			? directives[type][node.name]
-			: components
-				? components[type]
-				: undefined;
-
-	if (!component) {
-		console.warn(`Unrecognized node type "${type}"`);
-	}
+	export type Props = (
+		| { ast: import('mdast').Root; astFromString?: never; src?: never }
+		| { ast?: import('mdast').Root; astFromString?: typeof defaultAstFromString; src: string }
+	) & {
+		components?: Partial<Components>;
+		directives?: Partial<Directives>;
+		frontmatter?: Record<string, unknown>;
+		slugify?: typeof defaultSlugify;
+	};
 </script>
 
-<svelte:component this={component} {node} />
+<script lang="ts">
+	import setMarkdownContext from '$lib/contexts/set-markdown-context.js';
+	import isRoot from '$lib/type-guards/is-root.js';
+	import isYaml from '$lib/type-guards/is-yaml.js';
+	import { definitions } from 'mdast-util-definitions';
+	import { toc } from 'mdast-util-toc';
+	import { parse } from 'yaml';
+	import Node from './Node.svelte';
+
+	let {
+		ast = $bindable(),
+		astFromString = defaultAstFromString,
+		components,
+		directives,
+		frontmatter = $bindable(),
+		slugify = defaultSlugify,
+		src
+	}: Props = $props();
+
+	if (src) {
+		ast = astFromString(src);
+	}
+
+	if (frontmatter) {
+		// do nothing - frontmatter is already set
+	} else if (isRoot(ast) && isYaml(ast.children[0])) {
+		frontmatter = parse(ast.children[0].value);
+	} else {
+		frontmatter = {};
+	}
+
+	setMarkdownContext({
+		components,
+		directives,
+		frontmatter,
+		getDefinition: definitions(ast as import('mdast').Root),
+		getToc: (options) => toc(ast as import('mdast').Nodes, options),
+		slugify
+	});
+</script>
+
+{#if ast}
+	<Node {...ast} />
+{/if}

@@ -1,7 +1,9 @@
-<script lang="ts">
-	export let node: import('mdast').Code;
+<script lang="ts" module>
+	export type Props = import('mdast').Code;
+</script>
 
-	const { lang, meta, value } = node;
+<script lang="ts">
+	const { lang, meta, value }: Props = $props();
 </script>
 
 <pre><code {lang} data-meta={meta}>{value}</code></pre>

@@ -1,13 +1,24 @@
+<script lang="ts" module>
+	export type Props = import('mdast').TableRow & {
+		data?: import('mdast').TableRowData & { align?: import('mdast').AlignType[] };
+	};
+</script>
+
 <script lang="ts">
-	import { TABLE_ROW_CONTEXT_TOKEN } from '$lib/tokens/table-row-context.token.js';
-	import { setContext } from 'svelte';
-	import Markdown from './Markdown.svelte';
+	import Node from './Node.svelte';
 
-	export let node: import('mdast').TableRow;
+	const { children, data }: Props = $props();
 
-	const { children } = setContext(TABLE_ROW_CONTEXT_TOKEN, node);
+	const align = $derived(data?.align);
+
+	const columns = $derived.by(() =>
+		children.map((child, index) => ({
+			...child,
+			data: { ...child.data, align: align ? align[index] : undefined }
+		}))
+	);
 </script>
 
 <tr
-	>{#each children as node}<Markdown {node} />{/each}</tr
+	>{#each columns as column}<Node {...column} />{/each}</tr
 >

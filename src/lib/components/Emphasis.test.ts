@@ -1,18 +1,24 @@
 import { render } from '@testing-library/svelte';
-import { describe, expect, it } from 'vitest';
-import Emphasis from './Emphasis.svelte';
+import { describe, expect, test } from 'vitest';
+import Emphasis, { type Props } from './Emphasis.svelte';
 
 describe('Emphasis.svelte', async () => {
-	it('renders emphasis', async () => {
-		const { container } = render(Emphasis, {
-			props: {
-				node: {
-					type: 'emphasis',
-					children: []
-				}
-			}
-		});
+	const it = test.extend<{ props: Props }>({
+		props: {
+			children: [{ type: 'text', value: 'Hello, World!' }],
+			type: 'emphasis'
+		}
+	});
 
-		expect(container.innerHTML).toContain('<div><em></em><!--<Emphasis>--></div>');
+	it('renders <em>', async ({ props }) => {
+		const { container } = render(Emphasis, { props });
+
+		expect(container.querySelector('em')).toBeInTheDocument();
+	});
+
+	it('renders <em> with content', async ({ props }) => {
+		const { container } = render(Emphasis, { props });
+
+		expect(container.querySelector('em')).toHaveTextContent('Hello, World!');
 	});
 });

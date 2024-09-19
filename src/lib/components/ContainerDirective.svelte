@@ -1,13 +1,14 @@
-<script lang="ts">
-	import Markdown from './Markdown.svelte';
-
-	export let node: import('mdast-util-directive').ContainerDirective;
-
-	const { children, name } = node;
-
-	console.warn('Unrecognized container directive:', name);
+<script lang="ts" module>
+	export type Props = import('mdast-util-directive').ContainerDirective;
 </script>
 
+<script lang="ts">
+	import Node from './Node.svelte';
+
+	const { children, name }: Props = $props();
+</script>
+
+{@html `<!-- Unrecognized container directive :::${name} -->`}
 <div class={name}>
-	{#each children as node}<Markdown {node} />{/each}
+	{#each children as node}<Node {...node} />{/each}
 </div>

@@ -1,18 +1,18 @@
 import { render } from '@testing-library/svelte';
-import { describe, expect, it } from 'vitest';
-import Text from './Text.svelte';
+import { describe, expect, test } from 'vitest';
+import Text, { type Props } from './Text.svelte';
 
 describe('Text.svelte', async () => {
-	it('renders text', async () => {
-		const { container } = render(Text, {
-			props: {
-				node: {
-					type: 'text',
-					value: 'Hello, World!'
-				}
-			}
-		});
+	const it = test.extend<{ props: Props }>({
+		props: {
+			type: 'text',
+			value: 'Hello, World!'
+		}
+	});
 
-		expect(container.innerHTML).toContain('<div>Hello, World!<!--<Text>--></div>');
+	it('renders text', async ({ props }) => {
+		const { container } = render(Text, { props });
+
+		expect(container).toHaveTextContent('Hello, World!');
 	});
 });

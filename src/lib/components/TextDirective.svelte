@@ -1,13 +1,14 @@
-<script lang="ts">
-	import Markdown from './Markdown.svelte';
-
-	export let node: import('mdast-util-directive').TextDirective;
-
-	const { attributes, children, name } = node;
-
-	console.warn('Unrecognized text directive:', name);
+<script lang="ts" module>
+	export type Props = import('mdast-util-directive').TextDirective;
 </script>
 
-<div class={name}>
-	{#each children as node}<Markdown {node} />{/each}
-</div>
+<script lang="ts">
+	import Node from './Node.svelte';
+
+	const { children, name }: Props = $props();
+</script>
+
+{@html `<!-- Unrecognized text directive :${name} -->`}
+<span class={name}>
+	{#each children as node}<Node {...node} />{/each}
+</span>

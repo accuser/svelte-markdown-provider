@@ -1,7 +1,7 @@
-<script lang="ts">
-	export let node: import('mdast').Yaml;
-
-	node;
+<script lang="ts" module>
+	export type Props = import('mdast').Yaml;
 </script>
 
-<slot />
+<script lang="ts">
+	const {}: Props = $props();
+</script>

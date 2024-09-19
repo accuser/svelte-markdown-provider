@@ -1,7 +1,9 @@
-<script lang="ts">
-	export let node: import('mdast').Html;
+<script lang="ts" module>
+	export type Props = import('mdast').Html;
+</script>
 
-	const { value } = node;
+<script lang="ts">
+	const { value }: Props = $props();
 </script>
 
 {@html value}

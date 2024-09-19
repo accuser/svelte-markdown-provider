@@ -1,17 +1,13 @@
 import { render } from '@testing-library/svelte';
-import { describe, expect, it } from 'vitest';
-import Break from './Break.svelte';
+import { describe, expect, test } from 'vitest';
+import Break, { type Props } from './Break.svelte';
 
 describe('Break.svelte', async () => {
-	it('renders <br>', async () => {
-		const { container } = render(Break, {
-			props: {
-				node: {
-					type: 'break'
-				}
-			}
-		});
+	const it = test.extend<{ props: Props }>({ props: { type: 'break' } });
 
-		expect(container.innerHTML).toContain('<div><br><!--<Break>--></div>');
+	it('renders <br>', async ({ props }) => {
+		const { container } = render(Break, { props });
+
+		expect(container.querySelector('br')).toBeInTheDocument();
 	});
 });
