@@ -4,29 +4,20 @@ answer: 42
 
 # Bindable
 
-The `ast` prop of the `Markdown` component is optionally bindable.
+The `ast` and `frontmatter` props of the `Markdown` component are optionally bindable.
 
 ## Example
 
 ```svelte
 <script lang="ts">
-	import Markdown from '@accuser/svelte-markdown-provider';
-	import { parse } from 'yaml';
+	import Markdown from '$lib/components/Markdown.svelte';
 	import type { PageData } from './$types.js';
 
 	const { data }: { data: PageData } = $props();
 
 	const { src } = $derived(data);
 
-	let ast: import('mdast').Root | undefined = $state();
-
-	const frontmatter = $derived.by(() => {
-		if (ast) {
-			const value = ast.children.find((node) => node.type === 'yaml')?.value;
-
-			return value ? parse(value) : undefined;
-		}
-	});
+	let frontmatter = $state();
 </script>
 
 <article class="prose prose-lg max-w-prose mx-auto prose-slate dark:prose-invert">
@@ -35,6 +26,6 @@ The `ast` prop of the `Markdown` component is optionally bindable.
 		<pre><code>{JSON.stringify(frontmatter, undefined, 2)}</code></pre>
 		<hr />
 	{/if}
-	<Markdown bind:ast {src} />
+	<Markdown {src} bind:frontmatter />
 </article>
 ```
