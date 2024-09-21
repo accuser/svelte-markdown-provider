@@ -16,23 +16,22 @@
 </script>
 
 <script lang="ts">
-	import setMarkdownContext from '../contexts/set-markdown-context.js';
-	import isRoot from '../type-guards/is-root.js';
-	import isYaml from '../type-guards/is-yaml.js';
+	import { setMmarkdownContext } from '../contexts/markdown-context.js';
+	import { isRoot, isYaml } from '@accuser/mdast-util-type-guards';
 	import { definitions } from 'mdast-util-definitions';
 	import { toc } from 'mdast-util-toc';
 	import { parse } from 'yaml';
 	import Node from './Node.svelte';
 
-	let {
-		ast = $bindable(),
+	let { ast = $bindable(), frontmatter = $bindable(), ...constants }: Props = $props();
+
+	const {
 		astFromString = defaultAstFromString,
 		components,
 		directives,
-		frontmatter = $bindable(),
 		slugify = defaultSlugify,
 		src
-	}: Props = $props();
+	} = constants;
 
 	if (src) {
 		ast = astFromString(src);
@@ -40,13 +39,13 @@
 
 	if (frontmatter) {
 		// do nothing - frontmatter is already set
-	} else if (isRoot(ast) && isYaml(ast.children[0])) {
+	} else if (isRoot(ast) && ast.children.length > 0 && isYaml(ast.children[0])) {
 		frontmatter = parse(ast.children[0].value);
 	} else {
 		frontmatter = {};
 	}
 
-	setMarkdownContext({
+	setMmarkdownContext({
 		components,
 		directives,
 		frontmatter,

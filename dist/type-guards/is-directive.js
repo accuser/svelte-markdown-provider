@@ -1,4 +1,2 @@
-import isContainerDirective from './is-container-directive.js';
-import isLeafDirective from './is-leaf-directive.js';
-import isTextDirective from './is-text-directive.js';
-export default (node) => isContainerDirective(node) || isLeafDirective(node) || isTextDirective(node);
+import { isContainerDirective, isLeafDirective, isTextDirective } from '@accuser/mdast-util-directive-type-guards';
+export default ((value) => isContainerDirective(value) || isLeafDirective(value) || isTextDirective(value));

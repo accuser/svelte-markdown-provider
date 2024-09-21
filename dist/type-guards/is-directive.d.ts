@@ -1,2 +1,3 @@
-declare const _default: (node: import("mdast").Node | null | undefined) => node is import("mdast-util-directive").Directives;
+import { type TypeGuard } from '@accuser/mdast-util-directive-type-guards';
+declare const _default: TypeGuard<import("mdast-util-directive").Directives>;
 export default _default;

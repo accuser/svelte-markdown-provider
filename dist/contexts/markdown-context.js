@@ -1,3 +1,5 @@
-import MARKDOWN_CONTEXT_TOKEN from '../tokens/markdown-context.token.js';
-import { getContext } from 'svelte';
-export default () => getContext(MARKDOWN_CONTEXT_TOKEN) ?? {};
+import { getContext, setContext } from 'svelte';
+const MARKDOWN_CONTEXT_TOKEN = Symbol('markdown-context');
+export const getMarkdownContext = () => getContext(MARKDOWN_CONTEXT_TOKEN) ?? {};
+export const setMmarkdownContext = (context) => setContext(MARKDOWN_CONTEXT_TOKEN, context);
+export default getMarkdownContext;

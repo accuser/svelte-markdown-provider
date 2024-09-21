@@ -1,3 +1,4 @@
 import type { MarkdownContext } from '../types/markdown-context.js';
-declare const _default: () => MarkdownContext;
-export default _default;
+export declare const getMarkdownContext: () => MarkdownContext;
+export declare const setMmarkdownContext: (context: MarkdownContext) => MarkdownContext;
+export default getMarkdownContext;
