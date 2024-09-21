@@ -3,14 +3,14 @@
 </script>
 
 <script lang="ts">
-	import markdownContext from '../contexts/markdown-context.js';
+	import { getMarkdownContext } from '../contexts/markdown-context.js';
 	import Node from './Node.svelte';
 
 	// TODO: implement `referenceType`?
 	const { children, identifier }: Props = $props();
 
 	const { url, title } = $derived.by(() => {
-		const { getDefinition } = markdownContext();
+		const { getDefinition } = getMarkdownContext();
 
 		const definition = getDefinition(identifier);
 

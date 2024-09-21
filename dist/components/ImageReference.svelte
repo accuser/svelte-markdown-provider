@@ -3,13 +3,13 @@
 </script>
 
 <script lang="ts">
-	import markdownContext from '../contexts/markdown-context.js';
+	import { getMarkdownContext } from '../contexts/markdown-context.js';
 
 	// TODO: implement `referenceType`?
 	const { alt, identifier }: Props = $props();
 
 	const { url, title } = $derived.by(() => {
-		const { getDefinition } = markdownContext();
+		const { getDefinition } = getMarkdownContext();
 
 		const definition = getDefinition(identifier);
 
