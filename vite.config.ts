@@ -7,7 +7,7 @@ export default defineConfig({
 	server: { host: '0.0.0.0' },
 	test: {
 		environment: 'jsdom',
-		include: ['src/**/*.test.{js,ts}'],
+		include: ['src/**/*.test.{js,ts}', 'tests/**/*.test.{js,ts}'],
 		setupFiles: ['./vitest-setup.js']
 	}
 });
