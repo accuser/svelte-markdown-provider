@@ -3,7 +3,7 @@
 </script>
 
 <script lang="ts">
-	import markdownContext from '$lib/contexts/markdown-context.js';
+	import { getMarkdownContext } from '$lib/contexts/markdown-context.js';
 	import { toString } from 'mdast-util-to-string';
 	import Node from './Node.svelte';
 
@@ -12,7 +12,7 @@
 	const tag = $derived.by(() => `h${depth}`);
 
 	const id = $derived.by(() => {
-		const { slugify } = markdownContext();
+		const { slugify } = getMarkdownContext();
 
 		return slugify(toString(children));
 	});

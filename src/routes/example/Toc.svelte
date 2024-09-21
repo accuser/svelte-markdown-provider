@@ -1,12 +1,12 @@
 <script lang="ts">
 	import Node from '$lib/components/Node.svelte';
-	import markdownContext from '$lib/contexts/markdown-context.js';
+	import { getMarkdownContext } from '$lib/contexts/markdown-context.js';
 	import { toString } from 'mdast-util-to-string';
 
 	const { children }: import('mdast-util-directive').LeafDirective = $props();
 
 	const { contents, label = 'Contents' } = $derived.by(() => {
-		const { getToc } = markdownContext();
+		const { getToc } = getMarkdownContext();
 
 		return {
 			label: children && children.length ? toString(children) : 'Contents',

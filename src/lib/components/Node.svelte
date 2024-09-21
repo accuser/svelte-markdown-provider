@@ -3,13 +3,13 @@
 </script>
 
 <script lang="ts">
-	import markdownContext from '$lib/contexts/markdown-context.js';
+	import { getMarkdownContext } from '$lib/contexts/markdown-context.js';
 	import defaultComponents from '$lib/defaults/components.js';
 	import isDirective from '$lib/type-guards/is-directive.js';
 
 	const node: import('mdast').Nodes = $props();
 
-	const { components, directives } = markdownContext();
+	const { components, directives } = getMarkdownContext();
 
 	const component = $derived.by(() => (components ? components[node.type] : undefined));
 
