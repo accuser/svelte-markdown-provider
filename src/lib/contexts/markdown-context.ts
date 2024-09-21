@@ -8,5 +8,3 @@ export const getMarkdownContext = () =>
 
 export const setMmarkdownContext = (context: MarkdownContext) =>
 	setContext(MARKDOWN_CONTEXT_TOKEN, context);
-
-export default getMarkdownContext;
