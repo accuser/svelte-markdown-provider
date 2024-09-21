@@ -1,27 +1,23 @@
-import MARKDOWN_CONTEXT_TOKEN from '$lib/tokens/markdown-context.token.js';
-import type { MarkdownContext } from '$lib/types/markdown-context.js';
 import { render } from '@testing-library/svelte';
 import { describe, expect, test, vi } from 'vitest';
 import ImageReference, { type Props } from './ImageReference.svelte';
 
+vi.mock('$lib/contexts/markdown-context.js', async () => {
+	const actual = await vi.importActual('$lib/contexts/markdown-context.js');
+
+	return {
+		...actual,
+		getMarkdownContext: vi.fn().mockReturnValue({
+			getDefinition: vi.fn().mockReturnValue({
+				title: 'Example',
+				url: 'https://example.com/image.jpg'
+			})
+		})
+	};
+});
+
 describe('ImageReference.svelte', async () => {
-	const it = test.extend<{
-		context: Map<symbol, Partial<MarkdownContext>>;
-		props: Props;
-	}>({
-		context: new Map([
-			[
-				MARKDOWN_CONTEXT_TOKEN,
-				{
-					getDefinition: vi.fn(() => ({
-						type: 'definition' as const,
-						identifier: 'example',
-						title: 'Example',
-						url: 'https://example.com/image.jpg'
-					}))
-				}
-			]
-		]),
+	const it = test.extend<{ props: Props }>({
 		props: {
 			type: 'imageReference',
 			alt: 'Example',
@@ -30,20 +26,20 @@ describe('ImageReference.svelte', async () => {
 		}
 	});
 
-	it('renders <img>', async ({ context, props }) => {
-		const { container } = render(ImageReference, { context, props });
+	it('renders <img>', async ({ props }) => {
+		const { container } = render(ImageReference, { props });
 
 		expect(container.querySelector('img')).toBeInTheDocument();
 	});
 
-	it('renders <img> with `src` attribute', async ({ context, props }) => {
-		const { container } = render(ImageReference, { context, props });
+	it('renders <img> with `src` attribute', async ({ props }) => {
+		const { container } = render(ImageReference, { props });
 
 		expect(container.querySelector('img')).toHaveAttribute('src', 'https://example.com/image.jpg');
 	});
 
-	it('renders <img> with `alt` attribute', async ({ context, props }) => {
-		const { container } = render(ImageReference, { context, props });
+	it('renders <img> with `alt` attribute', async ({ props }) => {
+		const { container } = render(ImageReference, { props });
 
 		expect(container.querySelector('img')).toHaveAttribute('alt', 'Example');
 	});

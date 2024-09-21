@@ -1,21 +1,23 @@
-import MARKDOWN_CONTEXT_TOKEN from '$lib/tokens/markdown-context.token.js';
-import type { MarkdownContext } from '$lib/types/markdown-context.js';
 import { render } from '@testing-library/svelte';
 import { describe, expect, test, vi } from 'vitest';
 import Heading, { type Props } from './Heading.svelte';
 
+vi.mock('$lib/contexts/markdown-context.js', async () => {
+	const actual = await vi.importActual('$lib/contexts/markdown-context.js');
+
+	return {
+		...actual,
+		getMarkdownContext: vi.fn().mockReturnValue({
+			slugify: vi.fn().mockReturnValue('helloworld')
+		})
+	};
+});
+
 describe('Heading.svelte', async () => {
 	for (const depth of [1, 2, 3, 4, 5, 6] as Props['depth'][]) {
 		const it = test.extend<{
-			context: Map<symbol, Partial<MarkdownContext>>;
 			props: Props;
 		}>({
-			context: new Map([
-				[
-					MARKDOWN_CONTEXT_TOKEN,
-					{ slugify: vi.fn((value: string) => value.toLowerCase().replace(/[^\w]+/g, '')) }
-				]
-			]),
 			props: {
 				children: [{ type: 'text', value: 'Hello, World!' }],
 				depth,
@@ -23,20 +25,20 @@ describe('Heading.svelte', async () => {
 			}
 		});
 
-		it(`renders <h${depth}>`, async ({ context, props }) => {
-			const { container } = render(Heading, { context, props });
+		it(`renders <h${depth}>`, async ({ props }) => {
+			const { container } = render(Heading, { props });
 
 			expect(container.querySelector(`h${depth}`)).toBeInTheDocument();
 		});
 
-		it(`renders <h${depth}> with \`id\` attibute`, async ({ context, props }) => {
-			const { container } = render(Heading, { context, props });
+		it(`renders <h${depth}> with \`id\` attibute`, async ({ props }) => {
+			const { container } = render(Heading, { props });
 
 			expect(container.querySelector(`h${depth}`)).toHaveAttribute('id', 'helloworld');
 		});
 
-		it(`renders <h${depth}> with content`, async ({ context, props }) => {
-			const { container } = render(Heading, { context, props });
+		it(`renders <h${depth}> with content`, async ({ props }) => {
+			const { container } = render(Heading, { props });
 
 			expect(container.querySelector(`h${depth}`)).toHaveTextContent('Hello, World!');
 		});
