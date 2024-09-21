@@ -1,6 +1,6 @@
 {
 	"name": "@accuser/svelte-markdown-provider",
-	"version": "0.2.0-next.2",
+	"version": "0.2.0-next.3",
 	"private": false,
 	"license": "MIT",
 	"author": {
@@ -49,6 +49,9 @@
 		"svelte": "^5.0.0"
 	},
 	"dependencies": {
+		"@accuser/mdast-util-directive-type-guards": "^1.0.0",
+		"@accuser/mdast-util-type-guards": "^1.0.3",
+		"katex": "^0.16.11",
 		"mdast-util-definitions": "^6.0.0",
 		"mdast-util-directive": "^3.0.0",
 		"mdast-util-from-markdown": "^2.0.1",
@@ -56,14 +59,13 @@
 		"mdast-util-gfm": "^3.0.0",
 		"mdast-util-math": "^3.0.0",
 		"mdast-util-to-string": "^4.0.0",
+		"mdast-util-toc": "^7.1.0",
 		"micromark-extension-directive": "^3.0.2",
 		"micromark-extension-frontmatter": "^2.0.0",
 		"micromark-extension-gfm": "^3.0.0",
 		"micromark-extension-math": "^3.1.0"
 	},
 	"devDependencies": {
-		"@accuser/mdast-util-directive-type-guards": "^1.0.0",
-		"@accuser/mdast-util-type-guards": "^1.0.3",
 		"@sveltejs/adapter-auto": "^3.2.5",
 		"@sveltejs/kit": "^2.5.28",
 		"@sveltejs/package": "^2.3.5",
@@ -83,8 +85,6 @@
 		"eslint-plugin-svelte": "^2.44.0",
 		"globals": "^15.9.0",
 		"jsdom": "^25.0.0",
-		"katex": "^0.16.11",
-		"mdast-util-toc": "^7.1.0",
 		"postcss": "^8.4.47",
 		"postcss-load-config": "^6.0.1",
 		"prettier": "^3.3.3",

@@ -8,6 +8,15 @@ importers:
 
   .:
     dependencies:
+      '@accuser/mdast-util-directive-type-guards':
+        specifier: ^1.0.0
+        version: 1.0.0(@types/mdast@4.0.4)(@types/unist@3.0.3)
+      '@accuser/mdast-util-type-guards':
+        specifier: ^1.0.3
+        version: 1.0.3(@types/mdast@4.0.4)(@types/unist@3.0.3)
+      katex:
+        specifier: ^0.16.11
+        version: 0.16.11
       mdast-util-definitions:
         specifier: ^6.0.0
         version: 6.0.0
@@ -29,6 +38,9 @@ importers:
       mdast-util-to-string:
         specifier: ^4.0.0
         version: 4.0.0
+      mdast-util-toc:
+        specifier: ^7.1.0
+        version: 7.1.0
       micromark-extension-directive:
         specifier: ^3.0.2
         version: 3.0.2
@@ -42,12 +54,6 @@ importers:
         specifier: ^3.1.0
         version: 3.1.0
     devDependencies:
-      '@accuser/mdast-util-directive-type-guards':
-        specifier: ^1.0.0
-        version: 1.0.0(@types/mdast@4.0.4)(@types/unist@3.0.3)
-      '@accuser/mdast-util-type-guards':
-        specifier: ^1.0.3
-        version: 1.0.3(@types/mdast@4.0.4)(@types/unist@3.0.3)
       '@sveltejs/adapter-auto':
         specifier: ^3.2.5
         version: 3.2.5(@sveltejs/kit@2.5.28(@sveltejs/vite-plugin-svelte@4.0.0-next.6(svelte@5.0.0-next.247)(vite@5.4.7(@types/node@22.5.5)))(svelte@5.0.0-next.247)(vite@5.4.7(@types/node@22.5.5)))
@@ -105,12 +111,6 @@ importers:
       jsdom:
         specifier: ^25.0.0
         version: 25.0.0
-      katex:
-        specifier: ^0.16.11
-        version: 0.16.11
-      mdast-util-toc:
-        specifier: ^7.1.0
-        version: 7.1.0
       postcss:
         specifier: ^8.4.47
         version: 8.4.47
