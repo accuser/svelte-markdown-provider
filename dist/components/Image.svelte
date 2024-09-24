@@ -3,7 +3,7 @@
 </script>
 
 <script lang="ts">
-	const { alt, url, title }: Props = $props();
+	let { alt, url, title }: Props = $props();
 </script>
 
 <img src={url} {alt} {title} />

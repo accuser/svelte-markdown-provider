@@ -3,5 +3,5 @@
 </script>
 
 <script lang="ts">
-	const {}: import('mdast').Definition = $props();
+	let {}: import('mdast').Definition = $props();
 </script>

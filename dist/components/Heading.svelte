@@ -7,15 +7,12 @@
 	import { toString } from 'mdast-util-to-string';
 	import Node from './Node.svelte';
 
-	const { children, depth }: Props = $props();
+	const { slugify } = getMarkdownContext();
 
-	const tag = $derived.by(() => `h${depth}`);
+	let { children, depth }: Props = $props();
 
-	const id = $derived.by(() => {
-		const { slugify } = getMarkdownContext();
-
-		return slugify(toString(children));
-	});
+	let tag = $derived.by(() => `h${depth}`);
+	let id = $derived.by(() => slugify(toString(children)));
 </script>
 
 <svelte:element this={tag} {id}

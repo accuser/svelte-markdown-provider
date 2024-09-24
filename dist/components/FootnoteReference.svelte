@@ -3,7 +3,7 @@
 </script>
 
 <script lang="ts">
-	const { identifier, label }: Props = $props();
+	let { identifier, label }: Props = $props();
 </script>
 
 <sup

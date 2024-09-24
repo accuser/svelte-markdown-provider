@@ -5,7 +5,7 @@
 <script lang="ts">
 	import Node from './Node.svelte';
 
-	const { children, identifier, label }: Props = $props();
+	let { children, identifier, label }: Props = $props();
 </script>
 
 <div id="footnote-{identifier}">

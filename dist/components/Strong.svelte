@@ -5,7 +5,7 @@
 <script lang="ts">
 	import Node from './Node.svelte';
 
-	const { children }: Props = $props();
+	let { children }: Props = $props();
 </script>
 
 <strong

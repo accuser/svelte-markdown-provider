@@ -7,9 +7,9 @@
 <script lang="ts">
 	import Node from './Node.svelte';
 
-	const { children, data }: Props = $props();
+	let { children, data }: Props = $props();
 
-	const align = $derived(data?.align);
+	let align = $derived(data?.align);
 </script>
 
 <td {align}

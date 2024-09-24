@@ -7,11 +7,11 @@
 <script lang="ts">
 	import Node from './Node.svelte';
 
-	const { children, data }: Props = $props();
+	let { children, data }: Props = $props();
 
-	const align = $derived(data?.align);
+	let align = $derived(data?.align);
 
-	const columns = $derived.by(() =>
+	let columns = $derived.by(() =>
 		children.map((child, index) => ({
 			...child,
 			data: { ...child.data, align: align ? align[index] : undefined }

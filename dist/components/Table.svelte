@@ -5,9 +5,9 @@
 <script lang="ts">
 	import Node from './Node.svelte';
 
-	const { align, children }: Props = $props();
+	let { align, children }: Props = $props();
 
-	const [head, ...rows] = $derived.by(() =>
+	let [head, ...rows] = $derived.by(() =>
 		children.map((child) => ({
 			...child,
 			data: { ...child.data, align }
