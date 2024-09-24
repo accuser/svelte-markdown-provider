@@ -4,10 +4,10 @@ A Svelte component that renders markdown, either from Markdown source (as a `str
 
 
 ## Examples
-
 - [Bindable](bindable)
 - [Directives](directives)
 - [Example](example)
+- [Frontmatter](frontmatter)
 - [GitHub Flavour Markdown](gfm)
 - [HTML](html)
 - [Math](math)
