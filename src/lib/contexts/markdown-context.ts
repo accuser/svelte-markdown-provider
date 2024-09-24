@@ -6,5 +6,5 @@ const MARKDOWN_CONTEXT_TOKEN = Symbol('markdown-context');
 export const getMarkdownContext = () =>
 	getContext<MarkdownContext>(MARKDOWN_CONTEXT_TOKEN) ?? ({} as MarkdownContext);
 
-export const setMmarkdownContext = (context: MarkdownContext) =>
+export const setMarkdownContext = (context: MarkdownContext) =>
 	setContext(MARKDOWN_CONTEXT_TOKEN, context);
