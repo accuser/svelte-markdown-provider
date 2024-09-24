@@ -3,11 +3,11 @@
 	import { getMarkdownContext } from '$lib/contexts/markdown-context.js';
 	import { toString } from 'mdast-util-to-string';
 
-	const { children }: import('mdast-util-directive').LeafDirective = $props();
+	let { children }: import('mdast-util-directive').LeafDirective = $props();
 
-	const { contents, label = 'Contents' } = $derived.by(() => {
-		const { getToc } = getMarkdownContext();
+	const { getToc } = getMarkdownContext();
 
+	let { contents, label = 'Contents' } = $derived.by(() => {
 		return {
 			label: children && children.length ? toString(children) : 'Contents',
 			contents: {
