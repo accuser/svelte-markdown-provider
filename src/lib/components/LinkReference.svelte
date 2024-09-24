@@ -7,11 +7,11 @@
 	import Node from './Node.svelte';
 
 	// TODO: implement `referenceType`?
-	const { children, identifier }: Props = $props();
+	let { children, identifier }: Props = $props();
 
-	const { url, title } = $derived.by(() => {
-		const { getDefinition } = getMarkdownContext();
+	const { getDefinition } = getMarkdownContext();
 
+	let { url, title } = $derived.by(() => {
 		const definition = getDefinition(identifier);
 
 		if (definition) {

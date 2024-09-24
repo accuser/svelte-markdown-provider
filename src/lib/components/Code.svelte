@@ -3,7 +3,7 @@
 </script>
 
 <script lang="ts">
-	const { lang, meta, value }: Props = $props();
+	let { lang, meta, value }: Props = $props();
 </script>
 
 <pre><code {lang} data-meta={meta}>{value}</code></pre>

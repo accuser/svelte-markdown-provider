@@ -5,9 +5,9 @@
 <script lang="ts">
 	import katex from 'katex';
 
-	const { meta, value }: Props = $props();
+	let { meta, value }: Props = $props();
 
-	const mathml = $derived.by(() =>
+	let mathml = $derived.by(() =>
 		katex.renderToString(value, {
 			throwOnError: false,
 			displayMode: true

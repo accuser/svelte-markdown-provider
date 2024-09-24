@@ -3,5 +3,5 @@
 </script>
 
 <script lang="ts">
-	const {}: Props = $props();
+	let {}: Props = $props();
 </script>

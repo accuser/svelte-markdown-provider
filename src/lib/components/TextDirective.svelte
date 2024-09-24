@@ -5,7 +5,7 @@
 <script lang="ts">
 	import Node from './Node.svelte';
 
-	const { children, name }: Props = $props();
+	let { children, name }: Props = $props();
 </script>
 
 {@html `<!-- Unrecognized text directive :${name} -->`}

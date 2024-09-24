@@ -5,7 +5,7 @@
 <script lang="ts">
 	import Node from './Node.svelte';
 
-	const { children, title, url }: Props = $props();
+	let { children, title, url }: Props = $props();
 </script>
 
 <a href={url} {title}

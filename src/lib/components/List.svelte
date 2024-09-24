@@ -5,9 +5,9 @@
 <script lang="ts">
 	import Node from './Node.svelte';
 
-	const { children, ordered, spread, start }: Props = $props();
+	let { children, ordered, spread, start }: Props = $props();
 
-	const tag = $derived.by(() => (ordered ? 'ol' : 'ul'));
+	let tag = $derived.by(() => (ordered ? ('ol' as const) : ('ul' as const)));
 </script>
 
 <svelte:element this={tag} class:spread {start}

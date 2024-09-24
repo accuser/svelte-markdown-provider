@@ -6,11 +6,11 @@
 	import { getMarkdownContext } from '$lib/contexts/markdown-context.js';
 
 	// TODO: implement `referenceType`?
-	const { alt, identifier }: Props = $props();
+	let { alt, identifier }: Props = $props();
 
-	const { url, title } = $derived.by(() => {
-		const { getDefinition } = getMarkdownContext();
+	const { getDefinition } = getMarkdownContext();
 
+	let { url, title } = $derived.by(() => {
 		const definition = getDefinition(identifier);
 
 		if (definition) {
