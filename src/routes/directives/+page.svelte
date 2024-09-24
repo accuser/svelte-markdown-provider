@@ -8,6 +8,7 @@
 	const { data }: { data: PageData } = $props();
 
 	const { src } = $derived(data);
+
 	const directives = {
 		containerDirective: { success: Success },
 		leafDirective: { youtube: YouTube },
