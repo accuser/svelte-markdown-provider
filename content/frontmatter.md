@@ -3,7 +3,7 @@ title: Frontmatter
 intro: Retrieve frontmatter from Markdown files.
 ---
 
-The `frontmatter` prop of the `Markdown` component is retrievable through the `getFrontmatter()` function, which itself is accessible through the `getMarkdownContext()` object.
+The frontmatter is retrievable through the `getFrontmatter()` function, which itself is accessible through the `getMarkdownContext()` object.
 
 ## Example
 
@@ -12,13 +12,15 @@ The `frontmatter` prop of the `Markdown` component is retrievable through the `g
 	import Markdown from '$lib/components/Markdown.svelte';
 	import type { PageData } from './$types.js';
 	import Article from './Article.svelte';
+	import Code from './Code.svelte';
 
 	const { data }: { data: PageData } = $props();
 
 	let src = $state(data.src);
 </script>
 
-<Markdown {src} components={{ root: Article }} />
+<Markdown {src} components={{ code: Code, root: Article }} />
+
 ```
 
 ```svelte ./Artilce.svelte
@@ -35,11 +37,12 @@ The `frontmatter` prop of the `Markdown` component is retrievable through the `g
 	const { children }: Props = $props();
 
 	let frontmatter = $derived.by(() => getFrontmatter());
-	let { title } = $derived(frontmatter);
+	let { intro, title } = $derived(frontmatter);
 </script>
 
 <article class="prose prose-lg max-w-prose mx-auto prose-slate dark:prose-invert">
 	<h1>{title}</h1>
+	<p class="lead">{intro}</p>
 	<hr />
 	<pre><code>{JSON.stringify(frontmatter, undefined, 4)}</code></pre>
 	<hr />
@@ -49,4 +52,19 @@ The `frontmatter` prop of the `Markdown` component is retrievable through the `g
 		{/each}
 	</main>
 </article>
+```
+
+```svelte ./Code.svelte
+<script lang="ts" module>
+	export type Props = import('mdast').Code;
+</script>
+
+<script lang="ts">
+	let { lang, meta, value }: Props = $props();
+</script>
+
+<figure>
+	<figcaption><code>{meta ?? lang}</code></figcaption>
+	<pre><code {lang} data-meta={meta}>{value}</code></pre>
+</figure>
 ```

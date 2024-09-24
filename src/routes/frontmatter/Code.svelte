@@ -7,6 +7,6 @@
 </script>
 
 <figure>
-	<figcaption><code>{meta}</code></figcaption>
-	<pre><code {lang} data-meta={meta}>{value}</code></pre>
+	<figcaption><code>{meta ?? lang}</code></figcaption>
+	<pre><code class="language-{lang}" {lang} data-meta={meta}>{value}</code></pre>
 </figure>
