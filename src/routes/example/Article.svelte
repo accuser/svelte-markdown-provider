@@ -11,7 +11,7 @@
 	const { children }: Props = $props();
 
 	let frontmatter = $derived.by(() => getFrontmatter());
-	let { intro, title } = $derived(frontmatter);
+	let { intro, title } = $derived(frontmatter ?? {});
 </script>
 
 <header>

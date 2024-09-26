@@ -7,18 +7,13 @@
 
 	const { getToc } = getMarkdownContext();
 
-	let { contents, label = 'Contents' } = $derived.by(() => {
-		return {
-			label: children && children.length ? toString(children) : 'Contents',
-			contents: {
-				type: 'root',
-				children: [getToc({ minDepth: 2, maxDepth: 3 }).map]
-			} as import('mdast').Root
-		};
-	});
+	let { toc, label = 'Contents' } = $derived.by(() => ({
+		label: children && children.length ? toString(children) : 'Contents',
+		toc: getToc({ minDepth: 2, maxDepth: 3 })
+	}));
 </script>
 
 <hr />
 <strong>{label}</strong>
-<Node {...contents} />
+<Node {...toc} />
 <hr />
