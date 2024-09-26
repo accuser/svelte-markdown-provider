@@ -11,20 +11,7 @@ vi.mock('@accuser/svelte-markdown-provider', async () => {
 });
 
 describe('Markdown.svelte', () => {
-	it('should render markdown from ast', () => {
-		const { container } = render(Markdown, {
-			props: {
-				ast: {
-					type: 'root',
-					children: [{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }]
-				}
-			}
-		});
-
-		expect(container.querySelector('p')).toHaveTextContent('Hello, World!');
-	});
-
-	it('should render markdown from source', () => {
+	it('should render markdown from `src`', () => {
 		const { container } = render(Markdown, { props: { src: 'Hello, World!' } });
 
 		expect(container.querySelector('p')).toHaveTextContent('Hello, World!');
