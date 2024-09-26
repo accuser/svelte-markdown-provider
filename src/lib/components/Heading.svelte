@@ -3,16 +3,14 @@
 </script>
 
 <script lang="ts">
-	import { getMarkdownContext } from '$lib/contexts/markdown-context.js';
+	import { slug } from 'github-slugger';
 	import { toString } from 'mdast-util-to-string';
 	import Node from './Node.svelte';
-
-	const { slugify } = getMarkdownContext();
 
 	let { children, depth }: Props = $props();
 
 	let tag = $derived.by(() => `h${depth}`);
-	let id = $derived.by(() => slugify(toString(children)));
+	let id = $derived.by(() => slug(toString(children)));
 </script>
 
 <svelte:element this={tag} {id}
