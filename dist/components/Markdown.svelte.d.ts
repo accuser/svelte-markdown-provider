@@ -1,11 +1,9 @@
-import defaultSlugify from '../defaults/slugify.js';
 import type { Components } from '../types/components.js';
 import type { Directives } from '../types/directives.js';
 export type Props = {
     components?: Partial<Components>;
     directives?: Partial<Directives>;
-    frontmatter?: Record<string, unknown>;
-    slugify?: typeof defaultSlugify;
+    options?: import('mdast-util-from-markdown').Options;
     src: string;
 };
 interface $$__sveltets_2_IsomorphicComponent<Props extends Record<string, any> = any, Events extends Record<string, any> = any, Slots extends Record<string, any> = any, Exports = {}, Bindings = string> {

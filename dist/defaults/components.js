@@ -12,13 +12,11 @@ import Html from '../components/Html.svelte';
 import Image from '../components/Image.svelte';
 import ImageReference from '../components/ImageReference.svelte';
 import InlineCode from '../components/InlineCode.svelte';
-import InlineMath from '../components/InlineMath.svelte';
 import LeafDirective from '../components/LeafDirective.svelte';
 import Link from '../components/Link.svelte';
 import LinkReference from '../components/LinkReference.svelte';
 import List from '../components/List.svelte';
 import ListItem from '../components/ListItem.svelte';
-import Math from '../components/Math.svelte';
 import Paragraph from '../components/Paragraph.svelte';
 import Root from '../components/Root.svelte';
 import Strong from '../components/Strong.svelte';
@@ -58,7 +56,5 @@ export default {
     text: Text,
     textDirective: TextDirective,
     thematicBreak: ThematicBreak,
-    yaml: Yaml,
-    inlineMath: InlineMath,
-    math: Math
+    yaml: Yaml
 };
