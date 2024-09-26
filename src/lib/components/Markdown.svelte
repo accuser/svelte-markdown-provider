@@ -1,41 +1,38 @@
 <script lang="ts" module>
-	import defaultSlugify from '$lib/defaults/slugify.js';
 	import type { Components } from '$lib/types/components.js';
 	import type { Directives } from '$lib/types/directives.js';
 
 	export type Props = {
 		components?: Partial<Components>;
 		directives?: Partial<Directives>;
-		frontmatter?: Record<string, unknown>;
-		slugify?: typeof defaultSlugify;
+		options?: import('mdast-util-from-markdown').Options;
 		src: string;
 	};
 </script>
 
 <script lang="ts">
+	import definitionBuilder from '$lib/builders/definition-builder.js';
+	import frontmatterBuilder from '$lib/builders/frontmatter-builder.js';
+	import tocBuilder from '$lib/builders/toc-builder.js';
 	import { setMarkdownContext } from '$lib/contexts/markdown-context.js';
 	import astFromString from '$lib/defaults/ast-from-string.js';
-	import frontmatterFromAst from '$lib/defaults/frontmatter-from-ast.js';
-	import { definitions } from 'mdast-util-definitions';
-	import { toc } from 'mdast-util-toc';
 	import Node from './Node.svelte';
 
-	let { components, directives, slugify = defaultSlugify, src }: Props = $props();
+	let { components, directives, options, src }: Props = $props();
 
-	let ast = $derived.by(() => astFromString(src));
-	let definition = $derived.by(() => definitions(ast));
-	let frontmatter = $derived.by(() => frontmatterFromAst(ast));
+	let mdast = $derived.by(() => astFromString(src, options));
+
+	let getDefinition = $derived.by(() => definitionBuilder(mdast));
+	let getFrontmatter = $derived.by(() => frontmatterBuilder(mdast));
+	let getToc = $derived.by(() => tocBuilder(mdast));
 
 	setMarkdownContext({
 		components,
 		directives,
-		getFrontmatter: () => frontmatter,
-		getDefinition: (identifier) => definition(identifier),
-		getToc: (options) => toc(ast, options),
-		slugify
+		getFrontmatter: () => getFrontmatter(),
+		getDefinition: (identifier) => getDefinition(identifier),
+		getToc: (options) => getToc(options)
 	});
 </script>
 
-{#if ast}
-	<Node {...ast} />
-{/if}
+<Node {...mdast} />
