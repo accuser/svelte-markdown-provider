@@ -12,9 +12,9 @@
 </script>
 
 <script lang="ts">
+	import astBuilder from '$lib/builders/ast-builder.js';
 	import definitionBuilder from '$lib/builders/definition-builder.js';
 	import frontmatterBuilder from '$lib/builders/frontmatter-builder.js';
-	import tocBuilder from '$lib/builders/toc-builder.js';
 	import { setMarkdownContext } from '$lib/contexts/markdown-context.js';
 	import astFromString from '$lib/defaults/ast-from-string.js';
 	import Node from './Node.svelte';
@@ -31,16 +31,16 @@
 		throw new Error('Either `ast` or `src` must be provided');
 	});
 
+	let getAst = $derived.by(() => astBuilder(mdast));
 	let getDefinition = $derived.by(() => definitionBuilder(mdast));
 	let getFrontmatter = $derived.by(() => frontmatterBuilder(mdast));
-	let getToc = $derived.by(() => tocBuilder(mdast));
 
 	setMarkdownContext({
 		components,
 		directives,
+		getAst: () => getAst(),
 		getFrontmatter: () => getFrontmatter(),
-		getDefinition: (identifier) => getDefinition(identifier),
-		getToc: (options) => getToc(options)
+		getDefinition: (identifier) => getDefinition(identifier)
 	});
 </script>
 
