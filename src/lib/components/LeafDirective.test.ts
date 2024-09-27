@@ -3,7 +3,7 @@ import type { ComponentProps } from 'svelte';
 import { describe, expect, test } from 'vitest';
 import LeafDirective from './LeafDirective.svelte';
 
-describe('LeafDirective.svelte', async () => {
+describe('LeafDirective.svelte', () => {
 	const it = test.extend<{ props: ComponentProps<LeafDirective> }>({
 		props: {
 			name: 'leaf',
@@ -12,25 +12,25 @@ describe('LeafDirective.svelte', async () => {
 		}
 	});
 
-	it('renders an HTML comment', async ({ props }) => {
+	it('renders an HTML comment', ({ props }) => {
 		const { container } = render(LeafDirective, { props });
 
 		expect(container.outerHTML).toContain('<!-- Unrecognized leaf directive ::leaf -->');
 	});
 
-	it('renders <div>', async ({ props }) => {
+	it('renders <div>', ({ props }) => {
 		const { container } = render(LeafDirective, { props });
 
 		expect(container.querySelector('div')).toBeInTheDocument();
 	});
 
-	it('renders <div> with `class` attribute', async ({ props }) => {
+	it('renders <div> with `class` attribute', ({ props }) => {
 		const { container } = render(LeafDirective, { props });
 
 		expect(container.querySelector('div.leaf')).toBeInTheDocument();
 	});
 
-	it('renders <div> with content', async ({ props }) => {
+	it('renders <div> with content', ({ props }) => {
 		const { container } = render(LeafDirective, { props });
 
 		expect(container.querySelector('div.leaf')).toHaveTextContent('Hello, World!');

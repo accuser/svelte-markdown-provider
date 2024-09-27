@@ -3,7 +3,7 @@ import type { ComponentProps } from 'svelte';
 import { describe, expect, test } from 'vitest';
 import FootnoteReference from './FootnoteReference.svelte';
 
-describe('FootnoteReference.svelte', async () => {
+describe('FootnoteReference.svelte', () => {
 	const it = test.extend<{ props: ComponentProps<FootnoteReference> }>({
 		props: {
 			type: 'footnoteReference',

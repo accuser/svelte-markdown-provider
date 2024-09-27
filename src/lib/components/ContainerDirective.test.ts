@@ -3,7 +3,7 @@ import type { ComponentProps } from 'svelte';
 import { describe, expect, test } from 'vitest';
 import ContainerDirective from './ContainerDirective.svelte';
 
-describe('ContainerDirective.svelte', async () => {
+describe('ContainerDirective.svelte', () => {
 	const it = test.extend<{ props: ComponentProps<ContainerDirective> }>({
 		props: {
 			name: 'container',
@@ -12,25 +12,25 @@ describe('ContainerDirective.svelte', async () => {
 		}
 	});
 
-	it('renders an HTML comment', async ({ props }) => {
+	it('renders an HTML comment', ({ props }) => {
 		const { container } = render(ContainerDirective, { props });
 
 		expect(container.outerHTML).toContain('<!-- Unrecognized container directive :::container -->');
 	});
 
-	it('renders <div>', async ({ props }) => {
+	it('renders <div>', ({ props }) => {
 		const { container } = render(ContainerDirective, { props });
 
 		expect(container.querySelector('div')).toBeInTheDocument();
 	});
 
-	it('renders <div> with `class` attribute', async ({ props }) => {
+	it('renders <div> with `class` attribute', ({ props }) => {
 		const { container } = render(ContainerDirective, { props });
 
 		expect(container.querySelector('div.container')).toBeInTheDocument();
 	});
 
-	it('renders <div> with content', async ({ props }) => {
+	it('renders <div> with content', ({ props }) => {
 		const { container } = render(ContainerDirective, { props });
 
 		expect(container.querySelector('div.container')).toHaveTextContent('Hello, World!');

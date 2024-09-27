@@ -3,7 +3,7 @@ import type { ComponentProps } from 'svelte';
 import { describe, expect, test } from 'vitest';
 import Heading from './Heading.svelte';
 
-describe('Heading.svelte', async () => {
+describe('Heading.svelte', () => {
 	for (const depth of [1, 2, 3, 4, 5, 6] as const) {
 		const it = test.extend<{
 			props: ComponentProps<Heading>;
@@ -15,19 +15,19 @@ describe('Heading.svelte', async () => {
 			}
 		});
 
-		it(`renders <h${depth}>`, async ({ props }) => {
+		it(`renders <h${depth}>`, ({ props }) => {
 			const { container } = render(Heading, { props });
 
 			expect(container.querySelector(`h${depth}`)).toBeInTheDocument();
 		});
 
-		it(`renders <h${depth}> with \`id\` attibute`, async ({ props }) => {
+		it(`renders <h${depth}> with \`id\` attibute`, ({ props }) => {
 			const { container } = render(Heading, { props });
 
 			expect(container.querySelector(`h${depth}`)).toHaveAttribute('id', 'hello-world');
 		});
 
-		it(`renders <h${depth}> with content`, async ({ props }) => {
+		it(`renders <h${depth}> with content`, ({ props }) => {
 			const { container } = render(Heading, { props });
 
 			expect(container.querySelector(`h${depth}`)).toHaveTextContent('Hello, World!');

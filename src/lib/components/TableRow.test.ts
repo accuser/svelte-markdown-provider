@@ -3,7 +3,7 @@ import type { ComponentProps } from 'svelte';
 import { describe, expect, test } from 'vitest';
 import TableRow from './TableRow.svelte';
 
-describe('TableRow.svelte', async () => {
+describe('TableRow.svelte', () => {
 	const it = test.extend<{ props: ComponentProps<TableRow> }>({
 		props: {
 			type: 'tableRow',
@@ -16,13 +16,13 @@ describe('TableRow.svelte', async () => {
 		}
 	});
 
-	it('renders <tr>', async ({ props }) => {
+	it('renders <tr>', ({ props }) => {
 		const { container } = render(TableRow, { props });
 
 		expect(container.querySelector('tr')).toBeInTheDocument();
 	});
 
-	it('renders <tr> with content', async ({ props }) => {
+	it('renders <tr> with content', ({ props }) => {
 		const { container } = render(TableRow, { props });
 
 		expect(container.querySelector('tr')).toHaveTextContent('Hello, World!');

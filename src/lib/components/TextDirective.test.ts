@@ -3,7 +3,7 @@ import type { ComponentProps } from 'svelte';
 import { describe, expect, test } from 'vitest';
 import TextDirective from './TextDirective.svelte';
 
-describe('TextDirective.svelte', async () => {
+describe('TextDirective.svelte', () => {
 	const it = test.extend<{ props: ComponentProps<TextDirective> }>({
 		props: {
 			name: 'text',
@@ -12,19 +12,19 @@ describe('TextDirective.svelte', async () => {
 		}
 	});
 
-	it('renders an HTML comment', async ({ props }) => {
+	it('renders an HTML comment', ({ props }) => {
 		const { container } = render(TextDirective, { props });
 
 		expect(container.outerHTML).toContain('<!-- Unrecognized text directive :text -->');
 	});
 
-	it('renders <span> with `class` attribute', async ({ props }) => {
+	it('renders <span> with `class` attribute', ({ props }) => {
 		const { container } = render(TextDirective, { props });
 
 		expect(container.querySelector('span.text')).toBeInTheDocument();
 	});
 
-	it('renders <span> with content', async ({ props }) => {
+	it('renders <span> with content', ({ props }) => {
 		const { container } = render(TextDirective, { props });
 
 		expect(container.querySelector('span.text')).toHaveTextContent('Hello, World!');

@@ -3,7 +3,7 @@ import type { ComponentProps } from 'svelte';
 import { describe, expect, test } from 'vitest';
 import Delete from './Delete.svelte';
 
-describe('Delete.svelte', async () => {
+describe('Delete.svelte', () => {
 	const it = test.extend<{ props: ComponentProps<Delete> }>({
 		props: {
 			children: [{ type: 'text', value: 'Hello, World!' }],
@@ -11,13 +11,13 @@ describe('Delete.svelte', async () => {
 		}
 	});
 
-	it('renders <del>', async ({ props }) => {
+	it('renders <del>', ({ props }) => {
 		const { container } = render(Delete, { props });
 
 		expect(container.querySelector('del')).toBeInTheDocument();
 	});
 
-	it('renders <del> with content', async ({ props }) => {
+	it('renders <del> with content', ({ props }) => {
 		const { container } = render(Delete, { props });
 
 		expect(container.querySelector('del')).toHaveTextContent('Hello, World!');

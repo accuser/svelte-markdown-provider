@@ -3,7 +3,7 @@ import type { ComponentProps } from 'svelte';
 import { describe, expect, test } from 'vitest';
 import Emphasis from './Emphasis.svelte';
 
-describe('Emphasis.svelte', async () => {
+describe('Emphasis.svelte', () => {
 	const it = test.extend<{ props: ComponentProps<Emphasis> }>({
 		props: {
 			children: [{ type: 'text', value: 'Hello, World!' }],
@@ -11,13 +11,13 @@ describe('Emphasis.svelte', async () => {
 		}
 	});
 
-	it('renders <em>', async ({ props }) => {
+	it('renders <em>', ({ props }) => {
 		const { container } = render(Emphasis, { props });
 
 		expect(container.querySelector('em')).toBeInTheDocument();
 	});
 
-	it('renders <em> with content', async ({ props }) => {
+	it('renders <em> with content', ({ props }) => {
 		const { container } = render(Emphasis, { props });
 
 		expect(container.querySelector('em')).toHaveTextContent('Hello, World!');

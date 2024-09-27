@@ -3,7 +3,7 @@ import type { ComponentProps } from 'svelte';
 import { describe, expect, test } from 'vitest';
 import Text from './Text.svelte';
 
-describe('Text.svelte', async () => {
+describe('Text.svelte', () => {
 	const it = test.extend<{ props: ComponentProps<Text> }>({
 		props: {
 			type: 'text',
@@ -11,7 +11,7 @@ describe('Text.svelte', async () => {
 		}
 	});
 
-	it('renders text', async ({ props }) => {
+	it('renders text', ({ props }) => {
 		const { container } = render(Text, { props });
 
 		expect(container).toHaveTextContent('Hello, World!');

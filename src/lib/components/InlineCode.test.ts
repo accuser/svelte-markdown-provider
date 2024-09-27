@@ -3,7 +3,7 @@ import type { ComponentProps } from 'svelte';
 import { describe, expect, test } from 'vitest';
 import InlineCode from './InlineCode.svelte';
 
-describe('InlineCode.svelte', async () => {
+describe('InlineCode.svelte', () => {
 	const it = test.extend<{ props: ComponentProps<InlineCode> }>({
 		props: {
 			type: 'inlineCode',
@@ -11,13 +11,13 @@ describe('InlineCode.svelte', async () => {
 		}
 	});
 
-	it('renders <code>', async ({ props }) => {
+	it('renders <code>', ({ props }) => {
 		const { container } = render(InlineCode, { props });
 
 		expect(container.querySelector('code')).toBeInTheDocument();
 	});
 
-	it('renders <code> with content', async ({ props }) => {
+	it('renders <code> with content', ({ props }) => {
 		const { container } = render(InlineCode, { props });
 
 		expect(container.querySelector('code')).toHaveTextContent('console.log("Hello, World!");');

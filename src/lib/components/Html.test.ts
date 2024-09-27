@@ -3,7 +3,7 @@ import type { ComponentProps } from 'svelte';
 import { describe, expect, test } from 'vitest';
 import Html from './Html.svelte';
 
-describe('Html.svelte', async () => {
+describe('Html.svelte', () => {
 	const it = test.extend<{ props: ComponentProps<Html> }>({
 		props: {
 			type: 'html',
@@ -11,7 +11,7 @@ describe('Html.svelte', async () => {
 		}
 	});
 
-	it('renders html', async ({ props }) => {
+	it('renders html', ({ props }) => {
 		const { container } = render(Html, { props });
 
 		expect(container.querySelector('pre')).toBeInTheDocument();

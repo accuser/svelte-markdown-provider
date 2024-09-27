@@ -3,7 +3,7 @@ import type { ComponentProps } from 'svelte';
 import { describe, expect, test } from 'vitest';
 import Yaml from './Yaml.svelte';
 
-describe('Yaml.svelte', async () => {
+describe('Yaml.svelte', () => {
 	const it = test.extend<{ props: ComponentProps<Yaml> }>({
 		props: {
 			type: 'yaml',
@@ -11,7 +11,7 @@ describe('Yaml.svelte', async () => {
 		}
 	});
 
-	it('renders nothing', async ({ props }) => {
+	it('renders nothing', ({ props }) => {
 		const { container } = render(Yaml, { props });
 
 		expect(container).toHaveTextContent('');

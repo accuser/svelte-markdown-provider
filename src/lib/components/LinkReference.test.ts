@@ -17,7 +17,7 @@ vi.mock('$lib/contexts/markdown-context.js', async () => {
 	};
 });
 
-describe('LinkReference.svelte', async () => {
+describe('LinkReference.svelte', () => {
 	const it = test.extend<{
 		props: ComponentProps<LinkReference>;
 	}>({
@@ -29,25 +29,25 @@ describe('LinkReference.svelte', async () => {
 		}
 	});
 
-	it('renders <a>', async ({ props }) => {
+	it('renders <a>', ({ props }) => {
 		const { container } = render(LinkReference, { props });
 
 		expect(container.querySelector('a')).toBeInTheDocument();
 	});
 
-	it('renders <a> with `href` attibute', async ({ props }) => {
+	it('renders <a> with `href` attibute', ({ props }) => {
 		const { container } = render(LinkReference, { props });
 
 		expect(container.querySelector('a')).toHaveAttribute('href', 'https://example.com');
 	});
 
-	it('renders <a> with `title` attibute', async ({ props }) => {
+	it('renders <a> with `title` attibute', ({ props }) => {
 		const { container } = render(LinkReference, { props });
 
 		expect(container.querySelector('a')).toHaveAttribute('title', 'Example');
 	});
 
-	it('renders <a> with content', async ({ props }) => {
+	it('renders <a> with content', ({ props }) => {
 		const { container } = render(LinkReference, { props });
 
 		expect(container.querySelector('a')).toHaveTextContent('Hello, World!');

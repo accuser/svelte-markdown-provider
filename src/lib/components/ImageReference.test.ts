@@ -17,7 +17,7 @@ vi.mock('$lib/contexts/markdown-context.js', async () => {
 	};
 });
 
-describe('ImageReference.svelte', async () => {
+describe('ImageReference.svelte', () => {
 	const it = test.extend<{ props: ComponentProps<ImageReference> }>({
 		props: {
 			type: 'imageReference',
@@ -27,19 +27,19 @@ describe('ImageReference.svelte', async () => {
 		}
 	});
 
-	it('renders <img>', async ({ props }) => {
+	it('renders <img>', ({ props }) => {
 		const { container } = render(ImageReference, { props });
 
 		expect(container.querySelector('img')).toBeInTheDocument();
 	});
 
-	it('renders <img> with `src` attribute', async ({ props }) => {
+	it('renders <img> with `src` attribute', ({ props }) => {
 		const { container } = render(ImageReference, { props });
 
 		expect(container.querySelector('img')).toHaveAttribute('src', 'https://example.com/image.jpg');
 	});
 
-	it('renders <img> with `alt` attribute', async ({ props }) => {
+	it('renders <img> with `alt` attribute', ({ props }) => {
 		const { container } = render(ImageReference, { props });
 
 		expect(container.querySelector('img')).toHaveAttribute('alt', 'Example');
