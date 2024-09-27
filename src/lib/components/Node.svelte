@@ -1,13 +1,11 @@
-<script lang="ts" module>
-	export type Props = import('mdast').Nodes;
-</script>
-
 <script lang="ts">
 	import { getMarkdownContext } from '$lib/contexts/markdown-context.js';
 	import defaultComponents from '$lib/defaults/components.js';
 	import isDirective from '$lib/type-guards/is-directive.js';
+	import type { Nodes } from 'mdast';
+	import type { Component } from 'svelte';
 
-	let node: import('mdast').Nodes = $props();
+	let node: Nodes = $props();
 
 	const { components, directives } = getMarkdownContext();
 
@@ -23,9 +21,7 @@
 		}
 	});
 
-	let Component = $derived(
-		directive || component || defaultComponents[node.type]
-	) as import('svelte').Component<import('mdast').Nodes>;
+	let Node = $derived(directive || component || defaultComponents[node.type]) as Component<Nodes>;
 </script>
 
-<Component {...node} />
+<Node {...node} />

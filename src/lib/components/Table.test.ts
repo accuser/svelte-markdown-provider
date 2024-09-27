@@ -1,9 +1,10 @@
 import { render } from '@testing-library/svelte';
+import type { ComponentProps } from 'svelte';
 import { describe, expect, test } from 'vitest';
-import Table, { type Props } from './Table.svelte';
+import Table from './Table.svelte';
 
 describe('Table.svelte', async () => {
-	const it = test.extend<{ props: Props }>({
+	const it = test.extend<{ props: ComponentProps<Table> }>({
 		props: {
 			type: 'table',
 			children: [

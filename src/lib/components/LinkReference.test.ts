@@ -1,6 +1,7 @@
 import { render } from '@testing-library/svelte';
+import type { ComponentProps } from 'svelte';
 import { describe, expect, test, vi } from 'vitest';
-import LinkReference, { type Props } from './LinkReference.svelte';
+import LinkReference from './LinkReference.svelte';
 
 vi.mock('$lib/contexts/markdown-context.js', async () => {
 	const actual = await vi.importActual('$lib/contexts/markdown-context.js');
@@ -18,7 +19,7 @@ vi.mock('$lib/contexts/markdown-context.js', async () => {
 
 describe('LinkReference.svelte', async () => {
 	const it = test.extend<{
-		props: Props;
+		props: ComponentProps<LinkReference>;
 	}>({
 		props: {
 			type: 'linkReference',

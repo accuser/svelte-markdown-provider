@@ -1,11 +1,12 @@
 import { render } from '@testing-library/svelte';
+import type { ComponentProps } from 'svelte';
 import { describe, expect, test } from 'vitest';
-import Heading, { type Props } from './Heading.svelte';
+import Heading from './Heading.svelte';
 
 describe('Heading.svelte', async () => {
-	for (const depth of [1, 2, 3, 4, 5, 6] as Props['depth'][]) {
+	for (const depth of [1, 2, 3, 4, 5, 6] as const) {
 		const it = test.extend<{
-			props: Props;
+			props: ComponentProps<Heading>;
 		}>({
 			props: {
 				children: [{ type: 'text', value: 'Hello, World!' }],

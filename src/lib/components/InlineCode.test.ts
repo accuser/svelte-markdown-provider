@@ -1,9 +1,10 @@
 import { render } from '@testing-library/svelte';
+import type { ComponentProps } from 'svelte';
 import { describe, expect, test } from 'vitest';
-import InlineCode, { type Props } from './InlineCode.svelte';
+import InlineCode from './InlineCode.svelte';
 
 describe('InlineCode.svelte', async () => {
-	const it = test.extend<{ props: Props }>({
+	const it = test.extend<{ props: ComponentProps<InlineCode> }>({
 		props: {
 			type: 'inlineCode',
 			value: 'console.log("Hello, World!");'

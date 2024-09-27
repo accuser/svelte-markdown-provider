@@ -1,11 +1,8 @@
-<script lang="ts" module>
-	export type Props = import('mdast').FootnoteDefinition;
-</script>
-
 <script lang="ts">
+	import type { FootnoteDefinition } from 'mdast';
 	import Node from './Node.svelte';
 
-	let { children, identifier, label }: Props = $props();
+	let { children, identifier, label }: FootnoteDefinition = $props();
 </script>
 
 <div id="footnote-{identifier}">

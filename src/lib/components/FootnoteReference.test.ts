@@ -1,11 +1,10 @@
 import { render } from '@testing-library/svelte';
+import type { ComponentProps } from 'svelte';
 import { describe, expect, test } from 'vitest';
-import FootnoteReference, { type Props } from './FootnoteReference.svelte';
+import FootnoteReference from './FootnoteReference.svelte';
 
 describe('FootnoteReference.svelte', async () => {
-	const it = test.extend<{
-		props: Props;
-	}>({
+	const it = test.extend<{ props: ComponentProps<FootnoteReference> }>({
 		props: {
 			type: 'footnoteReference',
 			label: 'Example',

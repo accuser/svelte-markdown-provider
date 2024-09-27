@@ -1,9 +1,10 @@
 import { render } from '@testing-library/svelte';
+import type { ComponentProps } from 'svelte';
 import { describe, expect, test } from 'vitest';
-import TextDirective, { type Props } from './TextDirective.svelte';
+import TextDirective from './TextDirective.svelte';
 
 describe('TextDirective.svelte', async () => {
-	const it = test.extend<{ props: Props }>({
+	const it = test.extend<{ props: ComponentProps<TextDirective> }>({
 		props: {
 			name: 'text',
 			type: 'textDirective',

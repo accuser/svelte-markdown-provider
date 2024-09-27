@@ -1,9 +1,7 @@
-<script lang="ts" module>
-	export type Props = import('mdast').Text;
-</script>
-
 <script lang="ts">
-	let { value }: Props = $props();
+	import type { Text } from 'mdast';
+
+	let { value }: Text = $props();
 </script>
 
 {value}

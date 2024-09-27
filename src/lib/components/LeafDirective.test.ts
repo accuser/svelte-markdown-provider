@@ -1,9 +1,10 @@
 import { render } from '@testing-library/svelte';
+import type { ComponentProps } from 'svelte';
 import { describe, expect, test } from 'vitest';
-import LeafDirective, { type Props } from './LeafDirective.svelte';
+import LeafDirective from './LeafDirective.svelte';
 
 describe('LeafDirective.svelte', async () => {
-	const it = test.extend<{ props: Props }>({
+	const it = test.extend<{ props: ComponentProps<LeafDirective> }>({
 		props: {
 			name: 'leaf',
 			type: 'leafDirective',

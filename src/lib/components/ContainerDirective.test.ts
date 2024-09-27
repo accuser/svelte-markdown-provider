@@ -1,9 +1,10 @@
 import { render } from '@testing-library/svelte';
+import type { ComponentProps } from 'svelte';
 import { describe, expect, test } from 'vitest';
-import ContainerDirective, { type Props } from './ContainerDirective.svelte';
+import ContainerDirective from './ContainerDirective.svelte';
 
 describe('ContainerDirective.svelte', async () => {
-	const it = test.extend<{ props: Props }>({
+	const it = test.extend<{ props: ComponentProps<ContainerDirective> }>({
 		props: {
 			name: 'container',
 			type: 'containerDirective',

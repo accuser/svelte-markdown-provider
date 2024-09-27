@@ -1,11 +1,8 @@
-<script lang="ts" module>
-	export type Props = import('mdast').ListItem;
-</script>
-
 <script lang="ts">
+	import type { ListItem } from 'mdast';
 	import Node from './Node.svelte';
 
-	let { children }: Props = $props();
+	let { children }: ListItem = $props();
 </script>
 
 <li>

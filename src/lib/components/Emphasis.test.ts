@@ -1,9 +1,10 @@
 import { render } from '@testing-library/svelte';
+import type { ComponentProps } from 'svelte';
 import { describe, expect, test } from 'vitest';
-import Emphasis, { type Props } from './Emphasis.svelte';
+import Emphasis from './Emphasis.svelte';
 
 describe('Emphasis.svelte', async () => {
-	const it = test.extend<{ props: Props }>({
+	const it = test.extend<{ props: ComponentProps<Emphasis> }>({
 		props: {
 			children: [{ type: 'text', value: 'Hello, World!' }],
 			type: 'emphasis'

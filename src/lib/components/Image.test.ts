@@ -1,9 +1,10 @@
 import { render } from '@testing-library/svelte';
+import type { ComponentProps } from 'svelte';
 import { describe, expect, test } from 'vitest';
-import Image, { type Props } from './Image.svelte';
+import Image from './Image.svelte';
 
 describe('Image.svelte', async () => {
-	const it = test.extend<{ props: Props }>({
+	const it = test.extend<{ props: ComponentProps<Image> }>({
 		props: {
 			type: 'image',
 			url: 'https://example.com/image.jpg',

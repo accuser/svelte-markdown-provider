@@ -1,10 +1,11 @@
 import { render } from '@testing-library/svelte';
+import type { ComponentProps } from 'svelte';
 import { describe, expect, test } from 'vitest';
-import TableCell, { type Props } from './TableCell.svelte';
+import TableCell from './TableCell.svelte';
 
 describe('TableCell.svelte', async () => {
 	const it = test.extend<{
-		props: Props;
+		props: ComponentProps<TableCell>;
 	}>({
 		props: {
 			children: [{ type: 'text', value: 'Hello, World!' }],

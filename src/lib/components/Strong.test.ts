@@ -1,9 +1,10 @@
 import { render } from '@testing-library/svelte';
+import type { ComponentProps } from 'svelte';
 import { describe, expect, test } from 'vitest';
-import Strong, { type Props } from './Strong.svelte';
+import Strong from './Strong.svelte';
 
 describe('Strong.svelte', async () => {
-	const it = test.extend<{ props: Props }>({
+	const it = test.extend<{ props: ComponentProps<Strong> }>({
 		props: {
 			children: [{ type: 'text', value: 'Hello, World!' }],
 			type: 'strong'

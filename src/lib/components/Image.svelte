@@ -1,9 +1,7 @@
-<script lang="ts" module>
-	export type Props = import('mdast').Image;
-</script>
-
 <script lang="ts">
-	let { alt, url, title }: Props = $props();
+	import type { Image } from 'mdast';
+
+	let { alt, url, title }: Image = $props();
 </script>
 
 <img src={url} {alt} {title} />

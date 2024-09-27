@@ -1,10 +1,11 @@
 import { render } from '@testing-library/svelte';
+import type { ComponentProps } from 'svelte';
 import { describe, expect, test } from 'vitest';
-import List, { type Props } from './List.svelte';
+import List from './List.svelte';
 
 describe('List.svelte', async () => {
 	for (const ordered of [undefined, false, true]) {
-		const it = test.extend<{ props: Props }>({
+		const it = test.extend<{ props: ComponentProps<List> }>({
 			props: {
 				children: [
 					{

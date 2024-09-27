@@ -1,11 +1,8 @@
-<script lang="ts" module>
-	export type Props = import('mdast').Strong;
-</script>
-
 <script lang="ts">
+	import type { Strong } from 'mdast';
 	import Node from './Node.svelte';
 
-	let { children }: Props = $props();
+	let { children }: Strong = $props();
 </script>
 
 <strong

@@ -1,9 +1,10 @@
 import { render } from '@testing-library/svelte';
+import type { ComponentProps } from 'svelte';
 import { describe, expect, test } from 'vitest';
-import Link, { type Props } from './Link.svelte';
+import Link from './Link.svelte';
 
 describe('Link.svelte', async () => {
-	const it = test.extend<{ props: Props }>({
+	const it = test.extend<{ props: ComponentProps<Link> }>({
 		props: {
 			children: [{ type: 'text', value: 'Hello, World!' }],
 			type: 'link',

@@ -1,9 +1,10 @@
 import { render } from '@testing-library/svelte';
+import type { ComponentProps } from 'svelte';
 import { describe, expect, test } from 'vitest';
-import Delete, { type Props } from './Delete.svelte';
+import Delete from './Delete.svelte';
 
 describe('Delete.svelte', async () => {
-	const it = test.extend<{ props: Props }>({
+	const it = test.extend<{ props: ComponentProps<Delete> }>({
 		props: {
 			children: [{ type: 'text', value: 'Hello, World!' }],
 			type: 'delete'
