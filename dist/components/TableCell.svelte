@@ -1,13 +1,16 @@
 <script lang="ts" module>
-	export type Props = import('mdast').TableCell & {
-		data?: import('mdast').TableCellData & { align?: import('mdast').AlignType };
-	};
+	declare module 'mdast' {
+		interface TableCellData {
+			align?: AlignType | null;
+		}
+	}
 </script>
 
 <script lang="ts">
+	import type { TableCell } from 'mdast';
 	import Node from './Node.svelte';
 
-	let { children, data }: Props = $props();
+	let { children, data }: TableCell = $props();
 
 	let align = $derived(data?.align);
 </script>

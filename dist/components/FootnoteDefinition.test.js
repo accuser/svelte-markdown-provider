@@ -1,6 +1,6 @@
 import { render } from '@testing-library/svelte';
 import { describe, expect, test } from 'vitest';
-import FootnoteDefinition, {} from './FootnoteDefinition.svelte';
+import FootnoteDefinition from './FootnoteDefinition.svelte';
 describe('FootnoteDefinition.svelte', () => {
     const it = test.extend({
         props: {

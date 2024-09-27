@@ -1,7 +1,7 @@
 import { render } from '@testing-library/svelte';
 import { describe, expect, test } from 'vitest';
-import Definition, {} from './Definition.svelte';
-describe('Definition.svelte', async () => {
+import Definition from './Definition.svelte';
+describe('Definition.svelte', () => {
     const it = test.extend({
         props: {
             type: 'definition',
@@ -9,7 +9,7 @@ describe('Definition.svelte', async () => {
             url: 'https://example.com'
         }
     });
-    it('renders nothing', async ({ props }) => {
+    it('renders nothing', ({ props }) => {
         const { container } = render(Definition, { props });
         expect(container).toHaveTextContent('');
     });

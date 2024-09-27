@@ -1,16 +1,13 @@
-<script lang="ts" module>
-	export type Props = import('mdast').Heading;
-</script>
-
 <script lang="ts">
 	import { slug } from 'github-slugger';
+	import type { Heading } from 'mdast';
 	import { toString } from 'mdast-util-to-string';
 	import Node from './Node.svelte';
 
-	let { children, depth }: Props = $props();
+	let { children, depth }: Heading = $props();
 
-	let tag = $derived.by(() => `h${depth}`);
 	let id = $derived.by(() => slug(toString(children)));
+	let tag = $derived.by(() => `h${depth}`);
 </script>
 
 <svelte:element this={tag} {id}

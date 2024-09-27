@@ -1,11 +1,8 @@
-<script lang="ts" module>
-	export type Props = import('mdast').Link;
-</script>
-
 <script lang="ts">
+	import type { Link } from 'mdast';
 	import Node from './Node.svelte';
 
-	let { children, title, url }: Props = $props();
+	let { children, title, url }: Link = $props();
 </script>
 
 <a href={url} {title}

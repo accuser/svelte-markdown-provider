@@ -1,9 +1,7 @@
-<script lang="ts" module>
-	export type Props = import('mdast').FootnoteReference;
-</script>
-
 <script lang="ts">
-	let { identifier, label }: Props = $props();
+	import type { FootnoteReference } from 'mdast';
+
+	let { identifier, label }: FootnoteReference = $props();
 </script>
 
 <sup

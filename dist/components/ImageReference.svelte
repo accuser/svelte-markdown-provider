@@ -1,12 +1,9 @@
-<script lang="ts" module>
-	export type Props = import('mdast').ImageReference;
-</script>
-
 <script lang="ts">
 	import { getMarkdownContext } from '../contexts/markdown-context.js';
+	import type { ImageReference } from 'mdast';
 
 	// TODO: implement `referenceType`?
-	let { alt, identifier }: Props = $props();
+	let { alt, identifier }: ImageReference = $props();
 
 	const { getDefinition } = getMarkdownContext();
 

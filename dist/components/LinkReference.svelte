@@ -1,13 +1,10 @@
-<script lang="ts" module>
-	export type Props = import('mdast').LinkReference;
-</script>
-
 <script lang="ts">
 	import { getMarkdownContext } from '../contexts/markdown-context.js';
+	import type { LinkReference } from 'mdast';
 	import Node from './Node.svelte';
 
 	// TODO: implement `referenceType`?
-	let { children, identifier }: Props = $props();
+	let { children, identifier }: LinkReference = $props();
 
 	const { getDefinition } = getMarkdownContext();
 

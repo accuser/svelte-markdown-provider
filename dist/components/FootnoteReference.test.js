@@ -1,7 +1,7 @@
 import { render } from '@testing-library/svelte';
 import { describe, expect, test } from 'vitest';
-import FootnoteReference, {} from './FootnoteReference.svelte';
-describe('FootnoteReference.svelte', async () => {
+import FootnoteReference from './FootnoteReference.svelte';
+describe('FootnoteReference.svelte', () => {
     const it = test.extend({
         props: {
             type: 'footnoteReference',

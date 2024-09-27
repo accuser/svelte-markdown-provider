@@ -1,9 +1,7 @@
-<script lang="ts" module>
-	export type Props = import('mdast').InlineCode;
-</script>
-
 <script lang="ts">
-	let { value }: Props = $props();
+	import type { InlineCode } from 'mdast';
+
+	let { value }: InlineCode = $props();
 </script>
 
 <code>{value}</code>

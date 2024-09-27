@@ -1,11 +1,8 @@
-<script lang="ts" module>
-	export type Props = import('mdast').List;
-</script>
-
 <script lang="ts">
+	import type { List } from 'mdast';
 	import Node from './Node.svelte';
 
-	let { children, ordered, spread, start }: Props = $props();
+	let { children, ordered, spread, start }: List = $props();
 
 	let tag = $derived.by(() => (ordered ? ('ol' as const) : ('ul' as const)));
 </script>
