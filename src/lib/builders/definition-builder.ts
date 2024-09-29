@@ -3,7 +3,9 @@ import { isDefinition } from '@accuser/mdast-util-type-guards';
 
 const definitionsFrom = (root: import('mdast').Root) => collect(root, isDefinition);
 
-export default (root: import('mdast').Root) => {
+export default (root: import('mdast').Root | undefined) => {
+	if (root === undefined) return () => undefined;
+
 	const cache = definitionsFrom(root).reduce(
 		(acc, def) => Object.assign(acc, { [def.identifier]: def }),
 		{} as Record<string, import('mdast').Definition>

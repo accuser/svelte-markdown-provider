@@ -9,7 +9,9 @@ const frontmatterFrom = (root: import('mdast').Root) => {
 	}
 };
 
-export default (root: import('mdast').Root) => {
+export default (root: import('mdast').Root | undefined) => {
+	if (root === undefined) return () => undefined;
+
 	let frontmatter = frontmatterFrom(root);
 
 	return () => frontmatter;

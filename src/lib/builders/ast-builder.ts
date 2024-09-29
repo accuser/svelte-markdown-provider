@@ -1,1 +1,1 @@
-export default (root: import('mdast').Root) => () => root;
+export default (root: import('mdast').Root | undefined) => () => root;
