@@ -1,7 +1,10 @@
-import { render } from '@testing-library/svelte';
-import { describe, expect, test } from 'vitest';
+import { mount } from 'svelte';
+import { beforeEach, describe, expect, test } from 'vitest';
 import Definition from './Definition.svelte';
 describe('Definition.svelte', () => {
+    beforeEach(() => {
+        document.body = document.createElement('body');
+    });
     const it = test.extend({
         props: {
             type: 'definition',
@@ -10,7 +13,7 @@ describe('Definition.svelte', () => {
         }
     });
     it('renders nothing', ({ props }) => {
-        const { container } = render(Definition, { props });
-        expect(container).toHaveTextContent('');
+        mount(Definition, { props, target: document.body });
+        expect(document.body).toHaveTextContent('');
     });
 });

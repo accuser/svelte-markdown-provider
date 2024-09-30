@@ -1,4 +1,4 @@
-import { render } from '@testing-library/svelte';
+import { mount } from 'svelte';
 import { describe, expect, test } from 'vitest';
 import Table from './Table.svelte';
 describe('Table.svelte', () => {
@@ -8,17 +8,22 @@ describe('Table.svelte', () => {
             children: [
                 {
                     type: 'tableRow',
-                    children: [{ type: 'tableCell', children: [{ type: 'text', value: 'Hello, World!' }] }]
+                    children: [
+                        {
+                            type: 'tableCell',
+                            children: [{ type: 'text', value: 'Hello, World!' }]
+                        }
+                    ]
                 }
             ]
         }
     });
     it('renders <table>', ({ props }) => {
-        const { container } = render(Table, { props });
-        expect(container.querySelector('table')).toBeInTheDocument();
+        mount(Table, { props, target: document.body });
+        expect(document.body.querySelector('table')).toBeInTheDocument();
     });
     it('renders <table> with content', ({ props }) => {
-        const { container } = render(Table, { props });
-        expect(container.querySelector('table')).toHaveTextContent('Hello, World!');
+        mount(Table, { props, target: document.body });
+        expect(document.body.querySelector('table')).toHaveTextContent('Hello, World!');
     });
 });

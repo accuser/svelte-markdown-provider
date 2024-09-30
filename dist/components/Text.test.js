@@ -1,4 +1,4 @@
-import { render } from '@testing-library/svelte';
+import { mount } from 'svelte';
 import { describe, expect, test } from 'vitest';
 import Text from './Text.svelte';
 describe('Text.svelte', () => {
@@ -9,7 +9,7 @@ describe('Text.svelte', () => {
         }
     });
     it('renders text', ({ props }) => {
-        const { container } = render(Text, { props });
-        expect(container).toHaveTextContent('Hello, World!');
+        mount(Text, { props, target: document.body });
+        expect(document.body).toHaveTextContent('Hello, World!');
     });
 });

@@ -1,2 +1,2 @@
-declare const _default: (root: import("mdast").Root) => () => import("mdast").Root;
+declare const _default: (root: import("mdast").Root | undefined) => () => import("mdast").Root | undefined;
 export default _default;

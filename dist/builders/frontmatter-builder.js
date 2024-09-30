@@ -9,6 +9,8 @@ const frontmatterFrom = (root) => {
     }
 };
 export default (root) => {
+    if (root === undefined)
+        return () => undefined;
     let frontmatter = frontmatterFrom(root);
     return () => frontmatter;
 };

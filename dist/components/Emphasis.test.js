@@ -1,7 +1,10 @@
-import { render } from '@testing-library/svelte';
-import { describe, expect, test } from 'vitest';
+import { mount } from 'svelte';
+import { beforeEach, describe, expect, test } from 'vitest';
 import Emphasis from './Emphasis.svelte';
 describe('Emphasis.svelte', () => {
+    beforeEach(() => {
+        document.body = document.createElement('body');
+    });
     const it = test.extend({
         props: {
             children: [{ type: 'text', value: 'Hello, World!' }],
@@ -9,11 +12,11 @@ describe('Emphasis.svelte', () => {
         }
     });
     it('renders <em>', ({ props }) => {
-        const { container } = render(Emphasis, { props });
-        expect(container.querySelector('em')).toBeInTheDocument();
+        mount(Emphasis, { props, target: document.body });
+        expect(document.body.querySelector('em')).toBeInTheDocument();
     });
     it('renders <em> with content', ({ props }) => {
-        const { container } = render(Emphasis, { props });
-        expect(container.querySelector('em')).toHaveTextContent('Hello, World!');
+        mount(Emphasis, { props, target: document.body });
+        expect(document.body.querySelector('em')).toHaveTextContent('Hello, World!');
     });
 });

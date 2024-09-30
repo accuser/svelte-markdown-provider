@@ -1,7 +1,10 @@
-import { render } from '@testing-library/svelte';
-import { describe, expect, test } from 'vitest';
+import { mount } from 'svelte';
+import { beforeEach, describe, expect, test } from 'vitest';
 import Blockquote from './Blockquote.svelte';
 describe('BlockQuote.svelte', () => {
+    beforeEach(() => {
+        document.body = document.createElement('body');
+    });
     const it = test.extend({
         props: {
             children: [{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }],
@@ -9,11 +12,11 @@ describe('BlockQuote.svelte', () => {
         }
     });
     it('renders <blockquote>', ({ props }) => {
-        const { container } = render(Blockquote, { props });
-        expect(container.querySelector('blockquote')).toBeInTheDocument();
+        mount(Blockquote, { props, target: document.body });
+        expect(document.body.querySelector('blockquote')).toBeInTheDocument();
     });
     it('renders <blockquote> with content', ({ props }) => {
-        const { container } = render(Blockquote, { props });
-        expect(container.querySelector('blockquote')).toHaveTextContent('Hello, World!');
+        mount(Blockquote, { props, target: document.body });
+        expect(document.body.querySelector('blockquote')).toHaveTextContent('Hello, World!');
     });
 });

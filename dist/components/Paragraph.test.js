@@ -1,19 +1,24 @@
-import { render } from '@testing-library/svelte';
+import { mount } from 'svelte';
 import { describe, expect, test } from 'vitest';
 import Paragraph from './Paragraph.svelte';
 describe('Paragraph.svelte', () => {
     const it = test.extend({
         props: {
             type: 'paragraph',
-            children: [{ type: 'text', value: 'Hello, World!' }]
+            children: [
+                {
+                    type: 'text',
+                    value: 'Hello, World!'
+                }
+            ]
         }
     });
     it('renders <p>', ({ props }) => {
-        const { container } = render(Paragraph, { props });
-        expect(container.querySelector('p')).toBeInTheDocument();
+        mount(Paragraph, { props, target: document.body });
+        expect(document.body.querySelector('p')).toBeInTheDocument();
     });
     it('renders <p> with content', ({ props }) => {
-        const { container } = render(Paragraph, { props });
-        expect(container.querySelector('p')).toHaveTextContent('Hello, World!');
+        mount(Paragraph, { props, target: document.body });
+        expect(document.body.querySelector('p')).toHaveTextContent('Hello, World!');
     });
 });

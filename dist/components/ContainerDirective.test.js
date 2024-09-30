@@ -1,7 +1,10 @@
-import { render } from '@testing-library/svelte';
-import { describe, expect, test } from 'vitest';
+import { mount } from 'svelte';
+import { beforeEach, describe, expect, test } from 'vitest';
 import ContainerDirective from './ContainerDirective.svelte';
 describe('ContainerDirective.svelte', () => {
+    beforeEach(() => {
+        document.body = document.createElement('body');
+    });
     const it = test.extend({
         props: {
             name: 'container',
@@ -10,19 +13,19 @@ describe('ContainerDirective.svelte', () => {
         }
     });
     it('renders an HTML comment', ({ props }) => {
-        const { container } = render(ContainerDirective, { props });
-        expect(container.outerHTML).toContain('<!-- Unrecognized container directive :::container -->');
+        mount(ContainerDirective, { props, target: document.body });
+        expect(document.body.innerHTML).toContain('<!-- Unrecognized container directive :::container -->');
     });
     it('renders <div>', ({ props }) => {
-        const { container } = render(ContainerDirective, { props });
-        expect(container.querySelector('div')).toBeInTheDocument();
+        mount(ContainerDirective, { props, target: document.body });
+        expect(document.body.querySelector('div')).toBeInTheDocument();
     });
     it('renders <div> with `class` attribute', ({ props }) => {
-        const { container } = render(ContainerDirective, { props });
-        expect(container.querySelector('div.container')).toBeInTheDocument();
+        mount(ContainerDirective, { props, target: document.body });
+        expect(document.body.querySelector('div.container')).toBeInTheDocument();
     });
     it('renders <div> with content', ({ props }) => {
-        const { container } = render(ContainerDirective, { props });
-        expect(container.querySelector('div.container')).toHaveTextContent('Hello, World!');
+        mount(ContainerDirective, { props, target: document.body });
+        expect(document.body.querySelector('div.container')).toHaveTextContent('Hello, World!');
     });
 });
