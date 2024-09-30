@@ -1,4 +1,4 @@
-import { render } from '@testing-library/svelte';
+import { render } from '@testing-library/svelte/svelte5';
 import type { ComponentProps } from 'svelte';
 import { describe, expect, test } from 'vitest';
 import Blockquote from './Blockquote.svelte';
