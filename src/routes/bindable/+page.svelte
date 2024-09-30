@@ -4,7 +4,7 @@
 
 	const { data }: { data: PageData } = $props();
 
-	let ast = $state<import('mdast').Root>();
+	let ast = $state<import('mdast').Root | undefined>();
 	let src = $state(data.src);
 
 	const prune = (key: string, value: unknown) => (key === 'position' ? undefined : value);
