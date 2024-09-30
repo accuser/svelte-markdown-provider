@@ -1,10 +1,13 @@
-import { render } from '@testing-library/svelte';
-import type { ComponentProps } from 'svelte';
-import { describe, expect, test } from 'vitest';
+import { mount, type ComponentProps } from 'svelte';
+import { beforeEach, describe, expect, test } from 'vitest';
 import Image from './Image.svelte';
 
 describe('Image.svelte', () => {
-	const it = test.extend<{ props: ComponentProps<Image> }>({
+	beforeEach(() => {
+		document.body = document.createElement('body');
+	});
+
+	const it = test.extend<{ props: ComponentProps<typeof Image> }>({
 		props: {
 			type: 'image',
 			url: 'https://example.com/image.jpg',
@@ -13,20 +16,23 @@ describe('Image.svelte', () => {
 	});
 
 	it('renders <img>', ({ props }) => {
-		const { container } = render(Image, { props });
+		mount(Image, { props, target: document.body });
 
-		expect(container.querySelector('img')).toBeInTheDocument();
+		expect(document.body.querySelector('img')).toBeInTheDocument();
 	});
 
 	it('renders <img> with `src` attribute', ({ props }) => {
-		const { container } = render(Image, { props });
+		mount(Image, { props, target: document.body });
 
-		expect(container.querySelector('img')).toHaveAttribute('src', 'https://example.com/image.jpg');
+		expect(document.body.querySelector('img')).toHaveAttribute(
+			'src',
+			'https://example.com/image.jpg'
+		);
 	});
 
 	it('renders <img> with `alt` attribute', ({ props }) => {
-		const { container } = render(Image, { props });
+		mount(Image, { props, target: document.body });
 
-		expect(container.querySelector('img')).toHaveAttribute('alt', 'Example');
+		expect(document.body.querySelector('img')).toHaveAttribute('alt', 'Example');
 	});
 });

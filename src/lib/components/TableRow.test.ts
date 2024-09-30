@@ -1,30 +1,38 @@
-import { render } from '@testing-library/svelte';
-import type { ComponentProps } from 'svelte';
-import { describe, expect, test } from 'vitest';
+import { mount, type ComponentProps } from 'svelte';
+import { beforeEach, describe, expect, test } from 'vitest';
 import TableRow from './TableRow.svelte';
 
 describe('TableRow.svelte', () => {
-	const it = test.extend<{ props: ComponentProps<TableRow> }>({
+	beforeEach(() => {
+		document.body = document.createElement('body');
+	});
+
+	const it = test.extend<{ props: ComponentProps<typeof TableRow> }>({
 		props: {
 			type: 'tableRow',
 			children: [
 				{
 					type: 'tableCell',
-					children: [{ type: 'text', value: 'Hello, World!' }]
+					children: [
+						{
+							type: 'text',
+							value: 'Hello, World!'
+						}
+					]
 				}
 			]
 		}
 	});
 
 	it('renders <tr>', ({ props }) => {
-		const { container } = render(TableRow, { props });
+		mount(TableRow, { props, target: document.body });
 
-		expect(container.querySelector('tr')).toBeInTheDocument();
+		expect(document.body.querySelector('tr')).toBeInTheDocument();
 	});
 
 	it('renders <tr> with content', ({ props }) => {
-		const { container } = render(TableRow, { props });
+		mount(TableRow, { props, target: document.body });
 
-		expect(container.querySelector('tr')).toHaveTextContent('Hello, World!');
+		expect(document.body.querySelector('tr')).toHaveTextContent('Hello, World!');
 	});
 });

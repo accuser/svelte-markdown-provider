@@ -1,10 +1,13 @@
-import { render } from '@testing-library/svelte';
-import type { ComponentProps } from 'svelte';
-import { describe, expect, test } from 'vitest';
+import { mount, type ComponentProps } from 'svelte';
+import { beforeEach, describe, expect, test } from 'vitest';
 import Delete from './Delete.svelte';
 
 describe('Delete.svelte', () => {
-	const it = test.extend<{ props: ComponentProps<Delete> }>({
+	beforeEach(() => {
+		document.body = document.createElement('body');
+	});
+
+	const it = test.extend<{ props: ComponentProps<typeof Delete> }>({
 		props: {
 			children: [{ type: 'text', value: 'Hello, World!' }],
 			type: 'delete'
@@ -12,14 +15,14 @@ describe('Delete.svelte', () => {
 	});
 
 	it('renders <del>', ({ props }) => {
-		const { container } = render(Delete, { props });
+		mount(Delete, { props, target: document.body });
 
-		expect(container.querySelector('del')).toBeInTheDocument();
+		expect(document.body.querySelector('del')).toBeInTheDocument();
 	});
 
 	it('renders <del> with content', ({ props }) => {
-		const { container } = render(Delete, { props });
+		mount(Delete, { props, target: document.body });
 
-		expect(container.querySelector('del')).toHaveTextContent('Hello, World!');
+		expect(document.body.querySelector('del')).toHaveTextContent('Hello, World!');
 	});
 });

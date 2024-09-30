@@ -1,10 +1,9 @@
-import { render } from '@testing-library/svelte';
-import type { ComponentProps } from 'svelte';
+import { mount, type ComponentProps } from 'svelte';
 import { describe, expect, test } from 'vitest';
 import Text from './Text.svelte';
 
 describe('Text.svelte', () => {
-	const it = test.extend<{ props: ComponentProps<Text> }>({
+	const it = test.extend<{ props: ComponentProps<typeof Text> }>({
 		props: {
 			type: 'text',
 			value: 'Hello, World!'
@@ -12,8 +11,8 @@ describe('Text.svelte', () => {
 	});
 
 	it('renders text', ({ props }) => {
-		const { container } = render(Text, { props });
+		mount(Text, { props, target: document.body });
 
-		expect(container).toHaveTextContent('Hello, World!');
+		expect(document.body).toHaveTextContent('Hello, World!');
 	});
 });

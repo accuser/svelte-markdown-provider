@@ -1,10 +1,13 @@
-import { render } from '@testing-library/svelte';
-import type { ComponentProps } from 'svelte';
-import { describe, expect, test } from 'vitest';
+import { mount, type ComponentProps } from 'svelte';
+import { beforeEach, describe, expect, test } from 'vitest';
 import Code from './Code.svelte';
 
 describe('Code.svelte', () => {
-	const it = test.extend<{ props: ComponentProps<Code> }>({
+	beforeEach(() => {
+		document.body = document.createElement('body');
+	});
+
+	const it = test.extend<{ props: ComponentProps<typeof Code> }>({
 		props: {
 			lang: 'javascript',
 			type: 'code',
@@ -13,27 +16,27 @@ describe('Code.svelte', () => {
 	});
 
 	it('renders <pre>', ({ props }) => {
-		const { container } = render(Code, { props });
+		mount(Code, { props, target: document.body });
 
-		expect(container.querySelector('pre')).toBeInTheDocument();
+		expect(document.body.querySelector('pre')).toBeInTheDocument();
 	});
 
 	it('renders <code> in <pre>', ({ props }) => {
-		const { container } = render(Code, { props });
+		mount(Code, { props, target: document.body });
 
-		expect(container.querySelector('pre > code')).toBeInTheDocument();
+		expect(document.body.querySelector('pre > code')).toBeInTheDocument();
 	});
 
 	it('renders <code> in <pre> with `lang` attribute', ({ props }) => {
-		const { container } = render(Code, { props });
+		mount(Code, { props, target: document.body });
 
-		expect(container.querySelector('pre > code')).toHaveAttribute('lang', 'javascript');
+		expect(document.body.querySelector('pre > code')).toHaveAttribute('lang', 'javascript');
 	});
 
 	it('renders <code> in <pre> with content', ({ props }) => {
-		const { container } = render(Code, { props });
+		mount(Code, { props, target: document.body });
 
-		expect(container.querySelector('pre > code[lang="javascript"]')).toHaveTextContent(
+		expect(document.body.querySelector('pre > code[lang="javascript"]')).toHaveTextContent(
 			'console.log("Hello, World!");'
 		);
 	});

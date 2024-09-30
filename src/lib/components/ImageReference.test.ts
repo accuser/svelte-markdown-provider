@@ -1,6 +1,5 @@
-import { render } from '@testing-library/svelte';
-import type { ComponentProps } from 'svelte';
-import { describe, expect, test, vi } from 'vitest';
+import { mount, type ComponentProps } from 'svelte';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 import ImageReference from './ImageReference.svelte';
 
 vi.mock('$lib/contexts/markdown-context.js', async () => {
@@ -18,7 +17,11 @@ vi.mock('$lib/contexts/markdown-context.js', async () => {
 });
 
 describe('ImageReference.svelte', () => {
-	const it = test.extend<{ props: ComponentProps<ImageReference> }>({
+	beforeEach(() => {
+		document.body = document.createElement('body');
+	});
+
+	const it = test.extend<{ props: ComponentProps<typeof ImageReference> }>({
 		props: {
 			type: 'imageReference',
 			alt: 'Example',
@@ -28,20 +31,23 @@ describe('ImageReference.svelte', () => {
 	});
 
 	it('renders <img>', ({ props }) => {
-		const { container } = render(ImageReference, { props });
+		mount(ImageReference, { props, target: document.body });
 
-		expect(container.querySelector('img')).toBeInTheDocument();
+		expect(document.body.querySelector('img')).toBeInTheDocument();
 	});
 
 	it('renders <img> with `src` attribute', ({ props }) => {
-		const { container } = render(ImageReference, { props });
+		mount(ImageReference, { props, target: document.body });
 
-		expect(container.querySelector('img')).toHaveAttribute('src', 'https://example.com/image.jpg');
+		expect(document.body.querySelector('img')).toHaveAttribute(
+			'src',
+			'https://example.com/image.jpg'
+		);
 	});
 
 	it('renders <img> with `alt` attribute', ({ props }) => {
-		const { container } = render(ImageReference, { props });
+		mount(ImageReference, { props, target: document.body });
 
-		expect(container.querySelector('img')).toHaveAttribute('alt', 'Example');
+		expect(document.body.querySelector('img')).toHaveAttribute('alt', 'Example');
 	});
 });

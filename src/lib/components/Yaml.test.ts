@@ -1,10 +1,13 @@
-import { render } from '@testing-library/svelte';
-import type { ComponentProps } from 'svelte';
-import { describe, expect, test } from 'vitest';
+import { mount, type ComponentProps } from 'svelte';
+import { beforeEach, describe, expect, test } from 'vitest';
 import Yaml from './Yaml.svelte';
 
 describe('Yaml.svelte', () => {
-	const it = test.extend<{ props: ComponentProps<Yaml> }>({
+	beforeEach(() => {
+		document.body = document.createElement('body');
+	});
+
+	const it = test.extend<{ props: ComponentProps<typeof Yaml> }>({
 		props: {
 			type: 'yaml',
 			value: 'key: value'
@@ -12,8 +15,8 @@ describe('Yaml.svelte', () => {
 	});
 
 	it('renders nothing', ({ props }) => {
-		const { container } = render(Yaml, { props });
+		mount(Yaml, { props, target: document.body });
 
-		expect(container).toHaveTextContent('');
+		expect(document.body).toHaveTextContent('');
 	});
 });

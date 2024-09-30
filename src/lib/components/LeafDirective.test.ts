@@ -1,10 +1,13 @@
-import { render } from '@testing-library/svelte';
-import type { ComponentProps } from 'svelte';
-import { describe, expect, test } from 'vitest';
+import { mount, type ComponentProps } from 'svelte';
+import { beforeEach, describe, expect, test } from 'vitest';
 import LeafDirective from './LeafDirective.svelte';
 
 describe('LeafDirective.svelte', () => {
-	const it = test.extend<{ props: ComponentProps<LeafDirective> }>({
+	beforeEach(() => {
+		document.body = document.createElement('body');
+	});
+
+	const it = test.extend<{ props: ComponentProps<typeof LeafDirective> }>({
 		props: {
 			name: 'leaf',
 			type: 'leafDirective',
@@ -13,26 +16,26 @@ describe('LeafDirective.svelte', () => {
 	});
 
 	it('renders an HTML comment', ({ props }) => {
-		const { container } = render(LeafDirective, { props });
+		mount(LeafDirective, { props, target: document.body });
 
-		expect(container.outerHTML).toContain('<!-- Unrecognized leaf directive ::leaf -->');
+		expect(document.body.innerHTML).toContain('<!-- Unrecognized leaf directive ::leaf -->');
 	});
 
 	it('renders <div>', ({ props }) => {
-		const { container } = render(LeafDirective, { props });
+		mount(LeafDirective, { props, target: document.body });
 
-		expect(container.querySelector('div')).toBeInTheDocument();
+		expect(document.body.querySelector('div')).toBeInTheDocument();
 	});
 
 	it('renders <div> with `class` attribute', ({ props }) => {
-		const { container } = render(LeafDirective, { props });
+		mount(LeafDirective, { props, target: document.body });
 
-		expect(container.querySelector('div.leaf')).toBeInTheDocument();
+		expect(document.body.querySelector('div.leaf')).toBeInTheDocument();
 	});
 
 	it('renders <div> with content', ({ props }) => {
-		const { container } = render(LeafDirective, { props });
+		mount(LeafDirective, { props, target: document.body });
 
-		expect(container.querySelector('div.leaf')).toHaveTextContent('Hello, World!');
+		expect(document.body.querySelector('div.leaf')).toHaveTextContent('Hello, World!');
 	});
 });

@@ -1,18 +1,21 @@
-import { render } from '@testing-library/svelte';
-import type { ComponentProps } from 'svelte';
-import { describe, expect, test } from 'vitest';
+import { mount, type ComponentProps } from 'svelte';
+import { beforeEach, describe, expect, test } from 'vitest';
 import ThematicBreak from './ThematicBreak.svelte';
 
 describe('ThematicBreak.svelte', () => {
-	const it = test.extend<{ props: ComponentProps<ThematicBreak> }>({
+	beforeEach(() => {
+		document.body = document.createElement('body');
+	});
+
+	const it = test.extend<{ props: ComponentProps<typeof ThematicBreak> }>({
 		props: {
 			type: 'thematicBreak'
 		}
 	});
 
 	it('renders <hr>', ({ props }) => {
-		const { container } = render(ThematicBreak, { props });
+		mount(ThematicBreak, { props, target: document.body });
 
-		expect(container.querySelector('hr')).toBeInTheDocument();
+		expect(document.body.querySelector('hr')).toBeInTheDocument();
 	});
 });

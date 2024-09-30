@@ -1,16 +1,24 @@
-import { render } from '@testing-library/svelte';
-import type { ComponentProps } from 'svelte';
-import { describe, expect, test } from 'vitest';
+import { mount, type ComponentProps } from 'svelte';
+import { beforeEach, describe, expect, test } from 'vitest';
 import List from './List.svelte';
 
 describe('List.svelte', () => {
+	beforeEach(() => {
+		document.body = document.createElement('body');
+	});
+
 	for (const ordered of [undefined, false, true]) {
-		const it = test.extend<{ props: ComponentProps<List> }>({
+		const it = test.extend<{ props: ComponentProps<typeof List> }>({
 			props: {
 				children: [
 					{
 						type: 'listItem',
-						children: [{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }]
+						children: [
+							{
+								type: 'paragraph',
+								children: [{ type: 'text', value: 'Hello, World!' }]
+							}
+						]
 					}
 				],
 				type: 'list',
@@ -21,37 +29,37 @@ describe('List.svelte', () => {
 		if (ordered === true) {
 			describe('when `ordered` is `true`', () => {
 				it('renders <ol>', ({ props }) => {
-					const { container } = render(List, { props });
+					mount(List, { props, target: document.body });
 
-					expect(container.querySelector('ol')).toBeInTheDocument();
+					expect(document.body.querySelector('ol')).toBeInTheDocument();
 				});
 
 				it('renders <ol> with content', ({ props }) => {
-					const { container } = render(List, { props });
+					mount(List, { props, target: document.body });
 
-					expect(container.querySelector('ol li')).toHaveTextContent('Hello, World!');
+					expect(document.body.querySelector('ol li')).toHaveTextContent('Hello, World!');
 				});
 
 				describe('and `start` is defined', () => {
 					it('renders <ol> with a `start` attribute', ({ props }) => {
-						const { container } = render(List, { props: { ...props, start: 2 } });
+						mount(List, { props: { ...props, start: 2 }, target: document.body });
 
-						expect(container.querySelector('ol')).toHaveAttribute('start', '2');
+						expect(document.body.querySelector('ol')).toHaveAttribute('start', '2');
 					});
 				});
 			});
 		} else {
 			describe('when `ordered` is `undefined` or `false`', () => {
 				it('renders <ul>', ({ props }) => {
-					const { container } = render(List, { props });
+					mount(List, { props, target: document.body });
 
-					expect(container.querySelector('ul')).toBeInTheDocument();
+					expect(document.body.querySelector('ul')).toBeInTheDocument();
 				});
 
 				it('renders <ul> with content', ({ props }) => {
-					const { container } = render(List, { props });
+					mount(List, { props, target: document.body });
 
-					expect(container.querySelector('ul li')).toHaveTextContent('Hello, World!');
+					expect(document.body.querySelector('ul li')).toHaveTextContent('Hello, World!');
 				});
 			});
 		}

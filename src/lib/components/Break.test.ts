@@ -1,16 +1,19 @@
-import { render } from '@testing-library/svelte';
-import type { ComponentProps } from 'svelte';
-import { describe, expect, test } from 'vitest';
+import { mount, type ComponentProps } from 'svelte';
+import { beforeEach, describe, expect, test } from 'vitest';
 import Break from './Break.svelte';
 
 describe('Break.svelte', () => {
-	const it = test.extend<{ props: ComponentProps<Break> }>({
+	beforeEach(() => {
+		document.body = document.createElement('body');
+	});
+
+	const it = test.extend<{ props: ComponentProps<typeof Break> }>({
 		props: { type: 'break' }
 	});
 
 	it('renders <br>', ({ props }) => {
-		const { container } = render(Break, { props });
+		mount(Break, { props, target: document.body });
 
-		expect(container.querySelector('br')).toBeInTheDocument();
+		expect(document.body.querySelector('br')).toBeInTheDocument();
 	});
 });

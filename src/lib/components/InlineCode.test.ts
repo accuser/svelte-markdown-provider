@@ -1,10 +1,13 @@
-import { render } from '@testing-library/svelte';
-import type { ComponentProps } from 'svelte';
-import { describe, expect, test } from 'vitest';
+import { mount, type ComponentProps } from 'svelte';
+import { beforeEach, describe, expect, test } from 'vitest';
 import InlineCode from './InlineCode.svelte';
 
 describe('InlineCode.svelte', () => {
-	const it = test.extend<{ props: ComponentProps<InlineCode> }>({
+	beforeEach(() => {
+		document.body = document.createElement('body');
+	});
+
+	const it = test.extend<{ props: ComponentProps<typeof InlineCode> }>({
 		props: {
 			type: 'inlineCode',
 			value: 'console.log("Hello, World!");'
@@ -12,14 +15,14 @@ describe('InlineCode.svelte', () => {
 	});
 
 	it('renders <code>', ({ props }) => {
-		const { container } = render(InlineCode, { props });
+		mount(InlineCode, { props, target: document.body });
 
-		expect(container.querySelector('code')).toBeInTheDocument();
+		expect(document.body.querySelector('code')).toBeInTheDocument();
 	});
 
 	it('renders <code> with content', ({ props }) => {
-		const { container } = render(InlineCode, { props });
+		mount(InlineCode, { props, target: document.body });
 
-		expect(container.querySelector('code')).toHaveTextContent('console.log("Hello, World!");');
+		expect(document.body.querySelector('code')).toHaveTextContent('console.log("Hello, World!");');
 	});
 });

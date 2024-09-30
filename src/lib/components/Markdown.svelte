@@ -22,7 +22,7 @@
 		options?: Options;
 	} = $props();
 
-	$effect(() => {
+	$effect.pre(() => {
 		if (src) {
 			ast = astFromString(src, options);
 		}

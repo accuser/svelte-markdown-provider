@@ -1,10 +1,13 @@
-import { render } from '@testing-library/svelte';
-import type { ComponentProps } from 'svelte';
-import { describe, expect, test } from 'vitest';
+import { mount, type ComponentProps } from 'svelte';
+import { beforeEach, describe, expect, test } from 'vitest';
 import Definition from './Definition.svelte';
 
 describe('Definition.svelte', () => {
-	const it = test.extend<{ props: ComponentProps<Definition> }>({
+	beforeEach(() => {
+		document.body = document.createElement('body');
+	});
+
+	const it = test.extend<{ props: ComponentProps<typeof Definition> }>({
 		props: {
 			type: 'definition',
 			identifier: 'example',
@@ -13,8 +16,8 @@ describe('Definition.svelte', () => {
 	});
 
 	it('renders nothing', ({ props }) => {
-		const { container } = render(Definition, { props });
+		mount(Definition, { props, target: document.body });
 
-		expect(container).toHaveTextContent('');
+		expect(document.body).toHaveTextContent('');
 	});
 });

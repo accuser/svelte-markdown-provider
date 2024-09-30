@@ -1,10 +1,13 @@
-import { render } from '@testing-library/svelte';
-import type { ComponentProps } from 'svelte';
-import { describe, expect, test } from 'vitest';
+import { mount, type ComponentProps } from 'svelte';
+import { beforeEach, describe, expect, test } from 'vitest';
 import Html from './Html.svelte';
 
 describe('Html.svelte', () => {
-	const it = test.extend<{ props: ComponentProps<Html> }>({
+	beforeEach(() => {
+		document.body = document.createElement('body');
+	});
+
+	const it = test.extend<{ props: ComponentProps<typeof Html> }>({
 		props: {
 			type: 'html',
 			value: '<pre>Hello, World!</pre>'
@@ -12,8 +15,8 @@ describe('Html.svelte', () => {
 	});
 
 	it('renders html', ({ props }) => {
-		const { container } = render(Html, { props });
+		mount(Html, { props, target: document.body });
 
-		expect(container.querySelector('pre')).toBeInTheDocument();
+		expect(document.body.querySelector('pre')).toBeInTheDocument();
 	});
 });

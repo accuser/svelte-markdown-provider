@@ -1,10 +1,13 @@
-import { render } from '@testing-library/svelte';
-import type { ComponentProps } from 'svelte';
-import { describe, expect, test } from 'vitest';
+import { mount, type ComponentProps } from 'svelte';
+import { beforeEach, describe, expect, test } from 'vitest';
 import Emphasis from './Emphasis.svelte';
 
 describe('Emphasis.svelte', () => {
-	const it = test.extend<{ props: ComponentProps<Emphasis> }>({
+	beforeEach(() => {
+		document.body = document.createElement('body');
+	});
+
+	const it = test.extend<{ props: ComponentProps<typeof Emphasis> }>({
 		props: {
 			children: [{ type: 'text', value: 'Hello, World!' }],
 			type: 'emphasis'
@@ -12,14 +15,14 @@ describe('Emphasis.svelte', () => {
 	});
 
 	it('renders <em>', ({ props }) => {
-		const { container } = render(Emphasis, { props });
+		mount(Emphasis, { props, target: document.body });
 
-		expect(container.querySelector('em')).toBeInTheDocument();
+		expect(document.body.querySelector('em')).toBeInTheDocument();
 	});
 
 	it('renders <em> with content', ({ props }) => {
-		const { container } = render(Emphasis, { props });
+		mount(Emphasis, { props, target: document.body });
 
-		expect(container.querySelector('em')).toHaveTextContent('Hello, World!');
+		expect(document.body.querySelector('em')).toHaveTextContent('Hello, World!');
 	});
 });

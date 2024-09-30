@@ -1,10 +1,13 @@
-import { render } from '@testing-library/svelte/svelte5';
-import type { ComponentProps } from 'svelte';
-import { describe, expect, test } from 'vitest';
+import { mount, type ComponentProps } from 'svelte';
+import { beforeEach, describe, expect, test } from 'vitest';
 import Blockquote from './Blockquote.svelte';
 
 describe('BlockQuote.svelte', () => {
-	const it = test.extend<{ props: ComponentProps<Blockquote> }>({
+	beforeEach(() => {
+		document.body = document.createElement('body');
+	});
+
+	const it = test.extend<{ props: ComponentProps<typeof Blockquote> }>({
 		props: {
 			children: [{ type: 'paragraph', children: [{ type: 'text', value: 'Hello, World!' }] }],
 			type: 'blockquote'
@@ -12,14 +15,14 @@ describe('BlockQuote.svelte', () => {
 	});
 
 	it('renders <blockquote>', ({ props }) => {
-		const { container } = render(Blockquote, { props });
+		mount(Blockquote, { props, target: document.body });
 
-		expect(container.querySelector('blockquote')).toBeInTheDocument();
+		expect(document.body.querySelector('blockquote')).toBeInTheDocument();
 	});
 
 	it('renders <blockquote> with content', ({ props }) => {
-		const { container } = render(Blockquote, { props });
+		mount(Blockquote, { props, target: document.body });
 
-		expect(container.querySelector('blockquote')).toHaveTextContent('Hello, World!');
+		expect(document.body.querySelector('blockquote')).toHaveTextContent('Hello, World!');
 	});
 });

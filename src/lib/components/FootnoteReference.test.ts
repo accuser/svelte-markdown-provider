@@ -1,10 +1,13 @@
-import { render } from '@testing-library/svelte';
-import type { ComponentProps } from 'svelte';
-import { describe, expect, test } from 'vitest';
+import { mount, type ComponentProps } from 'svelte';
+import { beforeEach, describe, expect, test } from 'vitest';
 import FootnoteReference from './FootnoteReference.svelte';
 
 describe('FootnoteReference.svelte', () => {
-	const it = test.extend<{ props: ComponentProps<FootnoteReference> }>({
+	beforeEach(() => {
+		document.body = document.createElement('body');
+	});
+
+	const it = test.extend<{ props: ComponentProps<typeof FootnoteReference> }>({
 		props: {
 			type: 'footnoteReference',
 			label: 'Example',
@@ -13,41 +16,41 @@ describe('FootnoteReference.svelte', () => {
 	});
 
 	it('renders <sup>', ({ props }) => {
-		const { container } = render(FootnoteReference, { props });
+		mount(FootnoteReference, { props, target: document.body });
 
-		expect(container.querySelector('sup')).toBeInTheDocument();
+		expect(document.body.querySelector('sup')).toBeInTheDocument();
 	});
 
 	it('renders <a> in <sup>', ({ props }) => {
-		const { container } = render(FootnoteReference, { props });
+		mount(FootnoteReference, { props, target: document.body });
 
-		expect(container.querySelector('sup > a')).toBeInTheDocument();
+		expect(document.body.querySelector('sup > a')).toBeInTheDocument();
 	});
 
 	it('renders <a> in <sup> with `id` attribute', ({ props }) => {
-		const { container } = render(FootnoteReference, { props });
+		mount(FootnoteReference, { props, target: document.body });
 
-		expect(container.querySelector('sup > a')).toHaveAttribute('id', 'footnote-ref-example');
+		expect(document.body.querySelector('sup > a')).toHaveAttribute('id', 'footnote-ref-example');
 	});
 
 	it('renders <a> in <sup> with `href` attribute', ({ props }) => {
-		const { container } = render(FootnoteReference, { props });
+		mount(FootnoteReference, { props, target: document.body });
 
-		expect(container.querySelector('sup > a')).toHaveAttribute('href', '#footnote-example');
+		expect(document.body.querySelector('sup > a')).toHaveAttribute('href', '#footnote-example');
 	});
 
 	it('renders <a> in <sup> with `aria-describedby', ({ props }) => {
-		const { container } = render(FootnoteReference, { props });
+		mount(FootnoteReference, { props, target: document.body });
 
-		expect(container.querySelector('sup > a')).toHaveAttribute(
+		expect(document.body.querySelector('sup > a')).toHaveAttribute(
 			'aria-describedby',
 			'footnote-label'
 		);
 	});
 
 	it('renders <a> in <sup> with content', ({ props }) => {
-		const { container } = render(FootnoteReference, { props });
+		mount(FootnoteReference, { props, target: document.body });
 
-		expect(container.querySelector('sup > a')).toHaveTextContent('Example');
+		expect(document.body.querySelector('sup > a')).toHaveTextContent('Example');
 	});
 });

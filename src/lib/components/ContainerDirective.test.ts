@@ -1,10 +1,13 @@
-import { render } from '@testing-library/svelte';
-import type { ComponentProps } from 'svelte';
-import { describe, expect, test } from 'vitest';
+import { mount, type ComponentProps } from 'svelte';
+import { beforeEach, describe, expect, test } from 'vitest';
 import ContainerDirective from './ContainerDirective.svelte';
 
 describe('ContainerDirective.svelte', () => {
-	const it = test.extend<{ props: ComponentProps<ContainerDirective> }>({
+	beforeEach(() => {
+		document.body = document.createElement('body');
+	});
+
+	const it = test.extend<{ props: ComponentProps<typeof ContainerDirective> }>({
 		props: {
 			name: 'container',
 			type: 'containerDirective',
@@ -13,26 +16,28 @@ describe('ContainerDirective.svelte', () => {
 	});
 
 	it('renders an HTML comment', ({ props }) => {
-		const { container } = render(ContainerDirective, { props });
+		mount(ContainerDirective, { props, target: document.body });
 
-		expect(container.outerHTML).toContain('<!-- Unrecognized container directive :::container -->');
+		expect(document.body.innerHTML).toContain(
+			'<!-- Unrecognized container directive :::container -->'
+		);
 	});
 
 	it('renders <div>', ({ props }) => {
-		const { container } = render(ContainerDirective, { props });
+		mount(ContainerDirective, { props, target: document.body });
 
-		expect(container.querySelector('div')).toBeInTheDocument();
+		expect(document.body.querySelector('div')).toBeInTheDocument();
 	});
 
 	it('renders <div> with `class` attribute', ({ props }) => {
-		const { container } = render(ContainerDirective, { props });
+		mount(ContainerDirective, { props, target: document.body });
 
-		expect(container.querySelector('div.container')).toBeInTheDocument();
+		expect(document.body.querySelector('div.container')).toBeInTheDocument();
 	});
 
 	it('renders <div> with content', ({ props }) => {
-		const { container } = render(ContainerDirective, { props });
+		mount(ContainerDirective, { props, target: document.body });
 
-		expect(container.querySelector('div.container')).toHaveTextContent('Hello, World!');
+		expect(document.body.querySelector('div.container')).toHaveTextContent('Hello, World!');
 	});
 });

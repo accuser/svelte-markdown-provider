@@ -1,6 +1,5 @@
-import { render } from '@testing-library/svelte';
-import type { ComponentProps } from 'svelte';
-import { describe, expect, test, vi } from 'vitest';
+import { mount, type ComponentProps } from 'svelte';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 import LinkReference from './LinkReference.svelte';
 
 vi.mock('$lib/contexts/markdown-context.js', async () => {
@@ -18,8 +17,12 @@ vi.mock('$lib/contexts/markdown-context.js', async () => {
 });
 
 describe('LinkReference.svelte', () => {
+	beforeEach(() => {
+		document.body = document.createElement('body');
+	});
+
 	const it = test.extend<{
-		props: ComponentProps<LinkReference>;
+		props: ComponentProps<typeof LinkReference>;
 	}>({
 		props: {
 			type: 'linkReference',
@@ -30,26 +33,26 @@ describe('LinkReference.svelte', () => {
 	});
 
 	it('renders <a>', ({ props }) => {
-		const { container } = render(LinkReference, { props });
+		mount(LinkReference, { props, target: document.body });
 
-		expect(container.querySelector('a')).toBeInTheDocument();
+		expect(document.body.querySelector('a')).toBeInTheDocument();
 	});
 
 	it('renders <a> with `href` attibute', ({ props }) => {
-		const { container } = render(LinkReference, { props });
+		mount(LinkReference, { props, target: document.body });
 
-		expect(container.querySelector('a')).toHaveAttribute('href', 'https://example.com');
+		expect(document.body.querySelector('a')).toHaveAttribute('href', 'https://example.com');
 	});
 
 	it('renders <a> with `title` attibute', ({ props }) => {
-		const { container } = render(LinkReference, { props });
+		mount(LinkReference, { props, target: document.body });
 
-		expect(container.querySelector('a')).toHaveAttribute('title', 'Example');
+		expect(document.body.querySelector('a')).toHaveAttribute('title', 'Example');
 	});
 
 	it('renders <a> with content', ({ props }) => {
-		const { container } = render(LinkReference, { props });
+		mount(LinkReference, { props, target: document.body });
 
-		expect(container.querySelector('a')).toHaveTextContent('Hello, World!');
+		expect(document.body.querySelector('a')).toHaveTextContent('Hello, World!');
 	});
 });
