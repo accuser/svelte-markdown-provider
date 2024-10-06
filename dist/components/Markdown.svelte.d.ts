@@ -1,16 +1,14 @@
-import type { Components } from '../types/components.js';
-import type { Directives } from '../types/directives.js';
+declare module '@accuser/svelte-unist' {
+    interface UnistContext {
+        getAst: ReturnType<typeof astBuilder>;
+        getFrontmatter: ReturnType<typeof frontmatterBuilder>;
+    }
+}
+import astBuilder from '../builders/ast-builder.js';
+import frontmatterBuilder from '../builders/frontmatter-builder.js';
+import { type Props } from '@accuser/svelte-unist';
 import type { Root } from 'mdast';
-import type { Options } from 'mdast-util-from-markdown';
-declare const Markdown: import("svelte").Component<({
+declare const Markdown: import("svelte").Component<{
     ast: Root;
-    src?: never;
-} | {
-    ast?: Root;
-    src: string;
-}) & {
-    components?: Partial<Components>;
-    directives?: Partial<Directives>;
-    options?: Options;
-}, {}, "ast">;
+} & Props, {}, "">;
 export default Markdown;
