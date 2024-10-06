@@ -7,15 +7,15 @@
 
 	const { data }: { data: PageData } = $props();
 
-	const { src } = $derived(data);
+	const { ast } = $derived(data);
 
 	const directives = {
-		containerDirective: { success: Success },
-		leafDirective: { youtube: YouTube },
-		textDirective: { hl: Highlight }
+		success: Success,
+		youtube: YouTube,
+		hl: Highlight
 	};
 </script>
 
 <article class="prose prose-lg max-w-prose mx-auto prose-slate dark:prose-invert">
-	<Markdown {src} {directives} />
+	<Markdown {ast} {directives} />
 </article>

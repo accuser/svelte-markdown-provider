@@ -6,10 +6,10 @@
 
 	const { data }: { data: PageData } = $props();
 
-	const { src } = $derived(data);
-	const directives = { leafDirective: { banner: Banner, toc: Toc } };
+	const { ast } = $derived(data);
+	const directives = { banner: Banner, toc: Toc };
 </script>
 
 <article class="prose prose-lg max-w-prose mx-auto prose-slate dark:prose-invert">
-	<Markdown {src} {directives} />
+	<Markdown {ast} {directives} />
 </article>

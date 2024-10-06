@@ -6,7 +6,7 @@
 
 	const { data }: { data: PageData } = $props();
 
-	let src = $state(data.src);
+	let { ast } = $derived(data);
 </script>
 
-<Markdown {src} components={{ code: Code, root: Article }} />
+<Markdown {ast} components={{ code: Code, root: Article }} />

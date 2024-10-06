@@ -3,14 +3,14 @@
 </script>
 
 <script lang="ts">
-	import Node from '$lib/components/Node.svelte';
-	import { getMarkdownContext } from '$lib/index.js';
+	import { getUnistContext, Node } from '@accuser/svelte-unist';
 
-	const { getFrontmatter } = getMarkdownContext();
+	const { getFrontmatter } = getUnistContext();
 
 	const { children }: Props = $props();
 
 	let frontmatter = $derived.by(() => getFrontmatter());
+
 	let { intro, title } = $derived(frontmatter ?? {});
 </script>
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Node from '$lib/components/Node.svelte';
+	import { Node } from '@accuser/svelte-unist';
 	import { toString } from 'mdast-util-to-string';
 
 	const { children }: import('mdast-util-directive').ContainerDirective = $props();

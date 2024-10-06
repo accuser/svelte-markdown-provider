@@ -3,15 +3,14 @@
 </script>
 
 <script lang="ts">
-	import Node from '$lib/components/Node.svelte';
-	import { getMarkdownContext } from '$lib/index.js';
+	import { getUnistContext, Node } from '@accuser/svelte-unist';
 
-	const { getFrontmatter } = getMarkdownContext();
+	const { getFrontmatter } = getUnistContext();
 
 	const { children }: Props = $props();
 
-	let frontmatter = $derived.by(() => getFrontmatter());
-	let { intro, title } = $derived(frontmatter);
+	let frontmatter = $derived.by(() => getFrontmatter?.());
+	let { intro, title } = $derived(frontmatter ? frontmatter : {});
 </script>
 
 <article class="prose prose-lg max-w-prose mx-auto prose-slate dark:prose-invert">
