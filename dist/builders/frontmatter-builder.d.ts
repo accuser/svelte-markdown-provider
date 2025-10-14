@@ -1,2 +1,1 @@
-declare const _default: (root: import("mdast").Root | undefined) => () => any;
-export default _default;
+export declare const frontmatterBuilder: (root: import("mdast").Root | undefined) => () => any;

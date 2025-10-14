@@ -1,1 +1,1 @@
-export { default as Markdown } from './components/Markdown.svelte';
+export * from './components/index.js';

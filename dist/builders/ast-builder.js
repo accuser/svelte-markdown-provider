@@ -1,1 +1,1 @@
-export default (root) => () => root;
+export const astBuilder = (ast) => () => ast;

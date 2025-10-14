@@ -5,10 +5,12 @@ const frontmatterFrom = (root) => {
         try {
             return parse(root.children[0].value);
         }
-        catch { }
+        catch {
+            return {};
+        }
     }
 };
-export default (root) => {
+export const frontmatterBuilder = (root) => {
     if (root === undefined)
         return () => undefined;
     let frontmatter = frontmatterFrom(root);
