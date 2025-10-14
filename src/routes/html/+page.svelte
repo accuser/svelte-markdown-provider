@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Markdown from '$lib/components/Markdown.svelte';
+	import { Markdown } from '$lib/components/index.js';
 	import type { PageData } from './$types.js';
 
 	const { data }: { data: PageData } = $props();

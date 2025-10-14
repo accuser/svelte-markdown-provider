@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { toString } from 'mdast-util-to-string';
 
-	const { attributes, children }: import('mdast-util-directive').LeafDirective = $props();
+	let { node }: { node: import('mdast-util-directive').LeafDirective } = $props();
+
+	const { attributes, children } = $derived(node);
 
 	const title = $derived.by(() => toString(children));
 	const { v } = $derived(attributes as { v: string });

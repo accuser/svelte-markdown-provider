@@ -1,0 +1,13 @@
+@reference "tailwindcss";
+
+span {
+	@apply -m-1 p-1;
+}
+
+span.pink {
+	@apply bg-pink-200/50;
+}
+
+span.yellow {
+	@apply bg-yellow-200/50;
+}

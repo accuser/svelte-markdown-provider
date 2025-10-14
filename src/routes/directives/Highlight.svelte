@@ -1,25 +1,13 @@
 <script lang="ts">
 	import { Node } from '@accuser/svelte-unist';
+	import './highlight.css';
 
-	const { attributes, children }: import('mdast-util-directive').TextDirective = $props();
+	let { node }: { node: import('mdast-util-directive').TextDirective } = $props();
 
-	const { bg = 'yellow' } = $derived(attributes as { bg: 'pink' | 'yellow' });
+	let { attributes, children } = $derived(node);
+	let { bg = 'yellow' } = $derived(attributes as { bg: 'pink' | 'yellow' });
 </script>
 
-<span class={bg}
-	>{#each children as node}<Node {...node} />{/each}</span
+<span class="px-0.5 -mx-0.5 {bg}"
+	>{#each children as child}<Node node={child} />{/each}</span
 >
-
-<style lang="postcss">
-	span {
-		@apply px-0.5 -mx-0.5;
-	}
-
-	span.pink {
-		@apply bg-pink-200;
-	}
-
-	span.yellow {
-		@apply bg-yellow-200;
-	}
-</style>

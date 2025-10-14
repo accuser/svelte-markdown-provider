@@ -1,13 +1,11 @@
-<script lang="ts" module>
-	export type Props = import('mdast').Root;
-</script>
-
 <script lang="ts">
 	import { getUnistContext, Node } from '@accuser/svelte-unist';
 
 	const { getFrontmatter } = getUnistContext();
 
-	const { children }: Props = $props();
+	let { node }: { node: import('mdast').Root } = $props();
+
+	const { children } = $derived(node);
 
 	let frontmatter = $derived.by(() => getFrontmatter?.());
 	let { intro, title } = $derived(frontmatter ? frontmatter : {});
@@ -20,8 +18,6 @@
 	<pre><code>{JSON.stringify(frontmatter, undefined, 4)}</code></pre>
 	<hr />
 	<main>
-		{#each children as node}
-			<Node {...node} />
-		{/each}
+		{#each children as child}<Node node={child} />{/each}
 	</main>
 </article>

@@ -1,9 +1,7 @@
-<script lang="ts" module>
-	export type Props = import('mdast').Code;
-</script>
-
 <script lang="ts">
-	let { lang, meta, value }: Props = $props();
+	let { node }: { node: import('mdast').Code } = $props();
+
+	let { lang, meta, value } = $derived(node);
 </script>
 
 <figure>

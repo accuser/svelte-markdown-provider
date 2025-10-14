@@ -9,9 +9,9 @@
 
 	const { children }: Props = $props();
 
-	let frontmatter = $derived.by(() => getFrontmatter());
+	let frontmatter = $derived(getFrontmatter?.() ?? {});
 
-	let { intro, title } = $derived(frontmatter ?? {});
+	let { intro, title } = $derived(frontmatter);
 </script>
 
 <header>
@@ -23,8 +23,8 @@
 		<pre><code>{JSON.stringify(frontmatter, undefined, 4)}</code></pre>
 		<hr />
 		<main>
-			{#each children as node}
-				<Node {...node} />
+			{#each children as child}
+				<Node node={child} />
 			{/each}
 		</main>
 	</article>

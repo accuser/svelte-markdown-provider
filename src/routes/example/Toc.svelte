@@ -1,27 +1,27 @@
 <script lang="ts">
 	import { getUnistContext, Node } from '@accuser/svelte-unist';
-	import type { LeafDirective } from 'mdast-util-directive';
 	import { toString } from 'mdast-util-to-string';
 	import toc from './toc.js';
 
-	let { children }: LeafDirective = $props();
+	let { node }: { node: import('mdast-util-directive').LeafDirective } = $props();
 
-	const { getAst } = getUnistContext();
+	let { children } = $derived(node);
 
-	let { list, label = 'Contents' } = $derived.by(() => {
-		if (getAst) {
-			return {
-				label: children && children.length ? toString(children) : 'Contents',
-				list: toc(getAst?.(), { minDepth: 2, maxDepth: 3 })
-			};
-		}
-		return {};
-	});
+	let { getAst } = getUnistContext();
+
+	let { list, label = 'Contents' } = $derived(
+		getAst
+			? {
+					label: children && children.length ? toString(children) : 'Contents',
+					list: toc(getAst(), { minDepth: 2, maxDepth: 3 })
+				}
+			: {}
+	);
 </script>
 
 {#if list}
 	<hr />
 	<strong>{label}</strong>
-	<Node {...list} />
+	<Node node={list} />
 	<hr />
 {/if}

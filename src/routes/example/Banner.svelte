@@ -1,12 +1,14 @@
 <script lang="ts">
 	import { toString } from 'mdast-util-to-string';
 
-	const { attributes, children }: import('mdast-util-directive').LeafDirective = $props();
+	const { node }: { node: import('mdast-util-directive').LeafDirective } = $props();
 
-	const { alt, src } = $derived.by(() => ({
+	let { children, attributes } = $derived(node);
+
+	const { alt, src } = $derived({
 		...(attributes as { src: string }),
 		alt: toString(children)
-	}));
+	});
 </script>
 
 <img {src} {alt} />
