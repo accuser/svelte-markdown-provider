@@ -1,8 +1,9 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig(({ mode }) => ({
-	plugins: [sveltekit()],
+	plugins: [tailwindcss(), sveltekit()],
 	resolve: {
 		conditions: mode === 'test' ? ['browser'] : undefined
 	},
