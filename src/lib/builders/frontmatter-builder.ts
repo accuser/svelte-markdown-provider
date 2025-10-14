@@ -5,11 +5,13 @@ const frontmatterFrom = (root: import('mdast').Root) => {
 	if (root.children.length > 0 && isYaml(root.children[0])) {
 		try {
 			return parse(root.children[0].value);
-		} catch {}
+		} catch {
+			return {};
+		}
 	}
 };
 
-export default (root: import('mdast').Root | undefined) => {
+export const frontmatterBuilder = (root: import('mdast').Root | undefined) => {
 	if (root === undefined) return () => undefined;
 
 	let frontmatter = frontmatterFrom(root);

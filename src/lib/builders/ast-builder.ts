@@ -1,1 +1,1 @@
-export default (root: import('mdast').Root) => () => root;
+export const astBuilder = (ast: import('mdast').Root) => () => ast;
